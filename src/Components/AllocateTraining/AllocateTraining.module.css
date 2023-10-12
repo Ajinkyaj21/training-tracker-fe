@@ -1,0 +1,49 @@
+
+  .topContainer {
+    display: flex;
+    justify-content: space-between;
+    background-color: #333; /* Gray background color */
+    padding: 7px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-top: -210px;
+    margin-left: -53px;
+  }
+  
+  .dropdown {
+    margin-right: 10px;
+    background-color: #333;
+  }
+  
+  select {
+    padding: 8px;
+    font-size: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  /* .btn{
+background-color: #333; 
+  color: #fff; 
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  margin-left: 70px; 
+  cursor: pointer;
+  margin-top: -183px;
+  float: right;
+  width: 60%;
+  } */
+  /* .Actbtn{
+    width: 60%;
+    float:right;
+    margin-top: -183px;
+    margin-left: 70px;
+    cursor: pointer;
+    border-radius: 4px;
+  } */
+  
+  
+
+  
+
+  
