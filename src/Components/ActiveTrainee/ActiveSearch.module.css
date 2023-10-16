@@ -1,0 +1,28 @@
+.searchContainer {
+    position: fixed;
+    top: 61px;
+    right: 30px;
+    padding: 10px;
+    width: 12%;
+  }
+.cardContainer {
+    /* position: fixed; */
+    display: flex;
+    flex-direction: column; 
+    align-items: flex-start; 
+    margin-top: 139px;
+    overflow-y: auto;
+    
+  } 
+  .card {
+    
+    width: 300px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 15px; 
+    background-color: #f9f9f9;
+    display: block; 
+
+  }
+  
