@@ -1,28 +1,77 @@
-.searchContainer {
-    position: fixed;
-    top: 61px;
-    right: 30px;
+/* .searchContainer {
     padding: 10px;
     width: 12%;
   }
 .cardContainer {
-    /* position: fixed; */
     display: flex;
     flex-direction: column; 
     align-items: flex-start; 
-    margin-top: 139px;
-    overflow-y: auto;
-    
   } 
   .card {
-    
-    width: 300px;
+    width: 95.65%;
     border: 1px solid #ddd;
     border-radius: 5px;
     padding: 20px;
-    margin-bottom: 15px; 
+    margin-bottom: 15px;
     background-color: #f9f9f9;
-    display: block; 
-
+    display: flex;
+    justify-content: space-between;
+  } */
+  /* .cardContainer {
+    background-color: yellow;
+    display: flex;
+    flex-direction: column; 
+    align-items: flex-start; 
   }
+  .card{
+    display: felx;
+    flex-direction: row;
+    background-color: violet;
+  }
+  .name{
+    background-color: brown;
+  }
+.comments{
+  background-color: blue;
+}
+.rightBox{
+background-color: aqua;
+}
+.leftSide{
   
+  background-color: beige;
+} */
+.main{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.card{
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 20px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  display: flex;
+  flex-direction: row;
+  border-collapse: collapse;
+  background-color: #bde3eb;
+  gap: 150px;
+  justify-content: space-between;
+}
+.left{
+  display: flex;
+  flex-direction: column;
+  /* background-color: brown; */
+  /* gap: 20px; */
+}
+.right{
+  display: flex;
+  flex-direction: column;
+}
+.comments{
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}

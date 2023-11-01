@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import AllocateTraining from '../AllocateTraining/AllocateTraining';
+import AllocateTraining from '../../Components/AllocateTraining/AllocateTraining';
 import stylesA from './Admin.module.css'; 
-import AddUser from '../AddUser/AddUser';
+import AddUser from '../../Components/AddUser/AddUser';
 
 const Admin = () => {
   const [activeTab, setActiveTab] = useState("allocateTraining");
@@ -10,14 +10,14 @@ const Admin = () => {
   };
 
   return (
-    <div>
-      <div className={stylesA.tabNavigation}>
-        <button onClick={() => handleTabClick('allocateTraining')} className={stylesA.rightBtn}>
+    <div style={{display:"flex", width:"93.3%", flexDirection:"column"}}>
+      <div className={ stylesA.tabNavigation}>
+        <div onClick={() => handleTabClick('allocateTraining')} className={stylesA.rightBtn}>
           Allocate Training
-        </button>
-        <button onClick={() => handleTabClick('addUser')} className={stylesA.leftBtn}>
+        </div>
+        <div onClick={() => handleTabClick('addUser')} className={stylesA.leftBtn}>
           Add User
-        </button>
+        </div>
       </div>
       <div className={stylesA.tabContent}>
         {activeTab === 'allocateTraining' && (

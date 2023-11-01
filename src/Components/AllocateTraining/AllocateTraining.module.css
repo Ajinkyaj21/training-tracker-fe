@@ -1,49 +1,109 @@
 
-  .topContainer {
+.topContainer {
     display: flex;
-    justify-content: space-between;
-    background-color: #333; /* Gray background color */
-    padding: 7px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin-top: -210px;
-    margin-left: -53px;
+    justify-content: center;
+    /* margin-bottom: 20px; */
+    padding: 20px;
   }
   
   .dropdown {
-    margin-right: 10px;
-    background-color: #333;
+    background-color: #14B1C1;
+    margin-right: 20px;
   }
   
-  select {
-    padding: 8px;
-    font-size: 12px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+  .dropdown select {
+    border-color: #14B1C1;
+    width: 200px;
+    padding: 10px;
+    
   }
-  /* .btn{
-background-color: #333; 
-  color: #fff; 
-  padding: 10px 20px;
-  border: none;
-  border-radius: 4px;
-  margin-left: 70px; 
-  cursor: pointer;
-  margin-top: -183px;
-  float: right;
-  width: 60%;
-  } */
-  /* .Actbtn{
-    width: 60%;
-    float:right;
-    margin-top: -183px;
-    margin-left: 70px;
+  
+  .actBtn {
+    background-color: #15224c;
+    border: none;
+    color: #fff;
     cursor: pointer;
-    border-radius: 4px;
-  } */
+    font-size: 14px;
+    padding: 10px;
+    margin: -1px;
+    border-radius: 7px;
+    width: 9%;
+  }
   
-  
+  .actBtn:hover{
+    background-color: #14B1C1; 
+  }
 
-  
+.actBox {
+  flex-direction: column;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
+.tableMain {
+  border-radius: 9px;
+  border-collapse: collapse;
+  background-color: #bde3eb;
+}
+
+.th {
+  background-color: #15224c;
+  color: #fff;
+  text-align: ce;
+  padding: 10px;
+}
+tr:nth-child(even) {
+  background-color: white; /* Set the background color for even rows */
+}
+
+.td {
+  vertical-align: middle;
+  justify-content: center;
+  align-items: center ;
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+.p {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px 0;
+  font-weight: bold;  
+  color: #f04545;
+}
+.tdInner{
+  border: 1px solid #ccc;
+  padding: 10px;
+  vertical-align: top;
+}
+.btnDiv{
+  /* background-color:red ; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.saveBtn{
+  display: flex;
+  justify-content: center;
+  background-color: #15224c;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    font-size: 14px;
+    padding: 10px;
+    margin: -1px;
+    border-radius: 7px;
+    
+}
+.saveBtn:hover{
   
+  /* background-color: #14B1C1;  */
+}
+.mainDiv{
+  margin: 20px;
+  /* margin-bottom: -542px; */
+  /* background-color: aqua; */
+}

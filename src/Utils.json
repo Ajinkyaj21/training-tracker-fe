@@ -1,0 +1,94 @@
+{
+    "data" : [
+    {
+        "tech_id": 1,
+        "technology": "Python",
+        "tech_topic_id": 3,
+        "topic": "Control Structures",
+        "tech_sub_topic_id": 1,
+        "sub_topic": "Conditional",
+        "activity_id": 10,
+        "activity": "if-else"
+    },
+    {
+        "tech_id": 1,
+        "technology": "Python",
+        "tech_topic_id": 3,
+        "topic": "Control Structures",
+        "tech_sub_topic_id": 1,
+        "sub_topic": "Conditional",
+        "activity_id": 11,
+        "activity": "Nested if-else"
+    },
+    {
+        "tech_id": 1,
+        "technology": "Python",
+        "tech_topic_id": 3,
+        "topic": "Control Structures",
+        "tech_sub_topic_id": 1,
+        "sub_topic": "Conditional",
+        "activity_id": 12,
+        "activity": "if-else ladder"
+    },
+    {
+        "tech_id": 1,
+        "technology": "Python",
+        "tech_topic_id": 3,
+        "topic": "Control Structures",
+        "tech_sub_topic_id": 2,
+        "sub_topic": "Transfer",
+        "activity_id": 13,
+        "activity": "continue"
+    },
+    {
+        "tech_id": 1,
+        "technology": "Python",
+        "tech_topic_id": 3,
+        "topic": "Control Structures",
+        "tech_sub_topic_id": 2,
+        "sub_topic": "Transfer",
+        "activity_id": 14,
+        "activity": "exit"
+    },
+    {
+        "tech_id": 1,
+        "technology": "Python",
+        "tech_topic_id": 3,
+        "topic": "Control Structures",
+        "tech_sub_topic_id": 2,
+        "sub_topic": "Transfer",
+        "activity_id": 15,
+        "activity": "break"
+    },
+    {
+        "tech_id": 1,
+        "technology": "Python",
+        "tech_topic_id": 3,
+        "topic": "Control Structures",
+        "tech_sub_topic_id": 3,
+        "sub_topic": "Iterative",
+        "activity_id": 16,
+        "activity": "for loop"
+    },
+    {
+        "tech_id": 1,
+        "technology": "Python",
+        "tech_topic_id": 3,
+        "topic": "Control Structures",
+        "tech_sub_topic_id": 3,
+        "sub_topic": "Iterative",
+        "activity_id": 17,
+        "activity": "while loop"
+    },
+    {
+        "tech_id": 1,
+        "technology": "Python",
+        "tech_topic_id": 3,
+        "topic": "Control Structures",
+        "tech_sub_topic_id": 3,
+        "sub_topic": "Iterative",
+        "activity_id": 18,
+        "activity": "do-while loop"
+    }
+]
+}

@@ -9,12 +9,14 @@ const Sidebar = () => {
         <div className={styles.sidebar}>
           <ul>
             <li><Link to="/" >Dashboard</Link></li>
+            <li><Link to="/training">Training</Link></li>
             <li><Link to="/trainees">Trainees</Link></li>
             <li><Link to="/admin">Admin</Link></li>
           </ul>
         </div>
         </>
     );
-};
+}; 
 
 export default Sidebar;
+ 

@@ -1,0 +1,40 @@
+.rightBtn {
+    background-color: #15224c;
+    color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  }
+
+  .leftBtn {
+    background-color: #15224c;
+    color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  }
+  .rightBtn:hover{
+    background-color: #14B1C1; 
+  }
+
+  .leftBtn:hover{
+    background-color: #14B1C1; 
+  }
+
+  .parentTrainee{
+    width: 100%;
+    height: auto;
+    overflow: auto;
+  }
+
+.tabNavigation{
+  display: flex;
+  padding: 25px;
+  justify-content: space-between;
+}
+
+.buttons{
+  width: 17%;
+  display: flex;
+  justify-content: space-around;
+}

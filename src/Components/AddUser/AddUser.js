@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import stylesAU from './AddUser.module.css';
+import { addUser } from '../../Api';
 
 const AddUser = () => {
   const [user_name, setUserName] = useState('');
@@ -10,19 +11,14 @@ const AddUser = () => {
   const navigate = useNavigate();
 
   const handleAdminToggle = () => {
-    setIsAdmin(!is_admin); 
+    setIsAdmin(!is_admin);
   };
-  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('https://d649-103-167-184-195.ngrok-free.app/user/register', {
-        user_name,email, 
-        password,is_admin
-
-      });
+      const response = await addUser(email, password);
 
       console.log('Response Data:', response.data);
 
@@ -30,52 +26,49 @@ const AddUser = () => {
     } catch (error) {
       console.error('Error posting data:', error);
     }
-
-    // console.log('User Name:', user_name);
-    // console.log('Email:', email);
-    // console.log('Password:', password);
-    // console.log('Is Admin:', isAdmin);
   };
-
+ 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <div>
+    <div className={stylesAU.mainContainer}>
+      <form className={stylesAU.formContainer} onSubmit={handleSubmit}>
+        <div className={stylesAU.baap} >
           <label>User Name:</label>
-          <input
+          <input className={stylesAU.input}
             type="text"
             value={user_name}
             onChange={(e) => setUserName(e.target.value)}
             required
           />
         </div>
-        <div>
+        <div className={stylesAU.baap} >
           <label>Email:</label>
-          <input
+          <input className={stylesAU.input}
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
           />
         </div>
-        <div>
+        <div className={stylesAU.baap}>
           <label>Password:</label>
-          <input
+          <input className={stylesAU.input}
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
         </div>
-        <div>
-          <label>Is Admin:</label>
-          <input
+        <div className={stylesAU.baap}>
+          <label >Is Admin:</label>
+          <input className={stylesAU.input}
             type="checkbox"
             checked={is_admin}
             onChange={handleAdminToggle}
           />
         </div>
-        <button type="submit">Add User</button>
+        <button className={stylesAU.button} type="submit" >
+          Add User
+        </button>
       </form>
     </div>
   );

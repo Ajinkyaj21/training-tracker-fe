@@ -1,0 +1,41 @@
+/* 
+.ContentDisplay{
+   
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+.Name{
+    
+}
+.pTag{
+    justify-content: center;
+}
+.Trail{
+    width: 100%;
+    height: 100%;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    background-color: #f9f9f9;
+    display: flex;
+    justify-content: space-between;
+}
+.dropDown{
+    width: 100%;
+    display: flex;
+    justify-content: right;
+}
+
+
+ */
+ .mainbox{
+    /* background-color: aquamarine; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+ }
