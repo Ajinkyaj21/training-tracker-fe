@@ -1,71 +1,58 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styleTraining from "./Training.module.css";
-
-const trainees = [
-    {
-        ActivityName: "ToDoList",
-        Topic: "React",
-        SubTopic: "Hooks",
-        Description: "XYZ",
-        Comments: "1.Unresolved 2.Unresolved",
-        Status: "NotStarted"
-    },
-    {
-        ActivityName: "WeatherApp",
-        Topic: "React",
-        SubTopic: "Hooks",
-        Description: "XYZ",
-        Comments: "1.Unresolved 2.Unresolved",
-        Status: "Inprogress"
-    },
-    // Add more trainees here
-];
+import jsonData from '../../Utils.json';
 
 const Training = () => {
-    const [selectedStatus, setSelectedStatus] = useState("All");
-    const [searchQuery, setSearchQuery] = useState('');
+  const navigate = useNavigate();
+  const [trainees, setTrainees] = useState([]);
 
-    const filteredTrainees = trainees.filter((trainee) => {
-        if (selectedStatus === "All" || trainee.Status === selectedStatus) {
-            return trainee.ActivityName.toLowerCase().includes(searchQuery.toLowerCase());
-        }
-        return false;
-    });
+  useEffect(() => {
+    setTrainees(jsonData);
+  }, []);
 
-    return (
-        <div className={styleTraining.mainbox}>
-            <div className={styleTraining.techCard}>
-                <h2>Tech 1</h2>
-                <div className={styleTraining.traineeCards}>
-                    {filteredTrainees.map((trainee, index) => (
-                        <div key={index} className={styleTraining.traineeCard}>
-                            <h3>{trainee.ActivityName}</h3>
-                            <p>Topic: {trainee.Topic}</p>
-                            <p>SubTopic: {trainee.SubTopic}</p>
-                            <p>Description: {trainee.Description}</p>
-                            <p>Comments: {trainee.Comments}</p>
-                            <p>Status: {trainee.Status}</p>
-                        </div>
-                    ))}
-                </div>
-            </div>
-            <div className={styleTraining.techCard}>
-                <h2>Tech 2</h2>
-                <div className={styleTraining.traineeCards}>
-                    {filteredTrainees.map((trainee, index) => (
-                        <div key={index} className={styleTraining.traineeCard}>
-                            <h3>{trainee.ActivityName}</h3>
-                            <p>Topic: {trainee.Topic}</p>
-                            <p>SubTopic: {trainee.SubTopic}</p>
-                            <p>Description: {trainee.Description}</p>
-                            <p>Comments: {trainee.Comments}</p>
-                            <p>Status: {trainee.Status}</p>
-                        </div>
-                    ))}
-                </div>
-            </div>
-        </div>
-    );
-}
+  return (
+    <div className={styleTraining.parentBox}>
+      <div className={styleTraining.mainbox}>
+        <table className={styleTraining.table}>
+          <thead>
+            <tr>
+              <th className={styleTraining.th}>Technology</th>
+              <th className={styleTraining.th}>Activity Name</th>
+              <th className={styleTraining.th}>Topic</th>
+              <th className={styleTraining.th}>SubTopic</th>
+              <th className={styleTraining.th}>Due Date</th>
+              <th className={styleTraining.th}>Resource Link</th>
+              <th className={styleTraining.th}>Description</th>
+              <th className={styleTraining.th}>Status</th>
+              <th className={styleTraining.th}>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {trainees.map((trainee, index) => (
+              <tr key={index}>
+                <td className={styleTraining.td}>{trainee.tech}</td>
+                <td className={styleTraining.td}>{trainee.activity_name}</td>
+                <td className={styleTraining.td}>{trainee.topic_name}</td>
+                <td className={styleTraining.td}>{trainee.sub_topic_name}</td>
+                <td className={styleTraining.td}>{trainee.due_date}</td>
+                <td className={styleTraining.td}>
+                  <a href={trainee.resource_link} target="_blank" rel="noopener noreferrer">
+                    Link
+                  </a>
+                </td >
+                <td className={styleTraining.td}>{trainee.activity_description}</td>
+                <td className={styleTraining.td}>{trainee.status_name}</td>
+                <td className={styleTraining.td}>
+                  <button onClick={() => navigate(`/edit`, { state: { trainee } })}>Action</button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+};
 
 export default Training;

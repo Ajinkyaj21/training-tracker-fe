@@ -5,7 +5,7 @@
   color: white;
   padding: 20px;
   height: auto;
-  position: sticky;
+  /* position: sticky; */
 }
 
 .sidebar ul {

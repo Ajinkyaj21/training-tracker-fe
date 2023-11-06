@@ -43,6 +43,7 @@
 }
 
 .tableMain {
+  border: 2px solid rgb(0, 0, 0);
   border-radius: 9px;
   border-collapse: collapse;
   background-color: #bde3eb;
@@ -62,7 +63,7 @@ tr:nth-child(even) {
   vertical-align: middle;
   justify-content: center;
   align-items: center ;
-  border: 1px solid #ccc;
+  border: 2px solid rgb(0, 0, 0);
   padding: 10px;
 }
 
@@ -75,12 +76,11 @@ tr:nth-child(even) {
   color: #f04545;
 }
 .tdInner{
-  border: 1px solid #ccc;
+  border: 3px solid rgb(0, 0, 0);
   padding: 10px;
   vertical-align: top;
 }
 .btnDiv{
-  /* background-color:red ; */
   display: flex;
   align-items: center;
   justify-content: center;

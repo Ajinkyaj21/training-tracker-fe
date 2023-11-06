@@ -31,15 +31,15 @@ const Login = ({ setIsLoggedIn }) => {
 
   return (
     <div className={styles.main}>
-      <Navbar />
+      {/* <Navbar /> */}
       <div className={styles.mainContainer}>
         
         <div className={styles.leftForm}>
-          <div className={styles.Qute}>Know the code thill the core</div>
+          <div className={styles.Qute}>Flair Minds-Training Tracker Platform</div>
         </div>
 
         <div className={styles.rightFrom}>
-          <div className={styles.logo}>Good to see you again</div>
+          <div className={styles.logo}>Welcome </div>
           <div className={styles.form}>
             <form onSubmit={handleSubmit} className={styles.formMain1}>
               <div className={styles.formMain}>

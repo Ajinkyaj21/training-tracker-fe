@@ -15,9 +15,9 @@ const ActiveTrainee = ({ searchQuery }) => {
   }, []);
 
   return (
-    
+    // trainees.length > 0 &&
     <div className={stylesActiveT.main}>
-      {trainees.map((trainee, index) => (
+      {trainees.length > 0 && trainees.map((trainee, index) => (
         <div className={stylesActiveT.main}>
           <div className={stylesActiveT.card}>
             <div className={stylesActiveT.left}>

@@ -10,7 +10,7 @@ const Admin = () => {
   };
 
   return (
-    <div style={{display:"flex", width:"93.3%", flexDirection:"column"}}>
+    <div style={{display:"flex", width:"93.3%", flexDirection:"column", overflow:"auto"}}>
       <div className={ stylesA.tabNavigation}>
         <div onClick={() => handleTabClick('allocateTraining')} className={stylesA.rightBtn}>
           Allocate Training
@@ -19,6 +19,7 @@ const Admin = () => {
           Add User
         </div>
       </div>
+      {/* <hr style={{color:"red"}}/> */}
       <div className={stylesA.tabContent}>
         {activeTab === 'allocateTraining' && (
           <AllocateTraining />
@@ -27,6 +28,7 @@ const Admin = () => {
           <AddUser />
         )}
       </div>
+      <hr/>
     </div>
   );
 };

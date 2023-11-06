@@ -9,9 +9,7 @@ const AllocateTraining = () => {
   const [trial, setTrial] = useState([]);
   const [technologyOptions, setTechnologyOptions] = useState([]);
   const [activites, setActivites] = useState([]);
-  const [requiredStates, setRequiredStates] = useState(
-    activites.map(() => true)
-  );
+  const [requiredStates, setRequiredStates] = useState(activites.map(() => true));
   const [activityDueDates, setActivityDueDates] = useState([]);
 
   useEffect(() => {
@@ -30,13 +28,11 @@ const AllocateTraining = () => {
   const handleSubmit = async () => {
     try {
       const response = await trainee();
-      console.log("API Response:", response);
       const temp = response.map((el) => ({
         label: el.user_name,
         value: el.user_id,
       }));
       setTrial(temp);
-      console.log(temp, "temp");
     } catch (error) {
       console.error("Error posting data:", error);
     }
@@ -58,9 +54,9 @@ const AllocateTraining = () => {
   const handleSelectChange = (event, setSelectedState) => {
     setSelectedState(event.target.value);
   };
-
+  // activites.length > 0 &&
   const handleGetActivities = async () => {
-    if (selectedTrainee && selectedTrainer && selectedTechnology) {
+    if ( selectedTrainee && selectedTrainer && selectedTechnology) {
       try {
         const responseActivites = await btnActivities(
           selectedTrainee,
@@ -76,23 +72,17 @@ const AllocateTraining = () => {
           const initialDueDates = new Array(activitiesres.length).fill("");
           setActivityDueDates(initialDueDates);
         } else {
-          console.error(
-            "Error getting activities:",
-            responseActivites.statusText
-          );
+          console.error("Error getting activities:", responseActivites.statusText);
         }
       } catch (error) {
-        console.error("Error getting activities: hiiiiiiiiiiii", error);
+        console.error("Error getting activities:", error);
       }
     } else {
-      alert(
-        "Please select values for all dropdowns before getting activities."
-      );
+      alert("Please select values for all dropdowns before getting activities.");
     }
   };
 
   const handleSave = async () => {
-    console.log(activites, "rog");
     if (activites.length > 0) {
       const dataToSend = {
         tech_id: selectedTechnology,
@@ -100,18 +90,20 @@ const AllocateTraining = () => {
         trainer_id: selectedTrainer,
         activities: activites.map((activity, index) => ({
           activity_id: activity.activity_id,
-          due_date: activityDueDates[index], // Use the corresponding date from activityDueDates
+          due_date: activityDueDates[index],
           required: requiredStates[index] ? 1 : 0,
         })),
       };
-  
+
       try {
         const response = await saveDataApi(dataToSend);
-  
-        if (response.status === 200) {
-          console.log("Data saved successfully!", response);
-        } else {
+
+        if (response.status !== 200) {
           console.error("Error saving data:", response.statusText);
+        } else {
+          console.log(response,"response");
+          alert("Data saved successfully!"); 
+          resetForm(); 
         }
       } catch (error) {
         console.error("Error saving data:", error);
@@ -119,6 +111,33 @@ const AllocateTraining = () => {
     } else {
       alert("No activities to save.");
     }
+  };
+
+  const resetForm = () => {
+
+    // setTempSelectedTrainee("");
+    // setTempSelectedTrainer("");
+    // setTempSelectedTechnology("");
+
+    // // Clear other form states
+    // setSelectedTrainee("");
+    // setSelectedTrainer("");
+    // setSelectedTechnology("");
+    setTrial([]);
+    setTechnologyOptions([]);
+    setActivites([]);
+    setRequiredStates([]);
+    setActivityDueDates([]);
+
+
+    // setSelectedTrainee("");
+    // setSelectedTrainer("");
+    // setSelectedTechnology("");
+    // setTrial([]);
+    // setTechnologyOptions([]);
+    // setActivites([]);
+    // setRequiredStates([]);
+    // setActivityDueDates([]);
   };
   
   const allDueDatesFilled = activityDueDates.every((date) => date.trim() !== "");

@@ -8,6 +8,7 @@ import Dashboard from "./Pages/Dashboard/Dashboard";
 import Trainees from './Pages/Trainees/Trainees';
 import Admin from './Pages/Admin/Admin';
 import Training from './Pages/Training/Training';
+import Edit from './Pages/Edit/edit';
 
 const App = () => {
 
@@ -47,6 +48,12 @@ const App = () => {
         <Route path="/admin" element={
           <Protected>
             <Admin />
+          </Protected>
+        }
+        />
+        <Route path="/edit" element={
+          <Protected>
+            <Edit  />
           </Protected>
         }
         />

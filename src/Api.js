@@ -78,18 +78,37 @@ export const saveDataApi = async (dataToSend) => {
       credentials: 'include',
       headers
     });
-    return response.data;
+    return response;
 };
 export const fetchTraineeData = async () => {
     const response = await axios.post(BASE_URL + "/trainee/active?activityType=active",{},{
-      withCredntials: true,
-      credentials: 'include',
-      headers
+		withCredntials: true,
+		credentials: 'include',
+		headers
     });
     return response.data;
   
 };
 
+export const fetchTraineeDataTraining = async () => {
+  const response = await axios.post(BASE_URL + "/trainingPlan/getTrainingActivities",{},{
+    withCredntials: true,
+    credentials: 'include',
+    headers
+  });
+  return response.data;
+
+};
+
+export const saveData = async (dataToSend) => {
+  
+  const response = await axios.post(`${BASE_URL}/trainingPlan/saveActivities/`, dataToSend,{
+    withCredntials: true,
+    credentials: 'include',
+    headers
+  });
+  return response;
+};
 export default BASE_URL;
 
 
