@@ -1,74 +1,27 @@
-/* .searchContainer {
-    padding: 10px;
-    width: 12%;
-  }
-.cardContainer {
-    display: flex;
-    flex-direction: column; 
-    align-items: flex-start; 
-  } 
-  .card {
-    width: 95.65%;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    padding: 20px;
-    margin-bottom: 15px;
-    background-color: #f9f9f9;
-    display: flex;
-    justify-content: space-between;
-  } */
-  /* .cardContainer {
-    background-color: yellow;
-    display: flex;
-    flex-direction: column; 
-    align-items: flex-start; 
-  }
-  .card{
-    display: felx;
-    flex-direction: row;
-    background-color: violet;
-  }
-  .name{
-    background-color: brown;
-  }
-.comments{
-  background-color: blue;
-}
-.rightBox{
-background-color: aqua;
-}
-.leftSide{
-  
-  background-color: beige;
-} */
 .main{
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  margin-left: 75px;
+  padding: 20px;
+  width: 80%;
 }
 .card{
   border: 1px solid #ddd;
-  border-radius: 5px;
-  padding: 20px;
-  margin-bottom: 15px;
-  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 5px;
+  border: 1px solid #a38ede;
   display: flex;
   flex-direction: row;
-  border-collapse: collapse;
-  background-color: #bde3eb;
-  gap: 150px;
-  justify-content: space-between;
+  background-color: #eef8fa;
 }
 .left{
   display: flex;
   flex-direction: column;
-  /* background-color: brown; */
-  /* gap: 20px; */
 }
 .right{
   display: flex;
-  flex-direction: column;
+  flex-direction: column; 
 }
 .comments{
   display: flex;

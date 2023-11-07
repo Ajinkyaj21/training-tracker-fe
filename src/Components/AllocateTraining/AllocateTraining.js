@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import stylesAT from "./AllocateTraining.module.css";
 import { btnActivities, saveDataApi, tech, trainee } from "../../Api";
+import { toast } from "react-toastify";
 
 const AllocateTraining = () => {
   const [selectedTrainee, setSelectedTrainee] = useState("");
@@ -56,6 +57,7 @@ const AllocateTraining = () => {
   };
   // activites.length > 0 &&
   const handleGetActivities = async () => {
+    // toast.success("button dabaya")
     if ( selectedTrainee && selectedTrainer && selectedTechnology) {
       try {
         const responseActivites = await btnActivities(
@@ -78,7 +80,7 @@ const AllocateTraining = () => {
         console.error("Error getting activities:", error);
       }
     } else {
-      alert("Please select values for all dropdowns before getting activities.");
+      toast.error("Please select values for all dropdowns before getting activities.");
     }
   };
 
@@ -97,19 +99,26 @@ const AllocateTraining = () => {
 
       try {
         const response = await saveDataApi(dataToSend);
-
-        if (response.status !== 200) {
-          console.error("Error saving data:", response.statusText);
-        } else {
-          console.log(response,"response");
-          alert("Data saved successfully!"); 
+        console.log(response.data.isDuplicate,"responseData");
+        if(response.data.isDuplicate === true || response.status !== 200){
+          toast.error("The data has already been added, so please choose an alternative dataset.")
+        }
+        else{
+          toast.success("Data saved successfully!"); 
           resetForm(); 
         }
+        // if (response.status !== 200) {
+        //   console.error("Error saving data:", response.statusText);
+        // } else {
+        //   console.log(response,"response");
+        //   toast.success("Data saved successfully!"); 
+        //   resetForm(); 
+        // }
       } catch (error) {
         console.error("Error saving data:", error);
       }
     } else {
-      alert("No activities to save.");
+      toast.error("No activities to save.");
     }
   };
 

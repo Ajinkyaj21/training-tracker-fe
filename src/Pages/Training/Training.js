@@ -15,8 +15,8 @@ const Training = () => {
     <div className={styleTraining.parentBox}>
       <div className={styleTraining.mainbox}>
         <table className={styleTraining.table}>
-          <thead>
-            <tr>
+          <thead className={styleTraining.thead}>
+            <tr className={styleTraining.tr}>
               <th className={styleTraining.th}>Technology</th>
               <th className={styleTraining.th}>Activity Name</th>
               <th className={styleTraining.th}>Topic</th>
@@ -25,10 +25,10 @@ const Training = () => {
               <th className={styleTraining.th}>Resource Link</th>
               <th className={styleTraining.th}>Description</th>
               <th className={styleTraining.th}>Status</th>
-              <th className={styleTraining.th}>Action</th>
+              <th className={styleTraining.th}>Edit</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className={styleTraining.tbody}>
             {trainees.map((trainee, index) => (
               <tr key={index}>
                 <td className={styleTraining.td}>{trainee.tech}</td>
@@ -44,7 +44,7 @@ const Training = () => {
                 <td className={styleTraining.td}>{trainee.activity_description}</td>
                 <td className={styleTraining.td}>{trainee.status_name}</td>
                 <td className={styleTraining.td}>
-                  <button onClick={() => navigate(`/edit`, { state: { trainee } })}>Action</button>
+                  <button className={styleTraining.editBtn} onClick={() => navigate(`/edit`, { state: { trainee } })}>Edit</button>
                 </td>
               </tr>
             ))}

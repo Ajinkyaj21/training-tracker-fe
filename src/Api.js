@@ -1,19 +1,22 @@
 import axios from "axios";
 import Cookies from 'js-cookie'; 
-const BASE_URL ="https://training-tracker.cyclic.app"
+const BASE_URL ="https://training-tracker-aj.vercel.app"
 // https://training-tracker.cyclic.app/
 // https://0975-103-167-184-195.ngrok.io
 
 const tokenCookie = Cookies.get('token');
+
 localStorage.setItem('token', tokenCookie);
 
 // Retrieve the token from localStorage
 const token = localStorage.getItem('token');
-
+const loginis_admin = localStorage.getItem("isAdmin")
+console.log(loginis_admin,"admin");
 // console.log("Token", token);
 
 const headers = {
   'Authorization': `Bearer ${token}`,
+
 };
 
 export const login = async (email, password) => {
@@ -25,11 +28,12 @@ export const login = async (email, password) => {
       credentials: 'include',
       headers
 });
+   localStorage.setItem("isAdmin", response.data.is_admin)
     return response.data;
   };
 
 export const trainee = async() =>{
-  const response = await axios.post(BASE_URL + "/trainee/",{},{
+  const response = await axios.get(BASE_URL + "/trainee/",{
     withCredntials: true,
     credentials: 'include',
     headers
@@ -38,7 +42,7 @@ export const trainee = async() =>{
 }
 
 export const tech = async() =>{
-  const response = await axios.post(BASE_URL + "/tech/",{},{
+  const response = await axios.get(BASE_URL + "/tech/",{
     withCredntials: true,
     credentials: 'include',
     headers
@@ -59,8 +63,9 @@ export const btnActivities = async (selectedTrainee, selectedTrainer, selectedTe
   return response.data;
 } 
 
-export const addUser = async (email, password) => {
+export const addUser = async (email, password,user_name) => {
   const response = await axios.post(BASE_URL + "/user/addUser/", {
+    user_name : user_name,
     email: email,
     password: password,
   },{
@@ -81,14 +86,46 @@ export const saveDataApi = async (dataToSend) => {
     return response;
 };
 export const fetchTraineeData = async () => {
-    const response = await axios.post(BASE_URL + "/trainee/active?activityType=active",{},{
-		withCredntials: true,
-		credentials: 'include',
-		headers
-    });
-    return response.data;
-  
+  if(loginis_admin == 1 ){
+    const response = await axios.get(BASE_URL + "/trainee/activeTraineesAdmin?activityType=active",{
+      withCredntials: true,
+      credentials: 'include',
+      headers
+      });
+      return response.data;
+  }
+  else{
+    const response = await axios.get(BASE_URL + "/trainee/activeTraineesUser?activityType=active",{
+      withCredntials: true,
+      credentials: 'include',
+      headers
+      });
+      return response.data;
+  }
 };
+
+
+export const fetchTraineeDataOld = async () => {
+  if(loginis_admin == 1 ){
+    const response = await axios.get(BASE_URL + "/trainee/activeTraineesAdmin?activityType=old",{
+      withCredntials: true,
+      credentials: 'include',
+      headers
+      });
+      return response.data;
+  }
+  else{
+    const response = await axios.get(BASE_URL + "/trainee/activeTraineesUser?activityType=old",{
+      withCredntials: true,
+      credentials: 'include',
+      headers
+      });
+      return response.data;
+  }
+};
+
+
+
 
 export const fetchTraineeDataTraining = async () => {
   const response = await axios.post(BASE_URL + "/trainingPlan/getTrainingActivities",{},{

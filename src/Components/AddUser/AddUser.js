@@ -18,7 +18,7 @@ const AddUser = () => {
     e.preventDefault();
 
     try {
-      const response = await addUser(email, password);
+      const response = await addUser(email, password,user_name);
 
       console.log('Response Data:', response.data);
 

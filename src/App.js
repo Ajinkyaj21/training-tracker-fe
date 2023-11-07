@@ -9,6 +9,8 @@ import Trainees from './Pages/Trainees/Trainees';
 import Admin from './Pages/Admin/Admin';
 import Training from './Pages/Training/Training';
 import Edit from './Pages/Edit/edit';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const App = () => {
 
@@ -71,6 +73,7 @@ const App = () => {
       </Route> */}
 
     </Routes>
+    <ToastContainer/>
     </>
   );
 };

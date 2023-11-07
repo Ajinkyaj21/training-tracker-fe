@@ -107,3 +107,7 @@ tr:nth-child(even) {
   /* margin-bottom: -542px; */
   /* background-color: aqua; */
 }
+.errorText{
+  font-size: 18px;
+  color: red;
+}

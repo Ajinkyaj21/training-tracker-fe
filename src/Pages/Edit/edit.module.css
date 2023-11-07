@@ -1,3 +1,96 @@
-.mainDiv{
-    overflow: auto;
-}
+
+.mainDiv {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+    height: 100%;
+    margin-left:190px;
+  }
+  .h2Div{
+    margin-top: 40px;
+    margin-bottom:3px ;
+  }
+  
+  .innerMain {
+    background-color:#eef8fa;
+    border: 1px solid #a38ede;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    padding: 20px;
+    width: 80%;
+  }
+  
+  .firstDiv {
+    display: flex;
+    /* flex-direction: s; */
+    flex-direction: row;
+    justify-content: space-between;
+    /* flex: 1; */
+    /* padding: 20px; */
+  }
+  .left{
+    /* justify-content: start; */
+    float: left;
+  }
+  .right{ 
+    /* background-color: yellow; */
+    /* justify-content: end; */
+    float: right;
+  }
+  /* .firstDiv p {
+    margin: 0;
+  } */
+  
+  .secoandDiv {
+    display: flex;
+    flex-direction: row;
+  }
+  .row1Div{
+    padding: 20px;
+  }
+  .row2Div{
+    padding: 20px;
+  }
+  .row3Div{
+    padding: 20px;
+  }
+  
+  
+  .thirdDiv {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    /* padding: 20px; */
+  }
+  .comment{
+    text-align: center;
+    /* justify-content: center; */
+    /* align-items: center; */
+  }
+  .link {
+    text-align: center;
+    /* justify-content: center; */
+    /* align-items: center; */
+  }
+  
+ .fourthDiv{
+  display: flex;
+  justify-content: right;
+  /* justify-content: space-around; */
+ }
+ .btn{
+  background-color: #15224c;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    font-size: 14px;
+    padding: 7px;
+    margin: 6px;
+    border-radius: 7px;
+    width: 9%;
+ }
+
+.btn:hover{
+  background-color: #14B1C1; 
+} 
