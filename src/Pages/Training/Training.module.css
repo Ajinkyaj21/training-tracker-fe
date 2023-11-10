@@ -1,13 +1,110 @@
 .main{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
     width: 100%;
+    /* height: 100%;
+    overflow: auto; */
+    /* padding: 30px; */
+
 }
-.select{
+.firstDiv{
+    
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-align: center;
+    justify-content: right;
+    float: right;
+    margin-top: 10px;
+    margin-right: 40px;
+    /* background-color:aqua; */
+    gap: 7px;
     width: 100%;
-    background-color: aqua
+    /* height: 100%; */
 }
-.TrainingCardsPage{
-    background-color: rgb(149, 184, 184);
-    width: 100%;
+.SecondDiv{
+    /* background-color: rgb(149, 184, 184); */
+    /* width: 100%;
+    height: 100%; */
+    padding: 20px;
+    /* margin-bottom: 20px; */
     overflow: auto;
-    height: 200%;
+}
+.DivFather{
+    width: 100%;
+    height: 100%;
+    /* padding: 10px; */
+    overflow: auto;
+}
+.cards{
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 20px;
+    /* background-color: beige; */
+    width: 100%;
+}
+
+.mainCards{
+    border: 1px solid #a38ede;
+    background-color: #f1fafb;
+
+    /* padding: auto; */
+    margin-bottom: 30px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;    
+}
+.sepration{
+    
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    /* align-items: center; */
+    text-align: left;
+    gap: 70px;
+}
+.div1{
+    /* background-color: aqua; */
+    display: flex;
+    flex-direction: row;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 10px;
+    /* display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center; */
+}
+.div2{
+    /* background-color: yellowgreen; */
+    /* display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center; */
+}
+.div3{
+    /* background-color: violet; */
+    /* display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center; */
+}
+.div4{
+    /* background-color: turquoise; */
+    /* display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center; */
+}
+.language{
+    display: flex;
+    /* float: left; */
 }

@@ -47,9 +47,12 @@ function Dropdown() {
 
   return (
     <div className={TrainingStyles.main}>
-      <label>Select a trainee:</label>
+      <div className={TrainingStyles.firstDiv}>
+      <div className={TrainingStyles.input}>
+        <input placeholder="Seach Activity Name"></input>
+      </div>
+      <div className={TrainingStyles.select}></div>
       <select
-        className={TrainingStyles.select}
         value={selectedValue}
         onChange={handleSelectChange}
       >
@@ -60,13 +63,18 @@ function Dropdown() {
           </option>
         ))}
       </select>
-
-      <div className={TrainingStyles.TrainingCardsPage}>
-        <h1>Programming Activities</h1>
+      
+      </div>
+     
+      
+          <div className={TrainingStyles.DivFather}>
+            <div className={TrainingStyles.SecondDiv}>
         {allTraineeKeys.map((el) => (
           <Trainingcards activities={showAllTrainees[el]} language={el} />
         ))}
       </div>
+      </div>
+      
     </div>
   );
 }
