@@ -125,10 +125,22 @@ export const fetchTraineeDataOld = async () => {
 };
 
 
+export const fetchTraineeDataTrainingDropDown = async () => {
+  const response = await axios.get(BASE_URL + "/trainee/getStatus",{
+    withCredntials: true,
+    credentials: 'include',
+    headers
+  });
+  return response.data;
+
+};
 
 
-export const fetchTraineeDataTraining = async () => {
-  const response = await axios.post(BASE_URL + "/trainingPlan/getTrainingActivities",{},{
+export const fetchTraineeDataTrainingCards = async (setSelectedValue) => {
+  console.log(setSelectedValue,"heyy");
+  const response = await axios.post(BASE_URL + "/trainingPlan/getTrainingActivities",{
+    "status_id": parseInt(setSelectedValue) ,
+  },{
     withCredntials: true,
     credentials: 'include',
     headers

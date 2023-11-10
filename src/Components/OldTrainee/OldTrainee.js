@@ -4,6 +4,7 @@ import { fetchTraineeDataOld } from "../../Api";
 
 const OldTrainee = ({ searchQuery }) => {
   const [trainees, setTrainees] = useState([]);
+  
 
   const fetchDataFromAPI = async () => {
     const data = await fetchTraineeDataOld();
@@ -14,11 +15,18 @@ const OldTrainee = ({ searchQuery }) => {
     fetchDataFromAPI();
   }, []);
 
+  const filteredTrainees = trainees.filter((trainee) =>
+    trainee.trainee_name.toLowerCase().includes(searchQuery?.toLowerCase())
+  );
+
+  console.log("Search QueryActive:", searchQuery);
+console.log("Filtered Trainees:", filteredTrainees);
+
   return (
     // trainees.length > 0 &&
-    <div className={stylesOldT.main}>
-      {trainees.length > 0 && trainees.map((trainee, index) => (
-        <div className={stylesOldT.main}>
+    <div className={stylesOldT.main1}>
+      {filteredTrainees.length > 0 &&  filteredTrainees.map((trainee, index) => (
+        // <div className={stylesActiveT.main}>
           <div className={stylesOldT.card}>
             <div className={stylesOldT.left}>
               <div className={stylesOldT.upper}>
@@ -27,24 +35,38 @@ const OldTrainee = ({ searchQuery }) => {
               </div>
               <div className={stylesOldT.lower}>
                 <div className={stylesOldT.comments}>
-                <p>Unresolved comments:{trainee.unresolved_comments}</p>
-                <p>Unreviwed comments:{trainee.delayed_activities}</p>
-                <p>Activites not Started:{trainee.activities_not_started}</p>
-                <p>Activites Delay:{trainee.ununreviewed_statusresolved_comments}</p>
+                  <div className={stylesOldT.innerComments}>
+                    <p className={stylesOldT.p}>{trainee.unresolved_comments}</p>
+                    <p className={stylesOldT.p}>Unresolved comments</p>
+                  </div>
+                  <div className={stylesOldT.innerComments}>
+                  <p className={stylesOldT.p}>{trainee.delayed_activities}</p>
+                  <p className={stylesOldT.p}>Unreviwed comments</p>
+                  </div>
+
+                  <div className={stylesOldT.innerComments}>
+                  <p className={stylesOldT.p}>{trainee.activities_not_started}</p>
+                  <p className={stylesOldT.p}>Activites not Started</p>
+                  </div>
+
+                  <div className={stylesOldT.innerComments}>
+                  <p className={stylesOldT.p}>{trainee.ununreviewed_statusresolved_comments}</p>
+                  <p className={stylesOldT.p}>Activites Delay</p>
+                  </div>
+               
                 </div>
-                
               </div>
             </div>
             <div className={stylesOldT.right}>
-              <p>
-                Completion Percentage: {trainee.Completed_Activities_Percentage}
-                %
-              </p>
-              <p>End Date: {trainee.last_due_Date}</p>
-              <p>Technology: {trainee.technology}</p>
+              <p className={stylesOldT.p}>{trainee.Completed_Activities_Percentage}%Completed</p>
+              <p className={stylesOldT.p}>Start Date:{trainee.last_due_Date}</p>
+              
+              <p className={stylesOldT.p}>End Date:{trainee.last_due_Date}</p>
+              <p className={stylesOldT.p}>Technology:{trainee.technology}</p>
+             
             </div>
           </div>
-        </div>
+        // </div>
       ))}
     </div>
   );

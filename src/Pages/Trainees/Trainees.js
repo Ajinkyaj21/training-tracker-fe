@@ -11,6 +11,7 @@ const Trainees = () => {
     setActiveTab(tabName);
   };
   const [searchQuery, setSearchQuery] = useState(""); 
+  console.log(searchQuery,"search");
 
   return (
     <div className={stylesT.parentTrainee}>
@@ -23,7 +24,7 @@ const Trainees = () => {
           Old
         </button>
         </div>
-        <input
+        <input className={stylesT.input}
         type="text"
         placeholder="Search"
         value={searchQuery}
@@ -34,7 +35,7 @@ const Trainees = () => {
           <ActiveTrainee searchQuery={searchQuery} />
         )}
         {activeTab === 'old' && (
-          <OldTrainee />
+          <OldTrainee  searchQuery={searchQuery}/>
         )}
     </div>
   );

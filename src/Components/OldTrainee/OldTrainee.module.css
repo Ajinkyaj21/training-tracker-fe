@@ -1,36 +1,60 @@
+.main1{
+  display: flex;
+  /* flex-direction: ; */
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 25px;
+}
+.card{
+  width: 65%;
+  border-radius: 12px;
+  padding: 8px;
+  border: 1px solid #a38ede;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: #f1fafb;
+  gap: 20px;
+  margin-bottom: 15px;
+}
+.left{
+  display: flex;
+  /* background-color: violet; */
+  flex-direction: column;
+}
+.upper{
+  padding: 0;
+  gap: 0px;
+  /* background-color: aquamarine; */
+}
+.lower{
+  padding: 0;
+  gap: 0px;
+  /* background-color: brown; */
 
-.main{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-      margin-right: 20px;
-      margin-left: 20px;
-  }
-  .card{
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    padding: 20px;
-    margin-bottom: 15px;
-    border: 1px solid #a38ede;
-    display: flex;
-    flex-direction: row;
-    border-collapse: collapse;
-    background-color: #eef8fa;
-    gap: 150px;
-    justify-content: space-between;
-  }
-  .left{
-    display: flex;
-    flex-direction: column;
-    /* background-color: brown; */
-    /* gap: 20px; */
-  }
-  .right{
-    display: flex;
-    flex-direction: column;
-  }
-  .comments{
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
-  }
+}
+.right{
+  display: flex;
+  flex-direction: column;
+  width: 23%;
+  gap: 2px;
+}
+.innerComments{
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.comments{
+  display: flex;
+  /* flex-direction: row; */
+  gap: 10px;
+}
+.p{
+  /* font-weight: bold; */
+  /* font-size: 17px; */
+  margin: 4px;
+  /* gap: 3px; */
+  padding: 0px;
+}

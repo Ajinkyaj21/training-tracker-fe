@@ -1,25 +1,39 @@
 .rightBtn {
-    background-color: #15224c;
-    color: #fff;
+  background-color: transparent;
   border: none;
   padding: 10px 20px;
   cursor: pointer;
+  margin: 0px;
+  font-weight: 600;
+  font-size: large;
+  /* border-bottom: 2px solid #000; */
   }
 
   .leftBtn {
-    background-color: #15224c;
-    color: #fff;
+  background-color: transparent;
   border: none;
   padding: 10px 20px;
   cursor: pointer;
+  margin: 0px;
+  font-weight: 600;
+  font-size: large;
+  /* border-bottom: 2px solid #000; */
   }
-  .rightBtn:hover{
-    background-color: #14B1C1; 
+
+  .rightBtn:hover,
+.leftBtn:hover,
+.rightBtn:focus,
+.leftBtn:focus {
+  /* background-color: #14B1C1; */
+  border-bottom: 2px solid #000;
+}
+  /* .rightBtn:hover{
+    border-bottom: 2px solid #000;
   }
 
   .leftBtn:hover{
-    background-color: #14B1C1; 
-  }
+    border-bottom: 2px solid #000;
+  } */
 
   .parentTrainee{
     width: 100%;

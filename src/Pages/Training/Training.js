@@ -1,58 +1,74 @@
-import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import styleTraining from "./Training.module.css";
-import jsonData from '../../Utils.json';
+import React, { useState, useEffect } from "react";
+import {
+  fetchTraineeDataTrainingCards,
+  fetchTraineeDataTrainingDropDown,
+} from "../../Api";
+import TrainingStyles from "./Training.module.css";
+import Trainingcards from "./Trainingcards";
 
-const Training = () => {
-  const navigate = useNavigate();
+function Dropdown() {
   const [trainees, setTrainees] = useState([]);
+  const [selectedValue, setSelectedValue] = useState(-1);
+  const [showAllTrainees, setShowAllTrainees] = useState([]);
+  const [allTraineeKeys, setAlltraineeKeys] = useState([]);
+
+  const fetchDataFromAPI = async () => {
+    try {
+      const data = await fetchTraineeDataTrainingDropDown();
+      setTrainees(data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
 
   useEffect(() => {
-    setTrainees(jsonData);
+    fetchDataFromAPI();
   }, []);
 
+  useEffect(() => {
+    const fetchDataFromAPIDisplay = async () => {
+      try {
+        console.log(selectedValue, "selected Valueeeee");
+        const data = await fetchTraineeDataTrainingCards(selectedValue);
+        console.log(data, "continue");
+        setShowAllTrainees(data);
+        setAlltraineeKeys(Object.keys(data));
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+    fetchDataFromAPIDisplay();
+  }, [selectedValue]);
+
+  const handleSelectChange = (event) => {
+    const newValue = event.target.value;
+    setSelectedValue(newValue);
+  };
+
   return (
-    <div className={styleTraining.parentBox}>
-      <div className={styleTraining.mainbox}>
-        <table className={styleTraining.table}>
-          <thead className={styleTraining.thead}>
-            <tr className={styleTraining.tr}>
-              <th className={styleTraining.th}>Technology</th>
-              <th className={styleTraining.th}>Activity Name</th>
-              <th className={styleTraining.th}>Topic</th>
-              <th className={styleTraining.th}>SubTopic</th>
-              <th className={styleTraining.th}>Due Date</th>
-              <th className={styleTraining.th}>Resource Link</th>
-              <th className={styleTraining.th}>Description</th>
-              <th className={styleTraining.th}>Status</th>
-              <th className={styleTraining.th}>Edit</th>
-            </tr>
-          </thead>
-          <tbody className={styleTraining.tbody}>
-            {trainees.map((trainee, index) => (
-              <tr key={index}>
-                <td className={styleTraining.td}>{trainee.tech}</td>
-                <td className={styleTraining.td}>{trainee.activity_name}</td>
-                <td className={styleTraining.td}>{trainee.topic_name}</td>
-                <td className={styleTraining.td}>{trainee.sub_topic_name}</td>
-                <td className={styleTraining.td}>{trainee.due_date}</td>
-                <td className={styleTraining.td}>
-                  <a href={trainee.resource_link} target="_blank" rel="noopener noreferrer">
-                    Link
-                  </a>
-                </td >
-                <td className={styleTraining.td}>{trainee.activity_description}</td>
-                <td className={styleTraining.td}>{trainee.status_name}</td>
-                <td className={styleTraining.td}>
-                  <button className={styleTraining.editBtn} onClick={() => navigate(`/edit`, { state: { trainee } })}>Edit</button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+    <div className={TrainingStyles.main}>
+      <label>Select a trainee:</label>
+      <select
+        className={TrainingStyles.select}
+        value={selectedValue}
+        onChange={handleSelectChange}
+      >
+        <option value={-1}>All</option>
+        {trainees.map((trainee) => (
+          <option key={trainee.status_id} value={trainee.status_id}>
+            {trainee.status_display}
+          </option>
+        ))}
+      </select>
+
+      <div className={TrainingStyles.TrainingCardsPage}>
+        <h1>Programming Activities</h1>
+        {allTraineeKeys.map((el) => (
+          <Trainingcards activities={showAllTrainees[el]} language={el} />
+        ))}
       </div>
     </div>
   );
-};
+}
 
-export default Training;
+export default Dropdown;
