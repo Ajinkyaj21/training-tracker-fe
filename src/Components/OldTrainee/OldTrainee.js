@@ -16,7 +16,7 @@ const OldTrainee = ({ searchQuery }) => {
   }, []);
 
   const filteredTrainees = trainees.filter((trainee) =>
-    trainee.trainee_name.toLowerCase().includes(searchQuery?.toLowerCase())
+    trainee.trainee_name.toLowerCase().includes(searchQuery?.toLowerCase()) 
   );
 
   console.log("Search QueryActive:", searchQuery);

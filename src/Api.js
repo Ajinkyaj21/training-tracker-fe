@@ -161,4 +161,18 @@ export const saveData = async (dataToSend) => {
 export default BASE_URL;
 
 
+export const fetchDashboard = async () => {
+  const response = await axios.get(BASE_URL + "/tech/myTraining",{
+    withCredntials: true,
+    credentials: 'include',
+    headers
+  });
+  return response.data;
+
+};
+
+
+
+
+
 // ,{withCredentials: true}

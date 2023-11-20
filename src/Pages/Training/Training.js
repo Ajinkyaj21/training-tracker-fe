@@ -48,33 +48,27 @@ function Dropdown() {
   return (
     <div className={TrainingStyles.main}>
       <div className={TrainingStyles.firstDiv}>
-      <div className={TrainingStyles.input}>
-        <input placeholder="Seach Activity Name"></input>
+        <div className={TrainingStyles.input}>
+          <input placeholder="Seach Activity Name"></input>
+        </div>
+        <div className={TrainingStyles.select}></div>
+        <select value={selectedValue} onChange={handleSelectChange}>
+          <option value={-1}>All</option>
+          {trainees.map((trainee) => (
+            <option key={trainee.status_id} value={trainee.status_id}>
+              {trainee.status_display}
+            </option>
+          ))}
+        </select>
       </div>
-      <div className={TrainingStyles.select}></div>
-      <select
-        value={selectedValue}
-        onChange={handleSelectChange}
-      >
-        <option value={-1}>All</option>
-        {trainees.map((trainee) => (
-          <option key={trainee.status_id} value={trainee.status_id}>
-            {trainee.status_display}
-          </option>
-        ))}
-      </select>
-      
+
+      <div className={TrainingStyles.DivFather}>
+        <div className={TrainingStyles.SecondDiv}>
+          {allTraineeKeys.map((el) => (
+            <Trainingcards activities={showAllTrainees[el]} language={el} />
+          ))}
+        </div>
       </div>
-     
-      
-          <div className={TrainingStyles.DivFather}>
-            <div className={TrainingStyles.SecondDiv}>
-        {allTraineeKeys.map((el) => (
-          <Trainingcards activities={showAllTrainees[el]} language={el} />
-        ))}
-      </div>
-      </div>
-      
     </div>
   );
 }
