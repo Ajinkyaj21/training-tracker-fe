@@ -16,7 +16,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "install-eslint-config": "npm install eslint eslint-plugin-react eslint-plugin-react-hooks eslint-config-prettier eslint-plugin-prettier eslint-plugin-import prettier eslint-plugin-no-comments eslint-config-airbnb eslint-plugin-css-modules eslint-formatter-summary-chart @stylistic/eslint-plugin-js@latest --save-dev",
+    "install-eslint-config": "npm install eslint eslint-plugin-react eslint-plugin-react-hooks eslint-config-prettier eslint-plugin-prettier eslint-plugin-import prettier eslint-plugin-no-comments eslint-config-airbnb eslint-plugin-css-modules eslint-formatter-summary-chart @stylistic/eslint-plugin-js@latest lint-staged --save-dev",
     "lint": "eslint \"src/**/*.{js,jsx}\"",
     "lint-errors": "eslint --quiet \"./\"",
     "lint-errors-chart": "eslint --format summary-chart ./",
@@ -55,6 +55,10 @@
     "eslint-plugin-prettier": "^5.1.2",
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^4.6.0",
+    "lint-staged": "^15.2.0",
     "prettier": "^3.1.1"
+  },
+  "lint-staged": {
+    "*.{js,jsx}": "npm run lint"
   }
 }
