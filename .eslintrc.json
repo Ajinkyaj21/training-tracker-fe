@@ -52,6 +52,7 @@
         "@stylistic/js/semi-spacing": "error",
         "@stylistic/js/space-infix-ops": "error",
         "@stylistic/js/space-unary-ops": "error",
+        "camelcase": "error",
         "prefer-const": ["error", { "destructuring": "all", "ignoreReadBeforeAssign": true }],
         "no-comments/disallowComments": ["error", {"allow": ["NOTE:", "TODO:", "INFO:"]}],
         "@stylistic/js/indent": ["error", "tab"],
