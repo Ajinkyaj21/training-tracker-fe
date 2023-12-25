@@ -21,6 +21,7 @@
     "lint-errors": "eslint --quiet \"./\"",
     "lint-errors-chart": "eslint --format summary-chart ./",
     "lint-staged": "lint-staged",
+    "stylelint": "npx stylelint \"**/*.css\"",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -58,7 +59,10 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "lint-staged": "^15.2.0",
     "pre-commit": "^1.2.2",
-    "prettier": "^3.1.1"
+    "prettier": "^3.1.1",
+    "stylelint": "^16.0.2",
+    "stylelint-config-standard": "^35.0.0",
+    "stylelint-order": "^6.0.4"
   },
   "lint-staged": {
     "*.{js,jsx}": "eslint"
