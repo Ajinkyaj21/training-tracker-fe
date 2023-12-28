@@ -1,20 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
+import { useNavigate } from 'react-router-dom';
 import TrainingStyles from "./Training.module.css";
-import {  useNavigate } from 'react-router-dom';
 const Trainingcards = ({ activities, language }) => {
   const navigate = useNavigate();
 
-  // const [selectedActivity, setSelectedActivity] = useState(null);
-
   const handleEditClick = (activity) => {
-    // setSelectedActivity(activity);
-    // navigate(`/edit`);
     navigate(`/edit`, { state: { trainee: activity } });
-  console.log('After navigation');
   };
-  // console.log(selectedActivity,"virat");
-
-
 
   return (
     <div className={TrainingStyles.cards}>
@@ -53,7 +45,8 @@ const Trainingcards = ({ activities, language }) => {
             </div>
           </div>
           <div className={TrainingStyles.editbtn}>
-            <button className={TrainingStyles.btnEdit}  onClick={() => handleEditClick(activity)}>Edit</button>
+            <button className={TrainingStyles.btnEdit}
+              onClick={() => handleEditClick(activity)}>Edit</button>
           </div>
         </div>
       ))}

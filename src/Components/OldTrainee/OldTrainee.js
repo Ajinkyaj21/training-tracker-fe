@@ -1,33 +1,25 @@
 import React, { useEffect, useState } from "react";
-import stylesOldT from "./OldTrainee.module.css";
 import { fetchTraineeDataOld } from "../../Api";
+import stylesOldT from "./OldTrainee.module.css";
 
 const OldTrainee = ({ searchQuery }) => {
-  const [trainees, setTrainees] = useState([]);
-  
+	const [trainees, setTrainees] = useState([]);
+	const fetchDataFromAPI = async () => {
+		const data = await fetchTraineeDataOld();
+		setTrainees(data);
+	};
 
-  const fetchDataFromAPI = async () => {
-    const data = await fetchTraineeDataOld();
-    setTrainees(data);
-  };
+	useEffect(() => {
+		fetchDataFromAPI();
+	}, []);
 
-  useEffect(() => {
-    fetchDataFromAPI();
-  }, []);
-
-  const filteredTrainees = trainees.filter((trainee) =>
-    trainee.trainee_name.toLowerCase().includes(searchQuery?.toLowerCase()) 
-  );
-
-  console.log("Search QueryActive:", searchQuery);
-console.log("Filtered Trainees:", filteredTrainees);
-
-  return (
-    // trainees.length > 0 &&
-    <div className={stylesOldT.main1}>
-      {filteredTrainees.length > 0 &&  filteredTrainees.map((trainee, index) => (
-        // <div className={stylesActiveT.main}>
-          <div className={stylesOldT.card}>
+	const filteredTrainees = trainees.filter((trainee) =>
+		trainee.trainee_name.toLowerCase().includes(searchQuery?.toLowerCase())
+	);
+	return (
+		<div className={stylesOldT.main1}>
+			{filteredTrainees.length > 0 && filteredTrainees.map((trainee, k) => (
+				<div className={stylesOldT.card} key={k}>
             <div className={stylesOldT.left}>
               <div className={stylesOldT.upper}>
                 <h4>Name: {trainee.trainee_name}</h4>
@@ -35,7 +27,7 @@ console.log("Filtered Trainees:", filteredTrainees);
               </div>
               <div className={stylesOldT.lower}>
                 <div className={stylesOldT.comments}>
-                  <div className={stylesOldT.innerComments}>
+                  <div className={stylesOldT.inner_comments}>
                     <p className={stylesOldT.p}>{trainee.unresolved_comments}</p>
                     <p className={stylesOldT.p}>Unresolved comments</p>
                   </div>
@@ -53,21 +45,21 @@ console.log("Filtered Trainees:", filteredTrainees);
                   <p className={stylesOldT.p}>{trainee.ununreviewed_statusresolved_comments}</p>
                   <p className={stylesOldT.p}>Activites Delay</p>
                   </div>
-               
+
                 </div>
               </div>
             </div>
             <div className={stylesOldT.right}>
               <p className={stylesOldT.p}>{trainee.Completed_Activities_Percentage}%Completed</p>
               <p className={stylesOldT.p}>Start Date:{trainee.last_due_Date}</p>
-              
-              <p className={stylesOldT.p}>End Date:{trainee.last_due_Date}</p>
-              <p className={stylesOldT.p}>Technology:{trainee.technology}</p>
-             
-            </div>
-          </div>
-        // </div>
-      ))}
+
+						<p className={stylesOldT.p}>End Date:{trainee.last_due_Date}</p>
+						<p className={stylesOldT.p}>Technology:{trainee.technology}</p>
+
+					</div>
+				</div>
+
+			))}
     </div>
   );
 };
