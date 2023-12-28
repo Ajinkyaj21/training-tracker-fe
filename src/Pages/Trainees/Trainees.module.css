@@ -1,54 +1,47 @@
-.rightBtn {
+.right_btn {
   background-color: transparent;
   border: none;
-  padding: 10px 20px;
   cursor: pointer;
-  margin: 0px;
-  font-weight: 600;
   font-size: large;
-  /* border-bottom: 2px solid #000; */
+  font-weight: 600;
+  margin: 0 px;
+  padding: 10px 20px;
+ 
   }
 
-  .leftBtn {
+  .left_btn {
   background-color: transparent;
   border: none;
-  padding: 10px 20px;
   cursor: pointer;
-  margin: 0px;
-  font-weight: 600;
   font-size: large;
-  /* border-bottom: 2px solid #000; */
+  font-weight: 600;
+  margin: 0 px;
+  padding: 10px 20px;
+ 
+ 
   }
 
-  .rightBtn:hover,
-.leftBtn:hover,
-.rightBtn:focus,
-.leftBtn:focus {
-  /* background-color: #14B1C1; */
+  .right_btn:hover,
+.left_btn:hover,
+.right_btn:focus,
+.left_btn:focus {
   border-bottom: 2px solid #000;
 }
-  /* .rightBtn:hover{
-    border-bottom: 2px solid #000;
-  }
 
-  .leftBtn:hover{
-    border-bottom: 2px solid #000;
-  } */
-
-  .parentTrainee{
-    width: 100%;
+  .parent_trainee{
     height: auto;
     overflow: auto;
-  }
+    width: 100%;
+   }
 
-.tabNavigation{
+.tab_navigation{
   display: flex;
-  padding: 25px;
   justify-content: space-between;
-}
+  padding: 25px;
+ }
 
 .buttons{
-  width: 17%;
   display: flex;
   justify-content: space-around;
+  width: 17%;
 }

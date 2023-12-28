@@ -1,24 +1,20 @@
 import React, { useState } from 'react';
-import { useNavigate ,Navigate, Route, Routes } from 'react-router-dom';
-import Login from './Pages/Login/Login';
-// import Sidebar from './Components/Sidebar/Sidebar';
-// import Navbar from './Components/Navbar/Navbar';
-import PageLayout from './PageLayout';
-import Dashboard from "./Pages/Dashboard/Dashboard";
-import Trainees from './Pages/Trainees/Trainees';
-import Admin from './Pages/Admin/Admin';
-import Training from './Pages/Training/Training';
-import Edit from './Pages/Edit/edit';
-import { ToastContainer } from 'react-toastify';
+import { useNavigate, Navigate, Route, Routes } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
+import Sidebar from './Components/Sidebar/Sidebar';
+import Admin from './Pages/Admin/Admin';
+import Dashboard from "./Pages/Dashboard/Dashboard";
+import Edit from './Pages/Edit/edit';
+import Login from './Pages/Login/Login';
+import Trainees from './Pages/Trainees/Trainees';
+import Training from './Pages/Training/Training';
 
 const App = () => {
 
-  useNavigate()
+  useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(true);
   function Protected({ children }) {
-    // setIsLoggedIn(checkIsLoggedIn(check token))
-    if (!isLoggedIn) { 
+    if (!isLoggedIn) {
       return <Navigate to="/login" replace />;
     }
     return children;
@@ -26,9 +22,9 @@ const App = () => {
 
   return (
     <>
+    <Sidebar>
     <Routes>
       <Route path="/login" element={<Login setIsLoggedIn = {setIsLoggedIn}/>} />
-      <Route path='/' element={<PageLayout/>}>
         <Route path="/" element={
           <Protected>
             <Dashboard />
@@ -55,25 +51,13 @@ const App = () => {
         />
         <Route path="/edit" element={
           <Protected>
-            <Edit  />
+            <Edit />
           </Protected>
         }
         />
-      </Route>
-
-
-      {/* <Route path='/' element={<Sidebar/>}>
-        <Route path='/' element={
-          <Protected>
-          <Sidebar />
-       </Protected>
-        }
-        
-        />
-      </Route> */}
 
     </Routes>
-    <ToastContainer/>
+    </Sidebar>
     </>
   );
 };

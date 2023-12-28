@@ -1,19 +1,21 @@
-.h2Div {
-  display: flex;
+.h2-div {
   align-items: center;
- color: white;
+  background-color: #15224c;
+  color: white;
+  display: flex;
   padding: 10px; 
-    background-color: #15224c;
-  }
+}
   
   .h2 {
+    flex: 1; 
     font-size: 20px; 
-  text-align: center; 
-  flex: 1; 
+    text-align: center; 
   }
-  .imgContainer{
+
+  .img-container{
     margin-right: 10px;
   }
+  
   .img{
     max-width: 50px;
   }

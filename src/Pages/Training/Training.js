@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import {
   fetchTraineeDataTrainingCards,
-  fetchTraineeDataTrainingDropDown,
+  fetchTraineeDataTrainingDropDown
 } from "../../Api";
 import TrainingStyles from "./Training.module.css";
 import Trainingcards from "./Trainingcards";
@@ -28,9 +28,7 @@ function Dropdown() {
   useEffect(() => {
     const fetchDataFromAPIDisplay = async () => {
       try {
-        console.log(selectedValue, "selected Valueeeee");
         const data = await fetchTraineeDataTrainingCards(selectedValue);
-        console.log(data, "continue");
         setShowAllTrainees(data);
         setAlltraineeKeys(Object.keys(data));
       } catch (error) {
@@ -64,8 +62,8 @@ function Dropdown() {
 
       <div className={TrainingStyles.DivFather}>
         <div className={TrainingStyles.SecondDiv}>
-          {allTraineeKeys.map((el) => (
-            <Trainingcards activities={showAllTrainees[el]} language={el} />
+          {allTraineeKeys.map((el, i) => (
+            <Trainingcards activities={showAllTrainees[el]} language={el} key={i}/>
           ))}
         </div>
       </div>
