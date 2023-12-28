@@ -1,8 +1,7 @@
 
-.topContainer {
+.top-container {
     display: flex;
     justify-content: center;
-    /* margin-bottom: 20px; */
     padding: 20px;
   }
   
@@ -13,101 +12,102 @@
   
   .dropdown select {
     border-color: #14B1C1;
-    width: 200px;
     padding: 10px;
-    
-  }
+    width: 200px;
+   }
   
-  .actBtn {
+  .act-btn {
     background-color: #15224c;
     border: none;
+    border-radius: 7px;
     color: #fff;
     cursor: pointer;
     font-size: 14px;
-    padding: 10px;
     margin: -1px;
-    border-radius: 7px;
+    padding: 10px;
     width: 9%;
   }
   
-  .actBtn:hover{
+  .act-btn:hover{
     background-color: #14B1C1; 
   }
 
-.actBox {
-  flex-direction: column;
+.act-box {
+  align-items: center;
   border-radius: 5px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  align-items: center;
-}
+  }
 
-.tableMain {
-  border: 2px solid rgb(0, 0, 0);
-  border-radius: 9px;
-  border-collapse: collapse;
+.table-main {
   background-color: #bde3eb;
+  border: 2px solid black;
+  border-collapse: collapse;
+  border-radius: 9px;
 }
 
 .th {
   background-color: #15224c;
   color: #fff;
-  text-align: ce;
   padding: 10px;
+  text-align: center;
+  
 }
+
 tr:nth-child(even) {
-  background-color: white; /* Set the background color for even rows */
+  background-color: white; 
 }
 
 .td {
-  vertical-align: middle;
-  justify-content: center;
   align-items: center ;
-  border: 2px solid rgb(0, 0, 0);
+  border: 2px solid black;
+  justify-content: center;
   padding: 10px;
+  vertical-align: middle;
 }
 
 .p {
-  display: flex;
-  justify-content: center;
   align-items: center;
-  margin: 10px 0;
-  font-weight: bold;  
   color: #f04545;
-}
-.tdInner{
-  border: 3px solid rgb(0, 0, 0);
+  display: flex;
+  font-weight: bold;  
+  justify-content: center;
+  margin: 10px 0;
+ }
+
+.td-inner{
+  border: 3px solid black;
   padding: 10px;
   vertical-align: top;
 }
-.btnDiv{
-  display: flex;
+
+.btn-div{
   align-items: center;
-  justify-content: center;
-}
-.saveBtn{
   display: flex;
   justify-content: center;
+}
+
+.save-btn{
   background-color: #15224c;
-    border: none;
-    color: #fff;
-    cursor: pointer;
-    font-size: 14px;
-    padding: 10px;
-    margin: -1px;
-    border-radius: 7px;
-    
-}
-.saveBtn:hover{
-  
-  /* background-color: #14B1C1;  */
-}
-.mainDiv{
+  border: none;
+  border-radius: 7px;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  font-size: 14px;
+  justify-content: center;;
+  margin: -1px;
+  padding: 10px;
+ }
+
+
+.main-div{
   margin: 20px;
-  /* margin-bottom: -542px; */
-  /* background-color: aqua; */
+  
 }
-.errorText{
-  font-size: 18px;
+
+.error-text{
   color: red;
+  font-size: 18px;
 }

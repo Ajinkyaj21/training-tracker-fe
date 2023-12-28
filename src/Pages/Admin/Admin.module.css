@@ -1,59 +1,38 @@
-/* Admin.module.css */
-.tabNavigation {
+
+.tab_navigation {
   display: flex;
   justify-content: left;
-  padding: 10px;
   margin: 3px;
-  /* background-color: #15224c; */
+  padding: 10px;
 }
 
-/* .rightBtn,
-.leftBtn {
-  background-color: transparent;
-  color: #15224c;
- 
-  border: none;
-  padding: 10px 20px;
-  cursor: pointer;
-  margin: 0px;
-  font-weight: 600;
-  font-size: large;
-} */
-
-.rightBtn {
+.right_btn {
   background-color: transparent;
   border: none;
-  padding: 10px 20px;
   cursor: pointer;
-  margin: 0px;
-  font-weight: 600;
   font-size: large;
-  /* text-underline-offset; */
-  
-}
+  font-weight: 600;
+  margin: 0 px;
+  padding: 10px 20px;
+ }
 
-.leftBtn {
+.left_btn {
   background-color: transparent;
   border: none;
-  padding: 10px 20px;
   cursor: pointer;
-  margin: 0px;
-  font-weight: 600;
   font-size: large;
-  /* border-top-left-radius: 0;  */
+  font-weight: 600;
+  margin: 0 px;
+  padding: 10px 20px;
 }
 
-.rightBtn:hover,
-.leftBtn:hover {
-  /* background-color: #14B1C1; */
-  border-bottom: 2px solid #000;
-
+.right_btn:hover,
+.left_btn:hover {
+ border-bottom: 2px solid #000;
 }
-.tabContent{
-  
-  /* background-color: yellow; */
-} 
-.activeNav{
+
+
+.active_nav{
  border-bottom: #15224c;
 }
 
