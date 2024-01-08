@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { addUser } from '../../Services/Api';
 import { Input } from '../Input/Input';
 import stylesAU from './AddUser.module.css';
-import  Button  from '../Button/Button.js';
+import Button from '../Button/Button';
 const AddUser = () => {
   const [userName, setUserName] = useState('');
   const [email, setEmail] = useState('');

@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
-import styles from './SideBar.module.css';
+import styles from './Sidebar.module.css';
 import Logo from '../../Assets/Logo.jpg';
 import { NavLink } from 'react-router-dom';
 
-
 const SideBar = ({children}) => {
-    const[isOpen ,setIsOpen] = useState(false);
-    const toggle = () => setIsOpen (!isOpen);
-    const menuItem=[
+    const [isOpen, setIsOpen] = useState(false);
+    const toggle = () => setIsOpen(!isOpen);
+    const menuItem = [
         {
             path: "/",
             name: "Dashboard"
@@ -24,13 +23,13 @@ const SideBar = ({children}) => {
             path: "/admin",
             name: "Admin"
           }
-    ]
+    ];
     return (
         <>
         <div className={styles.sidebar} style={{ width: isOpen ? "200px" : "50px" }}>
             <div className={styles.top_section}>
                 <img style={{ display: isOpen ? "block" : "none" }} className={styles.logo} src={Logo} />
-                <div style={{ marginLeft : isOpen ? "50px" : "0px" }} className={styles.bar}>
+                <div style={{ marginLeft: isOpen ? "50px" : "0px" }} className={styles.bar}>
                     <div onClick={toggle}>=</div>
                 </div>
             </div>
@@ -46,7 +45,7 @@ const SideBar = ({children}) => {
         )}
         </div><main>{children}</main>
         </>
-    
+
     );
 };
 

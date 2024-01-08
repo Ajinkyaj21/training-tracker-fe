@@ -1,15 +1,15 @@
+import React, { useState } from 'react';
 import './App.css';
 import Login from './Pages/Login/Login';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useState } from 'react';
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import Dashboard from './Pages/Dashboard/Dashboard';
 import Trainees from './Pages/Trainees/Trainees';
 import Training from './Pages/Training/Training';
 import Admin from './Pages/Admin/Admin';
-import Edit from './Pages/Edit/Edit';
-import SideBar from './Components/SideBar/SideBar';
-import NavBar from './Components/NavBar/NavBar';
+import Edit from './Pages/Edit/edit';
+// import SideBar from './Components/SideBar/SideBar';
+// import NavBar from './Components/NavBar/NavBar';
 import { PageLayout } from './Layouts/PageLayout';
 
 function App() {
@@ -24,7 +24,7 @@ function App() {
 
   return (
     <div className="App">
-      
+
       <BrowserRouter>
         <Routes>
             <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
@@ -66,7 +66,7 @@ function App() {
               path="/edit"
               element={
                 <Protected>
-                  <Edit />
+                  <Edit/>
                 </Protected>
               }
             />
