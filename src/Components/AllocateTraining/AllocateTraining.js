@@ -44,7 +44,7 @@ const AllocateTraining = () => {
 			const techResponse = await tech();
 			const temp2 = techResponse.result.map((el) => ({
 				label: el.technology,
-				value: el.tech_id
+				value: el.techId
 			}));
 			setTechnologyOptions(temp2);
 		} catch (error) {
@@ -68,7 +68,7 @@ const AllocateTraining = () => {
 
 				if (responseActivites !== null) {
 					const activitiesres = responseActivites;
-					console.log("activitiesres",activitiesres)
+					// console.log("activitiesres", activitiesres);
 					setActivites(activitiesres.result);
 					const initialDueDates = new Array(activitiesres.length).fill("");
 					setActivityDueDates(initialDueDates);
@@ -86,7 +86,7 @@ const AllocateTraining = () => {
 	const handleSave = async () => {
 		if (activites.length > 0) {
 			const dataToSend = {
-				tech_id: selectedTechnology,
+				techId: selectedTechnology,
 				traineeId: selectedTrainee,
 				trainerId: selectedTrainer,
 				activities: activites.map((activity, index) => ({

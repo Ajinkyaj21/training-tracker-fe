@@ -1,72 +1,72 @@
 .r{
-    background-color: white;
-    height: 100vh;
-    flex-direction: column;
-    display: flex;
-    justify-content: center;
-    align-items: center
-   }
-   .logoImg{
-
-    height: 100px;
-
-   }
-   .formSection{
-     padding: 5rem 0rem;
-   }
-   .formContainer{
-    width: 60% !important;
-    text-align: center;
-   }
-.l{
+   background-color: white;
+   height: 100vh;
+   flex-direction: column;
    display: flex;
    justify-content: center;
-   align-items: center;
-   background-color:  #083f91;
+   align-items: center
+  }
+  .logoImg{
+
+   height: 100px;
+
+  }
+  .formSection{
+    padding: 5rem 0rem;
+  }
+  .formContainer{
+   width: 60% !important;
+   text-align: center;
+  }
+.l{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color:  #083f91;
 }
 .main{
-   display: flex;
-   flex-direction: row;
-   width: 100%;
-   height: 100%;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
 }
 .btn1{
-   color: white !important;
-   background-color: #083f91 !important;
-   border: 2px solid  #002df8 ;
-   margin-top: 1rem;
-   padding: 0.5rem 0rem
+  color: white !important;
+  background-color: #083f91 !important;
+  border: 2px solid  #002df8 ;
+  margin-top: 1rem;
+  padding: 0.5rem 0rem
 }
 .logo{
-   display: flex;
-   justify-content: center;
-   align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .heading{
-   /* margin-top: 30px; */
-   font-size: 40px;
-   font-weight: bold;
-   color: #083f91;
+  /* margin-top: 30px; */
+  font-size: 40px;
+  font-weight: bold;
+  color: #083f91;
 
 }
 .con{
-   height: 100%;
+  height: 100%;
 }
 .btn1:hover {
- border-color:#274df7 ;
- }
+border-color:#274df7 ;
+}
 .btn1:focus{
-   border-color: #030d3a  !important;
+  border-color: #030d3a  !important;
 }
 .em:hover{
 border-color:  #274df7 ;
 }
 .em{
-   border: 1px solid rgb(185, 181, 181);
-   padding: 0.5rem 1rem;
-   /* border-color: #0a0908; */
-   
+  border: 1px solid rgb(185, 181, 181);
+  padding: 0.5rem 1rem;
+  /* border-color: #0a0908; */
+  
 }
 .em:focus{
-   border-color:#002df8  !important;
+  border-color:#002df8  !important;
 }

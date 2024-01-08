@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState } from 'react';
 import Styles from "./Login.module.css";
 import Logo from '../../Assets/Logo.jpg';
 import Cookies from "js-cookie";
@@ -11,7 +11,7 @@ export default function Login({setIsLoggedIn}) {
   const navigate = useNavigate();
 
   const handleSubmit = async(e) => {
-    e.preventDefault()
+    e.preventDefault();
     try {
       const response = await login(email, password);
       const token = response.result.token;
@@ -31,18 +31,21 @@ export default function Login({setIsLoggedIn}) {
         <img src={Logo} className={Styles.logoImg} alt="logo"/>
       </div>
       <div className={` col-5  ${Styles.r}`}>
-       <div className={Styles.formContainer}> 
+       <div className={Styles.formContainer}>
         <div className={`mt-1  ${Styles.heading} `}>
           Login
         </div>
-       
-        <form  onSubmit={handleSubmit}  className={Styles.formSection}>
+
+        <form onSubmit={handleSubmit} className={Styles.formSection}>
           <div className="form-group col-12  mb-3 d-flex flex-column">
-          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" style={{boxShadow:'none', padding: "0.5rem 1rem"}} onChange={(e) => setEmail(e.target.value)}></input>
-              {/* <Input className={Styles.pss} placeholder="Username or e-mail" style={{boxShadow:'none', padding: "0.5rem 1rem"}}/> */}
+          <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"
+           style={{boxShadow: 'none', padding: "0.5rem 1rem"}} onChange={(e) => setEmail(e.target.value)}></input>
+              {/* <Input className={Styles.pss} placeholder="Username or e-mail"
+               style={{boxShadow:'none', padding: "0.5rem 1rem"}}/> */}
           </div>
           <div className="form-group ">
-          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" style={{boxShadow:'none', padding: "0.5rem 1rem"}} onChange={(e) => setPassword(e.target.value)}/>
+          <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Password"
+           style={{boxShadow: 'none', padding: "0.5rem 1rem"}} onChange={(e) => setPassword(e.target.value)}/>
           </div>
           <br />
           <button type="submit" className= {`btn btn-primary col-12 ${Styles.btn1}`}>Submit</button>
@@ -51,5 +54,5 @@ export default function Login({setIsLoggedIn}) {
       </div>
     </div>
   </div>
-  )
+  );
 }

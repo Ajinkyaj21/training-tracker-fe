@@ -1,7 +1,7 @@
-import React from 'react'
-import { Outlet } from 'react-router-dom'
-import NavBar from '../Components/NavBar/NavBar'
-import SideBar from '../Components/SideBar/SideBar'
+import React from 'react';
+import { Outlet } from 'react-router-dom';
+import NavBar from '../Components/NavBar/Navbar';
+import SideBar from '../Components/SideBar/Sidebar';
 
 export const PageLayout = () => {
   return (
@@ -14,11 +14,10 @@ export const PageLayout = () => {
             </div>
             <div className="col m-0 p-0">
                 <Outlet/>
-               
-                
+
             </div>
         </div>
     </div>
     </>
-  )
-}
+  );
+};
