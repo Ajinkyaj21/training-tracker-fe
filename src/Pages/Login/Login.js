@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState} from 'react';
 import Styles from "./Login.module.css";
 import Logo from '../../Assets/Logo.jpg';
-import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 import { login } from '../../Services/Api';
 // import Input from '../../Components/Input.js'
-export default function Login({setIsLoggedIn}) {
+export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
@@ -14,16 +13,43 @@ export default function Login({setIsLoggedIn}) {
     e.preventDefault();
     try {
       const response = await login(email, password);
+      console.info('res is ', response);
       const token = response.result.token;
+      // Cookies.set("token", token);
       localStorage.setItem("token", token);
-      Cookies.set("token", token);
+      //for admin validation
+      const isAdmin = response.result.is_admin;
+      localStorage.setItem("adminToken", isAdmin);
 
-      setIsLoggedIn(true);
-      navigate("/");
+     navigate("/admin");
     } catch (error) {
       console.error("Error posting data:", error);
     }
   };
+  useEffect(() => {
+    const checkAdmin = () => {
+    const isAdmin = localStorage.getItem('is_admin');
+    if (isAdmin) {
+      navigate("/admin");
+    }
+    };
+    checkAdmin();
+  }, []);
+
+  useEffect(() => {
+    const checkLoggedIn = () => {
+      const token = localStorage.getItem('token');
+      const isAdmin = localStorage.getItem('adminToken');
+      if (token && isAdmin) {
+           navigate("/admin");
+        // navigate("/trainees");
+      } else {
+        // send to dashboard
+      }
+    };
+
+    checkLoggedIn();
+  }, []);
   return (
     <div className={`container-fluid w-full h-full  ${Styles.con}`}>
     <div className='row '>

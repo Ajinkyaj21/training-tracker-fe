@@ -53,8 +53,8 @@
   "lint-staged": {
     "*.{js,jsx}": "eslint"
   },
-  // "pre-commit": "lint-staged",
-  // "pre-push": "build",
+  "pre-commit": "build",
+  "pre-push": "build",
   "devDependencies": {
     "@stylistic/eslint-plugin-js": "^1.5.3",
     "eslint": "^8.56.0",

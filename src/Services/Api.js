@@ -1,14 +1,15 @@
 import axios from 'axios';
-import Cookies from 'js-cookie';
+// import Cookies from 'js-cookie';
 const NodeURL = 'https://d40vhfq2-9090.inc1.devtunnels.ms';
 // const NodeURL = 'https://dfkt7wdr-9090.inc1.devtunnels.ms'
 
 // const tokenCookie = Cookies.get('access_token');
 // localStorage.setItem('token', tokenCookie);
 // const access_token = localStorage.getItem('acess_token');
-const loginisAdmin = localStorage.getItem("isAdmin");
+// const loginisAdmin = localStorage.getItem("isAdmin");
+const loginisAdmin = localStorage.getItem("is_admin");
 const headers = {
-  'Authorization': `Bearer ${Cookies.get('token')}`,
+  'authorization': `Bearer ${localStorage.getItem('token')}`,
    withCredntials: true,
   credentials: 'include'
 };
@@ -27,20 +28,15 @@ export const loginDatas = (formData) => {
 
 };
 export const login = async (email, password) => {
-  const response = await axios.post(`${NodeURL}/usery/login`, {
+  const response = await axios.post(`${NodeURL}/user/login`, {
     email: email,
     password: password
-  }, {
-    withCredntials: true,
-    credentials: 'include',
-    headers
-});
+  });
  localStorage.setItem("isAdmin", response.data.is_admin);
   return response.data;
 };
 export const tech = async() => {
     const response = await axios.get(`${NodeURL}/tech/`, {headers});
-    // console.log('hhhh', response);
     return response.data;
   };
 
@@ -72,37 +68,6 @@ export const tech = async() => {
         return response.data;
     }
   };
-
-  export const addUser = async (email, password, userName) => {
-    const response = await axios.post(`${NodeURL}/user/addUser/`, {
-      userName: userName,
-      email: email,
-      password: password
-    }, {
-      withCredntials: true,
-      credentials: 'include',
-      headers
-  });
-    return response.data;
-  };
-
-  export const btnActivities = async (selectedTrainee, selectedTrainer, selectedTechnology) => {
-    const response = await axios.post(`${NodeURL}/acti/getActivities/`, {
-      traineeId: selectedTrainee,
-      trainerId: selectedTrainer,
-      techId: selectedTechnology
-    }, {headers});
-    return response.data;
-  };
-  export const trainee = async() => {
-    const response = await axios.get(`${NodeURL}/trainee/`, {
-      withCredntials: true,
-      credentials: 'include',
-      headers
-  });
-    return response.data;
-  };
-
   export const fetchTraineeDataOld = async () => {
     if (loginisAdmin == 1 ) {
       const response = await axios.get(`${NodeURL}/trainee/activeTraineesAdmin?activityType=old`, {
@@ -119,6 +84,35 @@ export const tech = async() => {
         });
         return response.data;
     }
+  };
+  export const addUser = async (email, password, userName) => {
+    const response = await axios.post(`${NodeURL}/user/addUser/`, {
+      userName: userName,
+      email: email,
+      password: password
+    }, {
+      withCredntials: true,
+      credentials: 'include',
+      headers
+  });
+    return response.data;
+  };
+
+  export const btnActivities = async (selectedTrainee, selectedTrainer, selectedTechnology) => {
+    const response = await axios.post(`${NodeURL}/acti/getActivities/`, {
+      traineeId: selectedTrainee,
+      "trainer_id": selectedTrainer,
+      "tech_id": selectedTechnology
+    }, {headers});
+    return response.data;
+  };
+  export const trainee = async() => {
+    const response = await axios.get(`${NodeURL}/trainee/`, {
+      withCredntials: true,
+      credentials: 'include',
+      headers
+  });
+    return response.data;
   };
   export const fetchDashboard = async () => {
     const response = await axios.get(`${NodeURL}/tech/myTraining`, {
