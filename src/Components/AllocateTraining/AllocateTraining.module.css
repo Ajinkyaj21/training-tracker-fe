@@ -1,5 +1,111 @@
 .top-container {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
   }
+
+
+ .dropdown { 
+
+  margin-right: 20px;
+}
+
+.dropdown select {
+  border-color: #141544;
+  width: 220px;
+  /* padding: 10px; */
+
   
+}
+
+
+
+/*.dropdown {
+
+  margin-right: 20px;
+}
+
+
+
+.actBtn {
+  background-color: #15224c;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 10px;
+  margin: -1px;
+  border-radius: 7px;
+  width: 12%;
+}
+
+.actBtn:hover{
+  background-color: #141544; 
+}
+
+.actBox {
+flex-direction: column;
+border-radius: 5px;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+.tableMain {
+                                                                                                                                        
+border-radius: 9px;
+
+}
+
+.th {
+background-color: #15224c;
+color: #fff;
+text-align: center;
+padding: 10px;
+}
+
+
+.td {
+vertical-align: middle;
+justify-content: center;
+align-items: center ;
+padding: 10px;
+}
+
+.p {
+display: flex;
+justify-content: center;
+align-items: center;
+margin: 10px 0;
+font-weight: bold;  
+color: #f04545;
+}
+.tdInner{
+padding: 10px;
+vertical-align: top;
+}
+.btnDiv{
+display: flex;
+align-items: center;
+justify-content: center;
+}
+.saveBtn{
+display: flex;
+justify-content: center;
+background-color: #15224c;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 10px;
+  margin: -1px;
+  border-radius: 7px;
+  
+}
+
+.mainDiv{
+margin: 20px;
+}
+.errorText{
+font-size: 18px;
+color: red;
+} */
