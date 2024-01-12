@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import style from "./Admin.module.css"
+import React, { useState } from 'react';
+import style from "./Admin.module.css";
 import AllocateTraining from '../../Components/AllocateTraining/AllocateTraining';
 import AddUser from '../../Components/AddUser/AddUser';
 export default function Admin() {
@@ -28,5 +28,5 @@ export default function Admin() {
     </div>
     </div>
     </div>
-  )
+  );
 }

@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { btnActivities, saveDataApi, tech, trainee } from "../../Services/Api";
 import stylesAT from "./AllocateTraining.module.css";
+// import { Button } from "bootstrap";
+import CustomButton from "../Button/CustomButton";
+// import { Button } from "bootstrap";
 
 const AllocateTraining = () => {
 	const [selectedTrainee, setSelectedTrainee] = useState("");
@@ -12,7 +15,7 @@ const AllocateTraining = () => {
 	const [activites, setActivites] = useState([]);
 	const [requiredStates, setRequiredStates] = useState(activites.map(() => true));
 	const [activityDueDates, setActivityDueDates] = useState([]);
-
+	const [selectionComplete, setSelectionComplete] = useState(false);
 	useEffect(() => {
 		handleSubmit();
 		fetchTechnologyOptions();
@@ -24,6 +27,18 @@ const AllocateTraining = () => {
 			updatedRequiredStates[index] = !updatedRequiredStates[index];
 			return updatedRequiredStates;
 		});
+	};
+	const checkSelectionStatus = () => {
+		if (selectedTrainee && selectedTrainer && selectedTechnology) {
+         setSelectionComplete(true);
+		} else {
+         setSelectionComplete(false);
+		}
+		console.info(selectionComplete);
+    };
+	const handleSelectChange = (event, setSelectedState) => {
+		setSelectedState(event.target.value);
+		checkSelectionStatus();
 	};
 
 	const handleSubmit = async () => {
@@ -52,9 +67,9 @@ const AllocateTraining = () => {
 		}
 	};
 
-	const handleSelectChange = (event, setSelectedState) => {
-		setSelectedState(event.target.value);
-	};
+	// const handleSelectChange = (event, setSelectedState) => {
+	// 	setSelectedState(event.target.value);
+	// };
 
 	const handleGetActivities = async () => {
 
@@ -68,7 +83,7 @@ const AllocateTraining = () => {
 
 				if (responseActivites !== null) {
 					const activitiesres = responseActivites;
-					console.log("activitiesres",activitiesres)
+					// console.log("activitiesres", activitiesres);
 					setActivites(activitiesres.result);
 					const initialDueDates = new Array(activitiesres.length).fill("");
 					setActivityDueDates(initialDueDates);
@@ -86,9 +101,9 @@ const AllocateTraining = () => {
 	const handleSave = async () => {
 		if (activites.length > 0) {
 			const dataToSend = {
-				tech_id: selectedTechnology,
-				traineeId: selectedTrainee,
-				trainerId: selectedTrainer,
+				"tech_id": selectedTechnology,
+				"trainee_id": selectedTrainee,
+				"trainer_id": selectedTrainer,
 				activities: activites.map((activity, index) => ({
 					activityId: activity.activity_id,
 					dueDate: activityDueDates[index],
@@ -119,18 +134,19 @@ const AllocateTraining = () => {
 		setRequiredStates([]);
 		setActivityDueDates([]);
 	};
+    const allDueDatesFilled = activityDueDates.every((date) => date.trim() !== "");
 
-	const allDueDatesFilled = activityDueDates.every((date) => date.trim() !== "");
 	return (
-		<>
-			<div className= {stylesAT.topContainer}>
-                <div>
+		<div className="container">
+			<div className="row">
+				<div className={`${stylesAT.topContainer}col d-flex gap-5 m-5 `}>
 				{[
 					{
 						name: "Select Trainee",
 						options: trial,
 						selectedValue: selectedTrainee,
 						setSelectedValue: setSelectedTrainee
+
 					},
 					{
 						name: "Select Trainer",
@@ -160,23 +176,30 @@ const AllocateTraining = () => {
 						</select>
 					</div>
 				))}
-				<button className={stylesAT.actBtn} onClick={handleGetActivities}> Get Activities
-				</button>
-                </div>
+				<CustomButton
+  className={`${stylesAT.actBtn} btn btn-primary`}
+  onClick={handleGetActivities}
+//   disabled={!selectionComplete}
+>
+  Get Activities
+</CustomButton>
+				</div>
 			</div>
-			<div className={stylesAT.actBox}>
+			<div className="row">
+				<div className="col">
+				<div className={stylesAT.actBox}>
 				{activites.length > 0 ? (
-					<table className={stylesAT.tableMain}>
-						<thead>
+					<table className={`${stylesAT.tableMain} table m-2`}>
+						<thead className="thead-dark">
 							<tr>
-								<th className={stylesAT.th}>Trainee</th>
-								<th className={stylesAT.th}>Trainer</th>
-								<th className={stylesAT.th}>Technology</th>
-								<th className={stylesAT.th}>Topic</th>
-								<th className={stylesAT.th}>Sub Topic</th>
-								<th className={stylesAT.th}>Activity</th>
-								<th className={stylesAT.th}>Due Date</th>
-								<th className={stylesAT.th}>Required</th>
+								<th className={stylesAT.th} scope="row">Trainee</th>
+								<th className={stylesAT.th} scope="row">Trainer</th>
+								<th className={stylesAT.th} scope="row">Technology</th>
+								<th className={stylesAT.th} scope="row">Topic</th>
+								<th className={stylesAT.th} scope="row">Sub Topic</th>
+								<th className={stylesAT.th} scope="row">Activity</th>
+								<th className={stylesAT.th} scope="row">Due Date</th>
+								<th className={stylesAT.th} scope="row">Required</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -218,6 +241,7 @@ const AllocateTraining = () => {
 										<input type="date" name="dueDate" value={activityDueDates[index]} onChange={(e) => {
 											const newDueDates = [...activityDueDates];
 											newDueDates[index] = e.target.value;
+											allDueDatesFilled();
 											setActivityDueDates(newDueDates);
 										}}/>
 									</td>
@@ -237,7 +261,8 @@ const AllocateTraining = () => {
 				{activites.length > 0 && (
 					<div className={stylesAT.mainDiv}>
 						<div className={stylesAT.btnDiv}>
-							<button className={stylesAT.saveBtn} onClick={handleSave}
+							<button className={`btn btn-primary ${stylesAT.saveBtn}`}
+							onClick={handleSave}
 								disabled={!allDueDatesFilled}>Save </button>
 						</div>
 						<div className={stylesAT.messageDiv}>{!allDueDatesFilled && (
@@ -249,7 +274,9 @@ const AllocateTraining = () => {
 					</div>
 				)}
 			</div>
-		</>
+				</div>
+			</div>
+		</div>
 	);
 };
 

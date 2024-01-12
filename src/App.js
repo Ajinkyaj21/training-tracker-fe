@@ -1,22 +1,27 @@
+import React from 'react';
 import './App.css';
 import Login from './Pages/Login/Login';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useState } from 'react';
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import Dashboard from './Pages/Dashboard/Dashboard';
 import Trainees from './Pages/Trainees/Trainees';
 import Training from './Pages/Training/Training';
 import Admin from './Pages/Admin/Admin';
-import Edit from './Pages/Edit/Edit';
-import SideBar from './Components/SideBar/SideBar';
-import NavBar from './Components/NavBar/NavBar';
+import Edit from './Pages/Edit/edit';
 import { PageLayout } from './Layouts/PageLayout';
+import { isloggedIn, isloggedInAdmin } from './utils/Utils';
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  function AdminProtected({ children }) {
+    if (isloggedIn() && isloggedInAdmin()) {
+      return children;
+    }
+    alert('login as admin');
+    return <Navigate to="/login" replace />;
+  }
 
   function Protected({ children }) {
-    if (!isLoggedIn) {
+    if (!isloggedIn()) {
       return <Navigate to="/login" replace />;
     }
     return children;
@@ -24,12 +29,11 @@ function App() {
 
   return (
     <div className="App">
-      
+
       <BrowserRouter>
         <Routes>
-            <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
-
-          <Route path="/" element={<PageLayout />}>
+        <Route path="/login" element={<Login/>}/>
+        <Route path="/" element={<PageLayout/>}>
             <Route
               path="/"
               element={
@@ -38,35 +42,33 @@ function App() {
                 </Protected>
               }
             />
-            <Route
-              path="/trainees"
+            <Route path="/trainees"
               element={
                 <Protected>
                   <Trainees />
                 </Protected>
               }
             />
-            <Route
-              path="/training"
+            <Route path="/training"
               element={
                 <Protected>
                   <Training />
                 </Protected>
               }
             />
-            <Route
-              path="/admin"
+            <Route path="/admin"
               element={
-                <Protected>
+                // <Protected>
+                  <AdminProtected>
                   <Admin />
-                </Protected>
+                  </AdminProtected>
+                // </Protected>
               }
             />
-            <Route
-              path="/edit"
+            <Route path="/edit"
               element={
                 <Protected>
-                  <Edit />
+                  <Edit/>
                 </Protected>
               }
             />
