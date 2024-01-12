@@ -13,8 +13,8 @@ export const isloggedIn = () => {
     }
 };
 export const isloggedInAdmin = () => {
-    const accessAdminToken = localStorage.getItem('is_admin');
-    if (accessAdminToken) {
+    const adminToken = localStorage.getItem('is_admin');
+    if (adminToken) {
         return true;
     } else {
         return false;

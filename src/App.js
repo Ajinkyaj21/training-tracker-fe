@@ -9,15 +9,14 @@ import Training from './Pages/Training/Training';
 import Admin from './Pages/Admin/Admin';
 import Edit from './Pages/Edit/edit';
 import { PageLayout } from './Layouts/PageLayout';
-import { isloggedIn, isloggedInAdmin } from './utils/Utils';
+import { isloggedIn, isloggedInAdmin } from '../src/utils/Utils';
 
 function App() {
   function AdminProtected({ children }) {
-    if (isloggedIn() && isloggedInAdmin()) {
-      return children;
+    if (!isloggedInAdmin()) {
+      return <Navigate to="/" replace />;
     }
-    alert('login as admin');
-    return <Navigate to="/login" replace />;
+    return children;
   }
 
   function Protected({ children }) {

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import ActiveTrainee from '../../Components/ActiveTrainee/ActiveTrainee';
-import Button from '../../Components/Button/Button';
+import Button from '../../Components/Button/CustomButton';
 import OldTrainee from '../../Components/OldTrainee/OldTrainee';
 import stylesT from "./Trainees.module.css";
 

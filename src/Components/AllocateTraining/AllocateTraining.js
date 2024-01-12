@@ -2,7 +2,9 @@ import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { btnActivities, saveDataApi, tech, trainee } from "../../Services/Api";
 import stylesAT from "./AllocateTraining.module.css";
-import { Button } from "bootstrap";
+// import { Button } from "bootstrap";
+import CustomButton from "../Button/CustomButton";
+// import { Button } from "bootstrap";
 
 const AllocateTraining = () => {
 	const [selectedTrainee, setSelectedTrainee] = useState("");
@@ -32,6 +34,7 @@ const AllocateTraining = () => {
 		} else {
          setSelectionComplete(false);
 		}
+		console.info(selectionComplete);
     };
 	const handleSelectChange = (event, setSelectedState) => {
 		setSelectedState(event.target.value);
@@ -173,13 +176,13 @@ const AllocateTraining = () => {
 						</select>
 					</div>
 				))}
-				<Button
+				<CustomButton
   className={`${stylesAT.actBtn} btn btn-primary`}
   onClick={handleGetActivities}
-  disabled={!selectionComplete}
+//   disabled={!selectionComplete}
 >
   Get Activities
-</Button>
+</CustomButton>
 				</div>
 			</div>
 			<div className="row">
@@ -238,6 +241,7 @@ const AllocateTraining = () => {
 										<input type="date" name="dueDate" value={activityDueDates[index]} onChange={(e) => {
 											const newDueDates = [...activityDueDates];
 											newDueDates[index] = e.target.value;
+											allDueDatesFilled();
 											setActivityDueDates(newDueDates);
 										}}/>
 									</td>
