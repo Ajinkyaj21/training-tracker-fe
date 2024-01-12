@@ -13,11 +13,11 @@ import { isloggedIn, isloggedInAdmin } from './utils/Utils';
 
 function App() {
   function AdminProtected({ children }) {
-    if (isloggedIn() && isloggedInAdmin()) {
-      return children;
+    if (!isloggedInAdmin()) {
+      return <Navigate to="/dashboard" replace />;
     }
-    alert('login as admin');
-    return <Navigate to="/login" replace />;
+    // alert('login as admin');
+    return children;
   }
 
   function Protected({ children }) {

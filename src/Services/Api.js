@@ -1,5 +1,6 @@
 import axios from 'axios';
 // import Cookies from 'js-cookie';
+// const NodeURL = 'http://localhost:9090';
 const NodeURL = 'https://d40vhfq2-9090.inc1.devtunnels.ms';
 // const NodeURL = 'https://dfkt7wdr-9090.inc1.devtunnels.ms'
 
@@ -9,45 +10,41 @@ const NodeURL = 'https://d40vhfq2-9090.inc1.devtunnels.ms';
 // const loginisAdmin = localStorage.getItem("isAdmin");
 const loginisAdmin = localStorage.getItem("is_admin");
 const headers = {
-  'authorization': `Bearer ${localStorage.getItem('token')}`,
-   withCredntials: true,
-  credentials: 'include'
+	'authorization': `Bearer ${localStorage.getItem('token')}`,
+	withCredntials: true,
+	credentials: 'include'
 };
 
 export const loginDatas = (formData) => {
-
-    const params = {
-        email: formData.email,
-        password: formData.password
-
-    };
-
-    const res = axios.post(`${NodeURL}/user/login`, params);
-
-    return res;
-
+	const params = {
+		email: formData.email,
+		password: formData.password
+	};
+	const res = axios.post(`${NodeURL}/user/login`, params);
+	return res;
 };
+
 export const login = async (email, password) => {
-  const response = await axios.post(`${NodeURL}/user/login`, {
-    email: email,
-    password: password
-  });
- localStorage.setItem("isAdmin", response.data.is_admin);
-  return response.data;
+	const response = await axios.post(`${NodeURL}/user/login`, {
+		email: email,
+		password: password
+	});
+	localStorage.setItem("isAdmin", response.data.is_admin);
+	return response.data;
 };
+
 export const tech = async() => {
-    const response = await axios.get(`${NodeURL}/tech/`, {headers});
-    return response.data;
-  };
+	const response = await axios.get(`${NodeURL}/tech/`, {headers});
+	return response.data;
+};
 
-  export const saveDataApi = async (dataToSend) => {
-
-    const response = await axios.post(`${NodeURL}/trainingPlan/saveActivities/`, dataToSend, {
-      withCredntials: true,
-      credentials: 'include',
-      headers
-    });
-    return response;
+export const saveActivities = async (dataToSend) => {
+	const response = await axios.post(`${NodeURL}/trainingPlan/saveActivities/`, dataToSend, {
+		withCredntials: true,
+		credentials: 'include',
+		headers
+	});
+	return response;
 };
 
   export const fetchTraineeData = async () => {
@@ -98,7 +95,7 @@ export const tech = async() => {
     return response.data;
   };
 
-  export const btnActivities = async (selectedTrainee, selectedTrainer, selectedTechnology) => {
+  export const getActivities = async (selectedTrainee, selectedTrainer, selectedTechnology) => {
     const response = await axios.post(`${NodeURL}/acti/getActivities/`, {
       traineeId: selectedTrainee,
       "trainer_id": selectedTrainer,

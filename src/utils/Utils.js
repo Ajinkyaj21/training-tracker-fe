@@ -1,3 +1,4 @@
+
 import { LOCALSTORAGE_ITEMS } from "./Constants";
 
 export const isloggedIn = () => {
@@ -10,8 +11,8 @@ export const isloggedIn = () => {
     }
 };
 export const isloggedInAdmin = () => {
-    const adminToken = localStorage.getItem('is_admin');
-    if (adminToken) {
+    const adminToken = localStorage.getItem('adminToken');
+    if (adminToken == 1) {
         return true;
     } else {
         return false;

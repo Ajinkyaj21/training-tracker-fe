@@ -32,7 +32,7 @@ const Dashboard = () => {
 	return (
 		<div className={stylesDash.main}>
 			<div className={stylesDash.div1}>
-				<h2>My Trainig</h2>
+				<h2>My Training</h2>
 			</div>
 			<div className={stylesDash.div2}>
 				<div className={stylesDash.oneDiv}>
