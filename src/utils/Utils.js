@@ -1,6 +1,3 @@
-
-// import Cookies from "js-cookie";
-
 import { LOCALSTORAGE_ITEMS } from "./Constants";
 
 export const isloggedIn = () => {
