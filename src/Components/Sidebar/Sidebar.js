@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import styles from './Sidebar.module.css';
-import Logo from '../../Assets/Logo.jpg';
 import { NavLink } from 'react-router-dom';
+import Logo from '../../Assets/Logo.jpg';
+import styles from './Sidebar.module.css';
 
 const SideBar = ({children}) => {
     const [isOpen, setIsOpen] = useState(false);

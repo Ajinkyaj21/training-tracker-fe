@@ -1,9 +1,10 @@
 import React from 'react';
+import { useNavigate } from "react-router-dom";
 // import Logo from "../../Assets/Logo.jpg";
 import style from "./Navbar.module.css";
 // import Cookies from "js-cookie";
-import { useNavigate } from "react-router-dom";
 // import HiddenSideBar from '../Hidden_SideBar/HiddenSideBar';
+
 export default function NavBar() {
   const navigate = useNavigate();
   const logout = () => {

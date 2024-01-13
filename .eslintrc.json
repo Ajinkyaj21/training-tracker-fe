@@ -40,7 +40,7 @@
         "@stylistic/js/comma-dangle": ["error", "never"],
         "@stylistic/js/comma-spacing": ["error", { "before": false, "after": true }],
         "@stylistic/js/function-call-spacing": ["error", "never"],
-        "@stylistic/js/max-len": ["error", { "code": 100, "ignoreStrings": true }],
+        "@stylistic/js/max-len": ["error", { "code": 120, "ignoreStrings": true }],
         "@stylistic/js/max-statements-per-line": ["error", { "max": 1 }],
         "@stylistic/js/no-extra-semi": "error",
         "@stylistic/js/no-mixed-operators": "error",
@@ -59,15 +59,15 @@
         "import/extensions": ["error", "never"],
         "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
         "react/prop-types": 0,
-        "import/no-cycle": ["off", { "maxDepth": null }]
-        // "import/order": ["error", {
-        //     "groups": ["builtin", "external", "internal", "parent", "sibling", "index", "object", "type"],
-        //     "warnOnUnassignedImports": true,
-        //     "alphabetize": {
-        //         "order": "asc",
-        //         "caseInsensitive": true
-        //     }
-        // }]
+        "import/no-cycle": ["off", { "maxDepth": null }],
+        "import/order": ["error", {
+            "groups": ["builtin", "external", "internal", "parent", "sibling", "index", "object", "type"],
+            "warnOnUnassignedImports": true,
+            "alphabetize": {
+                "order": "asc",
+                "caseInsensitive": true
+            }
+        }]
     },
     "settings": {
         "import/resolver": {

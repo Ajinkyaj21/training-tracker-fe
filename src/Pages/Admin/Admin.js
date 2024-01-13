@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import style from "./Admin.module.css";
-import AllocateTraining from '../../Components/AllocateTraining/AllocateTraining';
 import AddUser from '../../Components/AddUser/AddUser';
+import AllocateTraining from '../../Components/AllocateTraining/AllocateTraining';
+import style from "./Admin.module.css";
+
 export default function Admin() {
   const [activeTab, setActiveTab] = useState("allocateTraining");
 	const handleTabClick = (tabName) => {

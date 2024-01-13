@@ -1,3 +1,7 @@
+.rootContainer{
+	height: 100%;
+}
+
 .r{
    background-color: white;
    height: 100vh;
@@ -49,9 +53,7 @@
   color: #083f91;
 
 }
-.con{
-  height: 100%;
-}
+
 .btn1:hover {
 border-color:#274df7 ;
 }
