@@ -1,5 +1,7 @@
 import React from "react";
 
+// Review: have default values for all non-styling parameters
+// Review: have small but meaningful prop names
 export default function Button({
 	children,
 	widthParameter,

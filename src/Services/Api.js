@@ -3,6 +3,8 @@ import axios from 'axios';
 // const NodeURL = 'http://localhost:9090';
 const NodeURL = 'https://d40vhfq2-9090.inc1.devtunnels.ms';
 
+/* Review: I dont think this will work because this is defining variable at global level.
+	If user sign in then also this will not change.*/
 const loginisAdmin = localStorage.getItem("is_admin");
 const headers = {
 	'authorization': `Bearer ${localStorage.getItem('token')}`,
@@ -36,12 +38,14 @@ export const saveActivities = async (dataToSend) => {
 	return response;
 };
 
+// Review: create two separate functions call based on checking admin in the page, not here
 export const fetchTraineeData = async () => {
 	const endpoint = loginisAdmin == 1 ? 'activeTraineesAdmin' : 'activeTraineesUser';
 	const response = await axios.get(`${NodeURL}/trainee/${endpoint}?activityType=active`, { headers });
 	return response.data;
 };
 
+// Review: create two separate functions call based on checking admin in the page, not here
 export const fetchTraineeDataOld = async () => {
 	const endpoint = loginisAdmin == 1 ? 'activeTraineesAdmin' : 'activeTraineesUser';
 	const response = await axios.get(`${NodeURL}/trainee/$${endpoint}?activityType=old`, { headers });

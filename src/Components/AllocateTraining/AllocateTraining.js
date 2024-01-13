@@ -10,6 +10,7 @@ const AllocateTraining = () => {
 	const [selectedTrainee, setSelectedTrainee] = useState("");
 	const [selectedTrainer, setSelectedTrainer] = useState("");
 	const [selectedTechnology, setSelectedTechnology] = useState("");
+	// Review: rename trial to something more meaningful like persons
 	const [trial, setTrial] = useState([]);
 	const [technologyOptions, setTechnologyOptions] = useState([]);
 	const [activites, setActivites] = useState([]);
@@ -139,10 +140,15 @@ const AllocateTraining = () => {
 		setActivityDueDates([]);
 	};
 
+	// Review: This component is not at all responsive
+	// Review: Instead of bootstrap this could have easily been handled with plain css
+	/* Review: Use bootstrap only for row and columns at page level and don't use in components.
+		It makes things complex than required.*/
 	return (
 		<div className="container">
 			<div className="row">
 				<div className={`${stylesAT.topContainer}col d-flex gap-5 m-5 `}>
+					{/* Review: make this array as separate variable and use here. Dont define data in JSX. */}
 					{[
 						{
 							name: "Select Trainee",
@@ -179,6 +185,7 @@ const AllocateTraining = () => {
 			</div>
 			<div className="row">
 				<div className="col">
+					{/* Review: Use proper classnames */}
 					<div className={stylesAT.actBox}>
 						{activites.length > 0 ? (
 							<table className={`${stylesAT.tableMain} table m-2`}>

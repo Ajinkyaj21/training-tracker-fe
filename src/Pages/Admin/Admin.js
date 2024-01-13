@@ -9,6 +9,7 @@ export default function Admin() {
 		setActiveTab(tabName);
 	};
 
+	// Review: The admin page is not at all responsive. I dont see the use of bootstrap helping this.
 	return (
 		<div className='container'>
 			<div className='row'>

@@ -1,14 +1,4 @@
 {
-    "extends": [
-        "prettier",
-        "eslint:recommended",
-        "plugin:import/errors",
-        "plugin:import/warnings",
-        "plugin:react/recommended"
-        // "airbnb",
-        // "airbnb/hooks"
-    ],
-    "plugins": ["react", "@stylistic/js", "eslint-plugin-no-comments", "css-modules"],
     "globals": {
         "JSX": true
     },
@@ -25,6 +15,16 @@
         "node": true
     },
     "ignorePatterns": ["build"],
+    "extends": [
+        "prettier",
+        "eslint:recommended",
+        "plugin:import/errors",
+        "plugin:import/warnings",
+        "plugin:react/recommended"
+        // "airbnb",
+        // "airbnb/hooks"
+    ],
+    "plugins": ["react", "@stylistic/js", "eslint-plugin-no-comments", "css-modules"],
     "rules": {
         "no-unreachable": "error",
         "no-func-assign": "error",

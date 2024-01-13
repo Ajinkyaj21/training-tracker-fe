@@ -35,19 +35,23 @@ export default function Login() {
 		const checkLoggedIn = () => {
 			const token = localStorage.getItem(LOCALSTORAGE_ITEMS.TOKEN);
 			const isAdmin = localStorage.getItem(LOCALSTORAGE_ITEMS.IS_ADMIN);
-			if (token && isAdmin) {
-				navigate("/admin");
-			} else {
-				alert('Admin credentials not found.');
-				navigate('/');
+			if (token) {
+				if (isAdmin) {
+					navigate("/admin");
+				} else {
+					navigate('/');
+				}
 			}
 		};
 		checkLoggedIn();
 	}, []);
 
+	// Review: this is not mobile-responsive, side logo img could be hidden in mobile view
+	// Review: use bootstrap only if required
 	return (
 		<div className={`container-fluid w-full h-full  ${styles.rootContainer}`}>
 			<div className='row'>
+				{/* Review: change the classname to something meaningful like imgContainer */}
 				<div className={`col-7 ${styles.l}`}>
 					<img src={Logo} className={styles.logoImg} alt="logo"/>
 				</div>
@@ -61,11 +65,14 @@ export default function Login() {
 								{/* <Input className={Styles.pss} placeholder="Username or e-mail"
 								style={{boxShadow:'none', padding: "0.5rem 1rem"}}/> */}
 							</div>
-							<div className="form-group ">
+							<div className="form-group">
+								{/* Review: create common input box component and avoid inline-styling */}
 								<input type="password" className="form-control" id="exampleInputPassword1" placeholder="Password"
 									style={{boxShadow: 'none', padding: "0.5rem 1rem"}} onChange={(e) => setPassword(e.target.value)}/>
 							</div>
 							<br />
+							{/* Review: use button component here */}
+							{/* Review: always have meaningful css classname like submitBtn */}
 							<button type="submit" className= {`btn btn-primary col-12 ${styles.btn1}`}>Submit</button>
 						</form>
 					</div>

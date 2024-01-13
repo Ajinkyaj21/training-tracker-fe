@@ -1,9 +1,10 @@
-
+/* Review: Align the classnames according to the heirarchy of usage */
 .navBg{
     background-color:#141544;
     height: 50px;
     
     display: flex;
+    /* Review: use flex-end instead of end */
     justify-content: end;
 
 }
