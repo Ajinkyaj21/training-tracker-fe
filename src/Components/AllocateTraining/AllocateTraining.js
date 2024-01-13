@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { getActivities, saveActivities, tech, trainee } from "../../Services/Api";
+import CustomButton from "../Button/CustomButton";
 import stylesAT from "./AllocateTraining.module.css";
 // import { Button } from "bootstrap";
-import CustomButton from "../Button/CustomButton";
 // import { Button } from "bootstrap";
 
 const AllocateTraining = () => {
@@ -23,12 +23,6 @@ const AllocateTraining = () => {
 		fetchTechnologyOptions();
 	}, []);
 
-	useEffect( () => {
-       console.info(selectedTrainee, "abc");
-	console.info(selectedTrainer, "cde");
-	console.info(selectedTechnology, "fgh");
-	}, [selectedTrainee, selectedTrainer, selectedTechnology]);
-
 	const handleRequiredChange = (index) => {
 		setRequiredStates((prevRequiredStates) => {
 			const updatedRequiredStates = [...prevRequiredStates];
@@ -36,14 +30,16 @@ const AllocateTraining = () => {
 			return updatedRequiredStates;
 		});
 	};
+
 	const checkSelectionStatus = () => {
 		if (selectedTrainee && selectedTrainer && selectedTechnology) {
-         setSelectionComplete(true);
+			setSelectionComplete(true);
 		} else {
-         setSelectionComplete(false);
+			setSelectionComplete(false);
 		}
 		// console.info(selectionComplete);
-    };
+	};
+
 	const handleSelectChange = (event, setSelectedState) => {
 		setSelectedState(event.target.value);
 		checkSelectionStatus();
@@ -118,7 +114,6 @@ const AllocateTraining = () => {
 					required: requiredStates[index] ? 1 : 0
 				}))
 			};
-
 			try {
 				const response = await saveActivities(dataToSend);
 				if (response.result.data.isDuplicate === true || response.result.status !== 200) {
@@ -135,6 +130,7 @@ const AllocateTraining = () => {
 			toast.error("No activities to save.");
 		}
 	};
+
 	const resetForm = () => {
 		setTrial([]);
 		setTechnologyOptions([]);
@@ -142,141 +138,127 @@ const AllocateTraining = () => {
 		setRequiredStates([]);
 		setActivityDueDates([]);
 	};
-	// const allDueDatesFilled = () => {
-	// 	return activityDueDates.every((date) => date.trim() !== "");
-	// };
-    // const allDueDatesFilled = activityDueDates.every((date) => date.trim() !== "");
 
 	return (
 		<div className="container">
 			<div className="row">
 				<div className={`${stylesAT.topContainer}col d-flex gap-5 m-5 `}>
-				{[
-					{
-						name: "Select Trainee",
-						options: trial,
-						selectedValue: selectedTrainee,
-						setSelectedValue: setSelectedTrainee
+					{[
+						{
+							name: "Select Trainee",
+							options: trial,
+							selectedValue: selectedTrainee,
+							setSelectedValue: setSelectedTrainee
 
-					},
-					{
-						name: "Select Trainer",
-						options: trial,
-						selectedValue: selectedTrainer,
-						setSelectedValue: setSelectedTrainer
-					},
-					{
-						name: "Select Technology",
-						options: technologyOptions,
-						selectedValue: selectedTechnology,
-						setSelectedValue: setSelectedTechnology
-					}
-				].map((dropdown, index) => (
-					<div key={index} className={stylesAT.dropdown}>
-						<select value={dropdown.selectedValue}
-							onChange={(event) =>
-								handleSelectChange(event, dropdown.setSelectedValue)
-							}
-						>
-							<option value="">{dropdown.name}</option>
-							{dropdown.options?.map((option, optionIndex) => (
-								<option key={optionIndex} value={option.value}>
-									{option.label}
-								</option>
-							))}
-						</select>
-					</div>
-				))}
-				<CustomButton className={`${stylesAT.actBtn} `} type="button" onClick={handleGetActivities} disabled={!selectionComplete} >Get Activities</CustomButton>
+						},
+						{
+							name: "Select Trainer",
+							options: trial,
+							selectedValue: selectedTrainer,
+							setSelectedValue: setSelectedTrainer
+						},
+						{
+							name: "Select Technology",
+							options: technologyOptions,
+							selectedValue: selectedTechnology,
+							setSelectedValue: setSelectedTechnology
+						}
+					].map((dropdown, index) => (
+						<div key={index} className={stylesAT.dropdown}>
+							<select value={dropdown.selectedValue}
+								onChange={(event) => handleSelectChange(event, dropdown.setSelectedValue)}>
+								<option value="">{dropdown.name}</option>
+								{dropdown.options?.map((option, optionIndex) => (
+									<option key={optionIndex} value={option.value}>{option.label}</option>
+								))}
+							</select>
+						</div>
+					))}
+					<CustomButton className={`${stylesAT.actBtn} `} type="button" onClick={handleGetActivities} disabled={!selectionComplete} >Get Activities</CustomButton>
 				</div>
 			</div>
 			<div className="row">
 				<div className="col">
-				<div className={stylesAT.actBox}>
-				{activites.length > 0 ? (
-					<table className={`${stylesAT.tableMain} table m-2`}>
-						<thead className="thead-dark">
-							<tr>
-								<th className={stylesAT.th} scope="row">Trainee</th>
-								<th className={stylesAT.th} scope="row">Trainer</th>
-								<th className={stylesAT.th} scope="row">Technology</th>
-								<th className={stylesAT.th} scope="row">Topic</th>
-								<th className={stylesAT.th} scope="row">Sub Topic</th>
-								<th className={stylesAT.th} scope="row">Activity</th>
-								<th className={stylesAT.th} scope="row">Due Date</th>
-								<th className={stylesAT.th} scope="row">Required</th>
-							</tr>
-						</thead>
-						<tbody>
-							{activites.map((activity, index) => (
-								<tr key={index}>
-									{index === 0 && (
-										<>
-											<td rowSpan={activites.length}
-												className={stylesAT.tdInner}>
-												{trial?.map((el) => {
-													if (el.value == selectedTrainee) {
-
-														return <>{el.label}</>;
-													} else {
-														return null;
-													}
-												})}
+					<div className={stylesAT.actBox}>
+						{activites.length > 0 ? (
+							<table className={`${stylesAT.tableMain} table m-2`}>
+								<thead className="thead-dark">
+									<tr>
+										<th className={stylesAT.th} scope="row">Trainee</th>
+										<th className={stylesAT.th} scope="row">Trainer</th>
+										<th className={stylesAT.th} scope="row">Technology</th>
+										<th className={stylesAT.th} scope="row">Topic</th>
+										<th className={stylesAT.th} scope="row">Sub Topic</th>
+										<th className={stylesAT.th} scope="row">Activity</th>
+										<th className={stylesAT.th} scope="row">Due Date</th>
+										<th className={stylesAT.th} scope="row">Required</th>
+									</tr>
+								</thead>
+								<tbody>
+									{activites.map((activity, index) => (
+										<tr key={index}>
+											{index === 0 && (
+												<>
+													<td rowSpan={activites.length} className={stylesAT.tdInner}>
+														{trial?.map((el) => {
+															if (el.value == selectedTrainee) {
+																return <>{el.label}</>;
+															} else {
+																return null;
+															}
+														})}
+													</td>
+													<td rowSpan={activites.length} className={stylesAT.tdInner}>
+														{trial?.map((el) => {
+															if (el.value == selectedTrainer) {
+																return <>{el.label}</>;
+															} else {
+																return null;
+															}
+														})}
+													</td>
+													<td rowSpan={activites.length} className={stylesAT.tdInner}>
+														{activity.technology}
+													</td>
+												</>
+											)}
+											<td className={stylesAT.td}>{activity.topic}</td>
+											<td className={stylesAT.td}>{activity.sub_topic}</td>
+											<td className={stylesAT.td}>{activity.activity}</td>
+											<td className={stylesAT.td}>
+												<input type="date" name="dueDate" value={activityDueDates[index]} onChange={(e) => {
+													const newDueDates = [...activityDueDates];
+													newDueDates[index] = e.target.value;
+													// allDueDatesFilled();
+													setActivityDueDates(newDueDates);
+												}}/>
 											</td>
-											<td rowSpan={activites.length}
-												className={stylesAT.tdInner}>
-												{trial?.map((el) => {
-													if (el.value == selectedTrainer) {
-														return <>{el.label}</>;
-													} else {
-														return null;
-													}
-												})}
+											<td className={stylesAT.td}>
+												<input type="checkbox" name="required" checked={requiredStates[index]}
+													onChange={() => handleRequiredChange(index)}/>
 											</td>
-											<td rowSpan={activites.length}
-												className={stylesAT.tdInner}>
-												{activity.technology}
-											</td>
-										</>
-									)}
-									<td className={stylesAT.td}>{activity.topic}</td>
-									<td className={stylesAT.td}>{activity.sub_topic}</td>
-									<td className={stylesAT.td}>{activity.activity}</td>
-									<td className={stylesAT.td}>
-										<input type="date" name="dueDate" value={activityDueDates[index]} onChange={(e) => {
-											const newDueDates = [...activityDueDates];
-											newDueDates[index] = e.target.value;
-											// allDueDatesFilled();
-											setActivityDueDates(newDueDates);
-										}}/>
-									</td>
-									<td className={stylesAT.td}>
-										<input type="checkbox" name="required" checked={requiredStates[index]}
-											onChange={() => handleRequiredChange(index)}/>
-									</td>
-								</tr>
-							))}
-						</tbody>
-					</table>
-				) : (
-					<p className={stylesAT.p}>
-						No activities to display. Please click , Get Activities to fetch data.
-					</p>
-				)}
-				{activites.length > 0 && (
-					<div className={stylesAT.mainDiv}>
-						<div className={stylesAT.btnDiv}>
-							<CustomButton className={` ${stylesAT.saveBtn}`} type="button" onClick={handleSave} disabled={!allDueDatesFilled}> Save </CustomButton>
-						</div>
-						<div className={stylesAT.messageDiv}>{!allDueDatesFilled && (
-							<p className={stylesAT.errorText}>
-                               Please enter due dates for all activities before saving.
+										</tr>
+									))}
+								</tbody>
+							</table>
+						) : (
+							<p className={stylesAT.p}>
+								No activities to display. Please click , Get Activities to fetch data.
 							</p>
-						)}</div>
-
+						)}
+						{activites.length > 0 && (
+							<div className={stylesAT.mainDiv}>
+								<div className={stylesAT.btnDiv}>
+									<CustomButton className={` ${stylesAT.saveBtn}`} type="button" onClick={handleSave} disabled={!allDueDatesFilled}> Save </CustomButton>
+								</div>
+								<div className={stylesAT.messageDiv}>{!allDueDatesFilled && (
+									<p className={stylesAT.errorText}>
+									Please enter due dates for all activities before saving.
+									</p>
+								)}</div>
+							</div>
+						)}
 					</div>
-				)}
-			</div>
 				</div>
 			</div>
 		</div>

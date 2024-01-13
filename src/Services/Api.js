@@ -2,12 +2,7 @@ import axios from 'axios';
 // import Cookies from 'js-cookie';
 // const NodeURL = 'http://localhost:9090';
 const NodeURL = 'https://d40vhfq2-9090.inc1.devtunnels.ms';
-// const NodeURL = 'https://dfkt7wdr-9090.inc1.devtunnels.ms'
 
-// const tokenCookie = Cookies.get('access_token');
-// localStorage.setItem('token', tokenCookie);
-// const access_token = localStorage.getItem('acess_token');
-// const loginisAdmin = localStorage.getItem("isAdmin");
 const loginisAdmin = localStorage.getItem("is_admin");
 const headers = {
 	'authorization': `Bearer ${localStorage.getItem('token')}`,
@@ -20,8 +15,7 @@ export const loginDatas = (formData) => {
 		email: formData.email,
 		password: formData.password
 	};
-	const res = axios.post(`${NodeURL}/user/login`, params);
-	return res;
+	return axios.post(`${NodeURL}/user/login`, params);
 };
 
 export const login = async (email, password) => {
@@ -29,116 +23,67 @@ export const login = async (email, password) => {
 		email: email,
 		password: password
 	});
-	localStorage.setItem("isAdmin", response.data.is_admin);
 	return response.data;
 };
 
 export const tech = async() => {
-	const response = await axios.get(`${NodeURL}/tech/`, {headers});
+	const response = await axios.get(`${NodeURL}/tech/`, { headers });
 	return response.data;
 };
 
 export const saveActivities = async (dataToSend) => {
-	const response = await axios.post(`${NodeURL}/trainingPlan/saveActivities/`, dataToSend, {
-		withCredntials: true,
-		credentials: 'include',
-		headers
-	});
+	const response = await axios.post(`${NodeURL}/trainingPlan/saveActivities/`, dataToSend, { headers });
 	return response;
 };
 
-  export const fetchTraineeData = async () => {
-    if (loginisAdmin == 1 ) {
-      const response =
-       await axios.get(`${NodeURL}/trainee/activeTraineesAdmin?activityType=active`,
-       {
-        headers
-        });
-        return response.data;
-    } else {
-      const response =
-       await axios.get(`${NodeURL}/trainee/activeTraineesUser?activityType=active`, {
-        withCredntials: true,
-        credentials: 'include',
-        headers
-        });
-        return response.data;
-    }
-  };
-  export const fetchTraineeDataOld = async () => {
-    if (loginisAdmin == 1 ) {
-      const response = await axios.get(`${NodeURL}/trainee/activeTraineesAdmin?activityType=old`, {
-        withCredntials: true,
-        credentials: 'include',
-        headers
-        });
-        return response.data;
-    } else {
-      const response = await axios.get(`${NodeURL}/trainee/activeTraineesUser?activityType=old`, {
-        withCredntials: true,
-        credentials: 'include',
-        headers
-        });
-        return response.data;
-    }
-  };
-  export const addUser = async (email, password, userName) => {
-    const response = await axios.post(`${NodeURL}/user/addUser/`, {
-      userName: userName,
-      email: email,
-      password: password
-    }, {
-      withCredntials: true,
-      credentials: 'include',
-      headers
-  });
-    return response.data;
-  };
+export const fetchTraineeData = async () => {
+	const endpoint = loginisAdmin == 1 ? 'activeTraineesAdmin' : 'activeTraineesUser';
+	const response = await axios.get(`${NodeURL}/trainee/${endpoint}?activityType=active`, { headers });
+	return response.data;
+};
 
-  export const getActivities = async (selectedTrainee, selectedTrainer, selectedTechnology) => {
-    const response = await axios.post(`${NodeURL}/acti/getActivities/`, {
-      traineeId: selectedTrainee,
-      "trainer_id": selectedTrainer,
-      "tech_id": selectedTechnology
-    }, {headers});
-    return response.data;
-  };
-  export const trainee = async() => {
-    const response = await axios.get(`${NodeURL}/trainee/`, {
-      withCredntials: true,
-      credentials: 'include',
-      headers
-  });
-    return response.data;
-  };
-  export const fetchDashboard = async () => {
-    const response = await axios.get(`${NodeURL}/tech/myTraining`, {
-      withCredntials: true,
-      credentials: 'include',
-      headers
-    });
-    return response.data;
+export const fetchTraineeDataOld = async () => {
+	const endpoint = loginisAdmin == 1 ? 'activeTraineesAdmin' : 'activeTraineesUser';
+	const response = await axios.get(`${NodeURL}/trainee/$${endpoint}?activityType=old`, { headers });
+	return response.data;
+};
 
-  };
+export const addUser = async (email, password, userName) => {
+	const response = await axios.post(`${NodeURL}/user/addUser/`, {
+		userName: userName,
+		email: email,
+		password: password
+	}, { headers });
+	return response.data;
+};
 
-  export const fetchTraineeDataTrainingDropDown = async () => {
-    const response = await axios.get(`${NodeURL}/trainee/getStatus`, {
-      withCredntials: true,
-      credentials: 'include',
-      headers
-    });
-    return response.data;
+export const getActivities = async (selectedTrainee, selectedTrainer, selectedTechnology) => {
+	const response = await axios.post(`${NodeURL}/acti/getActivities/`, {
+		traineeId: selectedTrainee,
+		"trainer_id": selectedTrainer,
+		"tech_id": selectedTechnology
+	}, { headers });
+	return response.data;
+};
 
-  };
-  export const fetchTraineeDataTrainingCards = async (setSelectedValue) => {
-    const response = await axios.post(`${NodeURL}/trainingPlan/getTrainingActivities`, {
-      "status_id": parseInt(setSelectedValue)
-    }, {
-      withCredntials: true,
-      credentials: 'include',
-      headers
-    });
-    return response.data;
+export const trainee = async() => {
+	const response = await axios.get(`${NodeURL}/trainee/`, { headers });
+	return response.data;
+};
 
-  };
+export const fetchDashboard = async () => {
+	const response = await axios.get(`${NodeURL}/tech/myTraining`, { headers });
+	return response.data;
+};
 
+export const fetchTraineeDataTrainingDropDown = async () => {
+	const response = await axios.get(`${NodeURL}/trainee/getStatus`, { headers });
+	return response.data;
+};
+
+export const fetchTraineeDataTrainingCards = async (setSelectedValue) => {
+	const response = await axios.post(`${NodeURL}/trainingPlan/getTrainingActivities`, {
+		"status_id": parseInt(setSelectedValue)
+	}, { headers });
+	return response.data;
+};
