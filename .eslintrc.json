@@ -24,7 +24,7 @@
         "browser": true,
         "node": true
     },
-    "ignorePatterns": [],
+    "ignorePatterns": ["build"],
     "rules": {
         "no-unreachable": "error",
         "no-func-assign": "error",
@@ -55,7 +55,7 @@
         "camelcase": "error",
         "prefer-const": ["error", { "destructuring": "all", "ignoreReadBeforeAssign": true }],
         // "no-comments/disallowComments": ["error", {"allow": ["NOTE:", "TODO:", "INFO:"]}],
-        // "@stylistic/js/indent": ["error", "tab"],
+        "@stylistic/js/indent": ["error", "tab"],
         "import/extensions": ["error", "never"],
         "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
         "react/prop-types": 0,
