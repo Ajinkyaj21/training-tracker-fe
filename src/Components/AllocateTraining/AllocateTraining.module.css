@@ -16,7 +16,18 @@
 
   
 }
-
+.p {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px 0;
+  font-weight: bold;  
+  color: #f04545;
+  }
+.errorText{
+  font-size: 18px;
+  color: red;
+  } 
 
 
 /*.dropdown {

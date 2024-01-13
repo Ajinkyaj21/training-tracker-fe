@@ -20,21 +20,25 @@ export default function Login() {
       //for admin validation
       const isAdmin = response.result.is_admin;
       localStorage.setItem("adminToken", isAdmin);
+      if (isAdmin) {
+        navigate("/admin");
+      } else {
+        navigate('/');
+      }
 
-     navigate("/admin");
     } catch (error) {
       console.error("Error posting data:", error);
     }
   };
-  useEffect(() => {
-    const checkAdmin = () => {
-    const isAdmin = localStorage.getItem('is_admin');
-    if (isAdmin) {
-      navigate("/admin");
-    }
-    };
-    checkAdmin();
-  }, []);
+  // useEffect(() => {
+  //   const checkAdmin = () => {
+  //   const isAdmin = localStorage.getItem('is_admin');
+  //   // if (isAdmin) {
+  //   //   navigate("/admin");
+  //   // }
+  //   };
+  //   checkAdmin();
+  // }, []);
 
   useEffect(() => {
     const checkLoggedIn = () => {

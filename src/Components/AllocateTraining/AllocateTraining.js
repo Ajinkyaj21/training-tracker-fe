@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import { btnActivities, saveDataApi, tech, trainee } from "../../Services/Api";
+import { getActivities, saveActivities, tech, trainee } from "../../Services/Api";
 import stylesAT from "./AllocateTraining.module.css";
 // import { Button } from "bootstrap";
 import CustomButton from "../Button/CustomButton";
@@ -16,10 +16,18 @@ const AllocateTraining = () => {
 	const [requiredStates, setRequiredStates] = useState(activites.map(() => true));
 	const [activityDueDates, setActivityDueDates] = useState([]);
 	const [selectionComplete, setSelectionComplete] = useState(false);
+	// const [allDueDatesFilled, setAllDueDatesFilled] = useState(false);
+
 	useEffect(() => {
 		handleSubmit();
 		fetchTechnologyOptions();
 	}, []);
+
+	useEffect( () => {
+       console.info(selectedTrainee, "abc");
+	console.info(selectedTrainer, "cde");
+	console.info(selectedTechnology, "fgh");
+	}, [selectedTrainee, selectedTrainer, selectedTechnology]);
 
 	const handleRequiredChange = (index) => {
 		setRequiredStates((prevRequiredStates) => {
@@ -34,7 +42,7 @@ const AllocateTraining = () => {
 		} else {
          setSelectionComplete(false);
 		}
-		console.info(selectionComplete);
+		// console.info(selectionComplete);
     };
 	const handleSelectChange = (event, setSelectedState) => {
 		setSelectedState(event.target.value);
@@ -66,7 +74,7 @@ const AllocateTraining = () => {
 			console.error("Error fetching technology data:", error);
 		}
 	};
-
+	const allDueDatesFilled = activityDueDates.every((date) => date.trim() !== "");
 	// const handleSelectChange = (event, setSelectedState) => {
 	// 	setSelectedState(event.target.value);
 	// };
@@ -75,7 +83,7 @@ const AllocateTraining = () => {
 
 		if ( selectedTrainee && selectedTrainer && selectedTechnology) {
 			try {
-				const responseActivites = await btnActivities(
+				const responseActivites = await getActivities(
 					selectedTrainee,
 					selectedTrainer,
 					selectedTechnology
@@ -112,16 +120,16 @@ const AllocateTraining = () => {
 			};
 
 			try {
-				const response = await saveDataApi(dataToSend);
+				const response = await saveActivities(dataToSend);
 				if (response.result.data.isDuplicate === true || response.result.status !== 200) {
 					toast.error("The data has already been added.he data has already been added he data has already been added");
 				} else {
 					toast.success("Data saved successfully!");
 					resetForm();
 				}
-
 			} catch (error) {
-				console.error("Error saving data:", error);
+				toast.error("No activities to save.");
+				console.error("Error saving data -", error);
 			}
 		} else {
 			toast.error("No activities to save.");
@@ -134,7 +142,10 @@ const AllocateTraining = () => {
 		setRequiredStates([]);
 		setActivityDueDates([]);
 	};
-    const allDueDatesFilled = activityDueDates.every((date) => date.trim() !== "");
+	// const allDueDatesFilled = () => {
+	// 	return activityDueDates.every((date) => date.trim() !== "");
+	// };
+    // const allDueDatesFilled = activityDueDates.every((date) => date.trim() !== "");
 
 	return (
 		<div className="container">
@@ -176,13 +187,7 @@ const AllocateTraining = () => {
 						</select>
 					</div>
 				))}
-				<CustomButton
-  className={`${stylesAT.actBtn} btn btn-primary`}
-  onClick={handleGetActivities}
-//   disabled={!selectionComplete}
->
-  Get Activities
-</CustomButton>
+				<CustomButton className={`${stylesAT.actBtn} `} type="button" onClick={handleGetActivities} disabled={!selectionComplete} >Get Activities</CustomButton>
 				</div>
 			</div>
 			<div className="row">
@@ -241,7 +246,7 @@ const AllocateTraining = () => {
 										<input type="date" name="dueDate" value={activityDueDates[index]} onChange={(e) => {
 											const newDueDates = [...activityDueDates];
 											newDueDates[index] = e.target.value;
-											allDueDatesFilled();
+											// allDueDatesFilled();
 											setActivityDueDates(newDueDates);
 										}}/>
 									</td>
@@ -261,9 +266,7 @@ const AllocateTraining = () => {
 				{activites.length > 0 && (
 					<div className={stylesAT.mainDiv}>
 						<div className={stylesAT.btnDiv}>
-							<button className={`btn btn-primary ${stylesAT.saveBtn}`}
-							onClick={handleSave}
-								disabled={!allDueDatesFilled}>Save </button>
+							<CustomButton className={` ${stylesAT.saveBtn}`} type="button" onClick={handleSave} disabled={!allDueDatesFilled}> Save </CustomButton>
 						</div>
 						<div className={stylesAT.messageDiv}>{!allDueDatesFilled && (
 							<p className={stylesAT.errorText}>
