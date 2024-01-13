@@ -12,6 +12,7 @@ export const isloggedIn = () => {
 };
 
 export const isloggedInAdmin = () => {
+	// Review: use constants value
 	const adminToken = localStorage.getItem('adminToken');
 	if (adminToken == 1) {
 		return true;
