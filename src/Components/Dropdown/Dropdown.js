@@ -1,5 +1,5 @@
 import React from "react";
-import { STD_CSS_PROPS } from "../../utils/theme";
+import { THEME } from "../../utils/theme";
 
 export default function CustomDropdown({
 	dropdownOptions = [],
@@ -10,8 +10,8 @@ export default function CustomDropdown({
 }) {
 
 	const defaultStyles = {
-		backgroundColor: STD_CSS_PROPS.DROPDOWN_PRIM_BG_COLOR,
-		borderRadius: STD_CSS_PROPS.DROPDOWN_PRIM_BORDER_RADIUS,
+		backgroundColor: THEME.DROPDOWN_PRIM_BG_COLOR,
+		borderRadius: THEME.DROPDOWN_PRIM_BORDER_RADIUS,
 		padding: '5px',
 		cursor: 'pointer',
 		fontSize: 'small'
