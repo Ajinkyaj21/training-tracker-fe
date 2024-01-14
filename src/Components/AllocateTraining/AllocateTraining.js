@@ -172,7 +172,7 @@ const AllocateTraining = () => {
 			<div className={stylesAT.getActContainer}>
 				<div>
 					{dropdownParams.map((d, i) => (
-						<span key={i} className={stylesAT.dropdownContainer}>
+						<span key={i} className={stylesAT.getActDropdownsLayout}>
 							<CustomDropdown dropdownOptions={d.options} value={d.selectedValue}
 								setValue={d.setSelectedValue} handleSelectChange={handleSelectChange}
 								defaultText={d.name} />
