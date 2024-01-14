@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { getActivities, saveActivities, tech, trainee } from "../../Services/Api";
 import CustomButton from "../Button/CustomButton";
+import CustomDropdown from "../Dropdown/Dropdown";
 import stylesAT from "./AllocateTraining.module.css";
 // import { Button } from "bootstrap";
 // import { Button } from "bootstrap";
@@ -23,6 +24,28 @@ const AllocateTraining = () => {
 		handleSubmit();
 		fetchTechnologyOptions();
 	}, []);
+
+	const dropdownParams = [
+		{
+			name: "-- Select Trainee --",
+			options: trial,
+			selectedValue: selectedTrainee,
+			setSelectedValue: setSelectedTrainee
+
+		},
+		{
+			name: "-- Select Trainer --",
+			options: trial,
+			selectedValue: selectedTrainer,
+			setSelectedValue: setSelectedTrainer
+		},
+		{
+			name: "-- Select Technology --",
+			options: technologyOptions,
+			selectedValue: selectedTechnology,
+			setSelectedValue: setSelectedTechnology
+		}
+	];
 
 	const handleRequiredChange = (index) => {
 		setRequiredStates((prevRequiredStates) => {
@@ -146,40 +169,17 @@ const AllocateTraining = () => {
 		It makes things complex than required.*/
 	return (
 		<div className="container">
-			<div className="row">
-				<div className={`${stylesAT.topContainer}col d-flex gap-5 m-5 `}>
-					{/* Review: make this array as separate variable and use here. Dont define data in JSX. */}
-					{[
-						{
-							name: "Select Trainee",
-							options: trial,
-							selectedValue: selectedTrainee,
-							setSelectedValue: setSelectedTrainee
-
-						},
-						{
-							name: "Select Trainer",
-							options: trial,
-							selectedValue: selectedTrainer,
-							setSelectedValue: setSelectedTrainer
-						},
-						{
-							name: "Select Technology",
-							options: technologyOptions,
-							selectedValue: selectedTechnology,
-							setSelectedValue: setSelectedTechnology
-						}
-					].map((dropdown, index) => (
-						<div key={index} className={stylesAT.dropdown}>
-							<select value={dropdown.selectedValue}
-								onChange={(event) => handleSelectChange(event, dropdown.setSelectedValue)}>
-								<option value="">{dropdown.name}</option>
-								{dropdown.options?.map((option, optionIndex) => (
-									<option key={optionIndex} value={option.value}>{option.label}</option>
-								))}
-							</select>
-						</div>
+			<div className={stylesAT.getActContainer}>
+				<div>
+					{dropdownParams.map((d, i) => (
+						<span key={i} className={stylesAT.dropdownContainer}>
+							<CustomDropdown dropdownOptions={d.options} value={d.selectedValue}
+								setValue={d.setSelectedValue} handleSelectChange={handleSelectChange}
+								defaultText={d.name} />
+						</span>
 					))}
+				</div>
+				<div>
 					<CustomButton className={`${stylesAT.actBtn} `} type="button" onClick={handleGetActivities} disabled={!selectionComplete} >Get Activities</CustomButton>
 				</div>
 			</div>
