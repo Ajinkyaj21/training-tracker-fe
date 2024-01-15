@@ -1,41 +1,66 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import Logo from '../../Assets/Logo.jpg';
+// import Logo from '../../Assets/Logo.jpg';
+import DashboardIcon from '../../Assets/dashboard.png';
+import { windowDimensions } from '../../utils/windowElem';
 import styles from './Sidebar.module.css';
 
-const SideBar = ({children}) => {
+const SideBar = () => {
 	const [isOpen, setIsOpen] = useState(false);
 	const toggle = () => setIsOpen(!isOpen);
+	const [windowWidth, setWindowWidth] = useState(0);
+
+	useEffect(() => {
+		setWindowWidth(windowDimensions.width);
+	}, []);
+
 	const menuItem = [{
 		path: "/",
-		name: "Dashboard"
+		name: "Dashboard",
+		icon: DashboardIcon
 	}, {
 		path: "/training",
-		name: "Training"
+		name: "Training",
+		icon: DashboardIcon
 	}, {
 		path: "/trainees",
-		name: "Trainees"
+		name: "Trainees",
+		icon: DashboardIcon
 	}, {
 		path: "/admin",
-		name: "Admin"
+		name: "Admin",
+		icon: DashboardIcon
 	}];
+
+	const Bars = () => {
+		return (
+			<div>
+				<div onClick={toggle}>
+					<div className={styles.bars}></div>
+					<div className={styles.bars}></div>
+					<div className={styles.bars}></div>
+				</div>
+			</div>
+		);
+	};
 
 	return (
 		<>
-			<div className={styles.sidebar} style={{ width: isOpen ? "200px" : "50px" }}>
-				<div className={styles.top_section}>
-					<img style={{ display: isOpen ? "block" : "none" }} className={styles.logo} src={Logo} />
-					<div style={{ marginLeft: isOpen ? "50px" : "0px" }} className={styles.bar}>
-						<div onClick={toggle}>=</div>
+			<div className={styles.sidebarContainer} style={{width: !isOpen && '60px'}}>
+				{windowWidth > 750 ?
+					<div className={styles.topSection}>
+						<Bars />
 					</div>
+					: <></>}
+				<div>
+					{menuItem.map((items, index) => (
+						<NavLink to={items.path} key={index} className= {styles.link} activeclassName={styles.active}>
+							<img className={styles.menuIcon} src={items.icon} alt={items.name}/>
+							{isOpen ? <div className={styles.link_text}>{items.name}</div> : <></>}
+						</NavLink>
+					))}
 				</div>
-				{menuItem.map((items, index) => (
-					<NavLink to={items.path} key={index} className= {styles.link} activeclassName={styles.active}>
-						<div className={styles.icon}>{items.icon}</div>
-						<div style={{display: isOpen ? "block" : "none"}} className={styles.link_text}>{items.name}</div>
-					</NavLink>
-				))}
-			</div><main>{children}</main>
+			</div>
 		</>
 	);
 };
