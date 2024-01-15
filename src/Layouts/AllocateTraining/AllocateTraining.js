@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import { Components } from "../../Components";
 import { getActivities, saveActivities, tech, trainee } from "../../Services/Api";
-import CustomButton from "../Button/CustomButton";
-import CustomDropdown from "../Dropdown/Dropdown";
 import stylesAT from "./AllocateTraining.module.css";
 // import { Button } from "bootstrap";
 // import { Button } from "bootstrap";
@@ -173,14 +172,14 @@ const AllocateTraining = () => {
 				<div>
 					{dropdownParams.map((d, i) => (
 						<span key={i} className={stylesAT.getActDropdownsLayout}>
-							<CustomDropdown dropdownOptions={d.options} value={d.selectedValue}
+							<Components.CustomDropdown dropdownOptions={d.options} value={d.selectedValue}
 								setValue={d.setSelectedValue} handleSelectChange={handleSelectChange}
 								defaultText={d.name} />
 						</span>
 					))}
 				</div>
 				<div>
-					<CustomButton className={`${stylesAT.actBtn} `} type="button" onClick={handleGetActivities} disabled={!selectionComplete} >Get Activities</CustomButton>
+					<Components.CustomButton className={`${stylesAT.actBtn} `} type="button" onClick={handleGetActivities} disabled={!selectionComplete} >Get Activities</Components.CustomButton>
 				</div>
 			</div>
 			<div className="row">
@@ -256,7 +255,7 @@ const AllocateTraining = () => {
 						{activites.length > 0 && (
 							<div className={stylesAT.mainDiv}>
 								<div className={stylesAT.btnDiv}>
-									<CustomButton className={` ${stylesAT.saveBtn}`} type="button" onClick={handleSave} disabled={!allDueDatesFilled}> Save </CustomButton>
+									<Components.CustomButton className={` ${stylesAT.saveBtn}`} type="button" onClick={handleSave} disabled={!allDueDatesFilled}> Save </Components.CustomButton>
 								</div>
 								<div className={stylesAT.messageDiv}>{!allDueDatesFilled && (
 									<p className={stylesAT.errorText}>

@@ -20,4 +20,8 @@ code {
 	--primary-light-color: white;
 	--primary-light-text-color: white;
 	--primary-border-radius: 5px;
+
+	--btn-primary-bg-color: var(--primary-light-bg-color);
+	--btn-primary-text-color: var(--primary-light-text-color);
+	--btn-primary-shadow-color: #171958;
 }
