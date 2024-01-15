@@ -10,11 +10,10 @@ export default function CustomDropdown({
 }) {
 
 	const defaultStyles = {
-		backgroundColor: THEME.DROPDOWN_PRIM_BG_COLOR,
-		borderRadius: THEME.DROPDOWN_PRIM_BORDER_RADIUS,
+		backgroundColor: THEME.DROPDOWN.PRIM_BG_COLOR,
+		borderRadius: THEME.DROPDOWN.PRIM_BORDER_RADIUS,
 		padding: '5px',
-		cursor: 'pointer',
-		fontSize: 'small'
+		cursor: 'pointer'
 	};
 
 	const customStyle = {
