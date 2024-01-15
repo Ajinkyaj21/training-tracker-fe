@@ -1,6 +1,6 @@
 /* Review: Align the classnames according to the heirarchy of usage */
 .rootContainer {
-    background-color:#141544;
+    background-color:var(--primary-light-bg-color);
     width: 100%;
 }
 
