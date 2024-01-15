@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import AddUser from '../../Components/AddUser/AddUser';
-import AllocateTraining from '../../Components/AllocateTraining/AllocateTraining';
+import AllocateTraining from '../../Layouts/AllocateTraining/AllocateTraining';
 import style from "./Admin.module.css";
 
 export default function Admin() {

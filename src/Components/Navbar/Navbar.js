@@ -26,7 +26,7 @@ export default function NavBar() {
 				{/* <img className={style.img} src={Logo} alt="flairminds"/> */}
 				{/* Review: Logout button is showing only in some views, not in all views */}
 				{/* Review: I don't see requirement of bootstrap here */}
-				<Button onClick={logout} widthParameter={'60px'}>
+				<Button onClick={logout} width={'60px'}>
 					<img src={LogoutIcon} className={style.logoutImg} alt='logout'/>
 				</Button>
 			</div>
