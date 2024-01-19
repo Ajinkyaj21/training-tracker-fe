@@ -6,7 +6,8 @@ const ActiveTrainee = ({ searchQuery }) => {
 	const [trainees, setTrainees] = useState([]);
 	const fetchDataFromAPI = async () => {
 		const data = await fetchTraineeData();
-		setTrainees(data);
+		console.info(data.result, "response data");
+		setTrainees(data.result);
 	};
 
 	useEffect(() => {
@@ -68,3 +69,4 @@ const ActiveTrainee = ({ searchQuery }) => {
 };
 
 export default ActiveTrainee;
+

@@ -1,9 +1,19 @@
-.buttons{
+.mainContainer{
+    margin: 40px;
+}
+.buttonContainer{
     display: flex;
-    flex-direction: column;
-    justify-content: start;
+    flex-direction: row;
+    /* justify-content: space-between; */
+    gap:30px;
     align-items: start;
-    margin: 15px;
+  
+}
+.topContainer{
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+
 }
 .active{
     margin-right: 5px;

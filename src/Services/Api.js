@@ -3,9 +3,8 @@ import axios from 'axios';
 // const NodeURL = 'http://localhost:9090';
 const NodeURL = 'https://d40vhfq2-9090.inc1.devtunnels.ms';
 
-/* Review: I dont think this will work because this is defining variable at global level.
-	If user sign in then also this will not change.*/
-const loginisAdmin = localStorage.getItem("is_admin");
+// const loginisAdmin = localStorage.getItem("is_admin");
+const loginisAdmin = localStorage.getItem("adminToken");
 const headers = {
 	'authorization': `Bearer ${localStorage.getItem('token')}`,
 	withCredntials: true,
@@ -58,6 +57,7 @@ export const fetchTraineeData = async () => {
 		withCredntials: true,
 		credentials: 'include'
 	};
+	console.info(loginisAdmin, "checking if admin is log in ");
 	const endpoint = loginisAdmin == 1 ? 'activeTraineesAdmin' : 'activeTraineesUser';
 	const response = await axios.get(`${NodeURL}/trainee/${endpoint}?activityType=active`, { headers });
 	return response.data;
@@ -66,7 +66,7 @@ export const fetchTraineeData = async () => {
 // Review: create two separate functions call based on checking admin in the page, not here
 export const fetchTraineeDataOld = async () => {
 	const endpoint = loginisAdmin == 1 ? 'activeTraineesAdmin' : 'activeTraineesUser';
-	const response = await axios.get(`${NodeURL}/trainee/$${endpoint}?activityType=old`, { headers });
+	const response = await axios.get(`${NodeURL}/trainee/${endpoint}?activityType=old`, { headers });
 	return response.data;
 };
 

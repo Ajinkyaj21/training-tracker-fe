@@ -7,7 +7,8 @@ const OldTrainee = ({ searchQuery }) => {
 	const [trainees, setTrainees] = useState([]);
 	const fetchDataFromAPI = async () => {
 		const data = await fetchTraineeDataOld();
-		setTrainees(data);
+		// console.info(d a)
+		setTrainees(data.result);
 	};
 
 	useEffect(() => {
