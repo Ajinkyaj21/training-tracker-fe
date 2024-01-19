@@ -1,10 +1,11 @@
 import React, { useEffect, useState} from 'react';
 import { useNavigate } from "react-router-dom";
 import Logo from '../../Assets/Logo.jpg';
+import { Components } from '../../Components';
+import { Input } from '../../Components/Input/Input';
 import { login } from '../../Services/Api';
 import { LOCALSTORAGE_ITEMS } from '../../utils/Constants';
 import styles from "./Login.module.css";
-// import Input from '../../Components/Input.js'
 
 export default function Login() {
 	const [email, setEmail] = useState("");
@@ -46,35 +47,54 @@ export default function Login() {
 		checkLoggedIn();
 	}, []);
 
-	// Review: this is not mobile-responsive, side logo img could be hidden in mobile view
-	// Review: use bootstrap only if required
 	return (
-		<div className={`container-fluid w-full h-full  ${styles.rootContainer}`}>
-			<div className='row'>
-				{/* Review: change the classname to something meaningful like imgContainer */}
-				<div className={`col-7 ${styles.l}`}>
+	// <div className={`container-fluid w-full h-full  ${styles.rootContainer}`}>
+	// 	<div className='row'>
+	// 		<div className={`col-7 ${styles.l}`}>
+	// 			<img src={Logo} className={styles.logoImg} alt="logo"/>
+	// 		</div>
+	// 		<div className={` col-5  ${styles.r}`}>
+	// 			<div className={styles.formContainer}>
+	// 				<div className={`mt-1  ${styles.heading}`}>Login</div>
+	// 				<form onSubmit={handleSubmit} className={styles.formSection}>
+	// 					<div className="form-group col-12 mb-3 d-flex flex-column">
+	// 						<input type="email" className="form-control" id="exampleInputEmail1"
+	// aria-describedby="emailHelp" placeholder="Enter email"
+	// eslint-disable-next-line @stylistic/js/max-len
+	// 							style={{boxShadow: 'none', padding: "0.5rem 1rem"}} onChange={(e) => setEmail(e.target.value)}></input>
+
+	// 					</div>
+	// 					<div className="form-group">
+	// eslint-disable-next-line @stylistic/js/max-len
+	// 						<input type="password" className="form-control" id="exampleInputPassword1" placeholder="Password"
+	// eslint-disable-next-line @stylistic/js/max-len
+	// 							style={{boxShadow: 'none', padding: "0.5rem 1rem"}} onChange={(e) => setPassword(e.target.value)}/>
+	// 					</div>
+	// 					<br />
+	// 					<Components.CustomButton width='100%'>Submit</Components.CustomButton>
+	// 				</form>
+	// 			</div>
+	// 		</div>
+	// 	</div>
+	// </div>
+		<div className={styles.mainContainer}>
+			<div className={styles.leftContainer}>
+				<div className={styles.logo}>
 					<img src={Logo} className={styles.logoImg} alt="logo"/>
 				</div>
-				<div className={` col-5  ${styles.r}`}>
-					<div className={styles.formContainer}>
-						<div className={`mt-1  ${styles.heading}`}>Login</div>
-						<form onSubmit={handleSubmit} className={styles.formSection}>
-							<div className="form-group col-12 mb-3 d-flex flex-column">
-								<input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"
-									style={{boxShadow: 'none', padding: "0.5rem 1rem"}} onChange={(e) => setEmail(e.target.value)}></input>
-								{/* <Input className={Styles.pss} placeholder="Username or e-mail"
-								style={{boxShadow:'none', padding: "0.5rem 1rem"}}/> */}
-							</div>
-							<div className="form-group">
-								{/* Review: create common input box component and avoid inline-styling */}
-								<input type="password" className="form-control" id="exampleInputPassword1" placeholder="Password"
-									style={{boxShadow: 'none', padding: "0.5rem 1rem"}} onChange={(e) => setPassword(e.target.value)}/>
-							</div>
-							<br />
-							{/* Review: use button component here */}
-							{/* Review: always have meaningful css classname like submitBtn */}
-							<button type="submit" className= {`btn btn-primary col-12 ${styles.btn1}`}>Submit</button>
+			</div>
+			<div className={styles.rightContainer}>
+				<div className={styles.rightContaint}>
+					<div className={styles.welcomeContaint}>
+						<h2 className={styles.login}>Login</h2>
+					</div>
+					<div >
+						<form className={styles.formContaint}onSubmit={handleSubmit}>
+							<div className={styles.email}><Input type="email" label={'email'} id={'email'} value={email} onChange={(e) => setEmail(e.target.value)}/></div>
+							<div className={styles.password}><Input type="password" value={password} onChange={(e) => setPassword(e.target.value)}/></div>
+							<Components.CustomButton width='100%'>Submit</Components.CustomButton>
 						</form>
+
 					</div>
 				</div>
 			</div>

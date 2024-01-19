@@ -29,17 +29,35 @@ export const login = async (email, password) => {
 };
 
 export const tech = async() => {
+
+	const headers = {
+		'authorization': `Bearer ${localStorage.getItem('token')}`,
+		withCredntials: true,
+		credentials: 'include'
+	};
+
 	const response = await axios.get(`${NodeURL}/tech/`, { headers });
 	return response.data;
 };
 
 export const saveActivities = async (dataToSend) => {
+	const headers = {
+		'authorization': `Bearer ${localStorage.getItem('token')}`,
+		withCredntials: true,
+		credentials: 'include'
+	};
+
 	const response = await axios.post(`${NodeURL}/trainingPlan/saveActivities/`, dataToSend, { headers });
 	return response;
 };
 
 // Review: create two separate functions call based on checking admin in the page, not here
 export const fetchTraineeData = async () => {
+	const headers = {
+		'authorization': `Bearer ${localStorage.getItem('token')}`,
+		withCredntials: true,
+		credentials: 'include'
+	};
 	const endpoint = loginisAdmin == 1 ? 'activeTraineesAdmin' : 'activeTraineesUser';
 	const response = await axios.get(`${NodeURL}/trainee/${endpoint}?activityType=active`, { headers });
 	return response.data;
@@ -53,8 +71,13 @@ export const fetchTraineeDataOld = async () => {
 };
 
 export const addUser = async (email, password, userName) => {
-	const response = await axios.post(`${NodeURL}/user/addUser/`, {
-		userName: userName,
+	const headers = {
+		'authorization': `Bearer ${localStorage.getItem('token')}`,
+		withCredntials: true,
+		credentials: 'include'
+	};
+	const response = await axios.post(`${NodeURL}/user/addUser`, {
+		'user_name': userName,
 		email: email,
 		password: password
 	}, { headers });
@@ -62,7 +85,12 @@ export const addUser = async (email, password, userName) => {
 };
 
 export const getActivities = async (selectedTrainee, selectedTrainer, selectedTechnology) => {
-	const response = await axios.post(`${NodeURL}/acti/getActivities/`, {
+	const headers = {
+		'authorization': `Bearer ${localStorage.getItem('token')}`,
+		withCredntials: true,
+		credentials: 'include'
+	};
+	const response = await axios.post(`${NodeURL}/acti/getActivities`, {
 		traineeId: selectedTrainee,
 		"trainer_id": selectedTrainer,
 		"tech_id": selectedTechnology
@@ -71,21 +99,41 @@ export const getActivities = async (selectedTrainee, selectedTrainer, selectedTe
 };
 
 export const trainee = async() => {
+	const headers = {
+		'authorization': `Bearer ${localStorage.getItem('token')}`,
+		withCredntials: true,
+		credentials: 'include'
+	};
 	const response = await axios.get(`${NodeURL}/trainee/`, { headers });
 	return response.data;
 };
 
 export const fetchDashboard = async () => {
+	const headers = {
+		'authorization': `Bearer ${localStorage.getItem('token')}`,
+		withCredntials: true,
+		credentials: 'include'
+	};
 	const response = await axios.get(`${NodeURL}/tech/myTraining`, { headers });
 	return response.data;
 };
 
 export const fetchTraineeDataTrainingDropDown = async () => {
+	const headers = {
+		'authorization': `Bearer ${localStorage.getItem('token')}`,
+		withCredntials: true,
+		credentials: 'include'
+	};
 	const response = await axios.get(`${NodeURL}/trainee/getStatus`, { headers });
 	return response.data;
 };
 
 export const fetchTraineeDataTrainingCards = async (setSelectedValue) => {
+	const headers = {
+		'authorization': `Bearer ${localStorage.getItem('token')}`,
+		withCredntials: true,
+		credentials: 'include'
+	};
 	const response = await axios.post(`${NodeURL}/trainingPlan/getTrainingActivities`, {
 		"status_id": parseInt(setSelectedValue)
 	}, { headers });

@@ -5,20 +5,25 @@ body {
 		sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-	font-family: cursive;
+	font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
 	font-size: medium;
 }
 
 code {
   	font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+	/* font-family:; */
 }
 
 :root {
-	--primary-light-theme: #282975;
-	--primary-light-bg-color: #282975;
+	--primary-light-theme: #00415a;
+	--primary-light-bg-color: 		#009bd6;
+	--primary-light-hover-bg-color:	#00b8ff;
+	--primary-light-btn-color: 	#009bd6;
 	--primary-light-color: white;
 	--primary-light-text-color: white;
+	--secondary-light-text-color: black;
 	--primary-border-radius: 5px;
 
 	--btn-primary-bg-color: var(--primary-light-bg-color);

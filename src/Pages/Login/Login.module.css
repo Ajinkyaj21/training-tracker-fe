@@ -1,5 +1,4 @@
-/* Review: have proper class names */
-
+/* 
 .rootContainer{
 	height: 100%;
 }
@@ -24,7 +23,7 @@
    width: 60% !important;
    text-align: center;
   }
-.l{
+.leftContainer{
   display: flex;
   justify-content: center;
   align-items: center;
@@ -49,7 +48,6 @@
   align-items: center;
 }
 .heading{
-  /* margin-top: 30px; */
   font-size: 40px;
   font-weight: bold;
   color: #083f91;
@@ -68,9 +66,119 @@ border-color:  #274df7 ;
 .em{
   border: 1px solid rgb(185, 181, 181);
   padding: 0.5rem 1rem;
-  /* border-color: #0a0908; */
   
 }
 .em:focus{
   border-color:#002df8  !important;
+} */
+.mainContainer{
+display: flex;
+flex-direction: row;
+}
+.leftContainer{
+  background-color:var(--primary-light-bg-color);
+  width: 50%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.rightContainer{
+  width: 50%;
+  background-color:var( --primary-light-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* align-items: center; */
+  /* background-color: aqua; */
+}
+.rightContaint{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30%;
+  /* background-color: blueviolet; */
+}
+.formContaint{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 15px;
+  gap: 3%;
+}
+
+.email{
+  margin: 10%;
+}
+.password{
+  margin-bottom: 10%;
+}
+
+.login{
+  font-weight: bold;
+  color:var(--primary-light-theme);
+}
+/*-------------------Media Query-----------------*/
+
+@media screen and (max-width: 767px) {
+  .mainContainer {
+    flex-direction: column;
+  }
+
+  /* .leftContainer,
+  .rightContainer {
+    width: 100%;
+  } */
+  .leftContainer{
+    width: 0%;
+    height: 0%;
+  }
+  .rightContainer {
+    width: 100%;
+  }
+  .rightContaint {
+    gap: 10%;
+  }
+
+  .email,
+  .password {
+    margin: 5%;
+    width: 100%;
+  }
+
+  .formContaint {
+    margin: 15px;
+    gap: 3%;
+  }
+
+  .customButton {
+    width: 80%;
+  }
+}
+
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .mainContainer {
+    flex-direction: row;
+  }
+
+  .leftContainer,
+  .rightContainer {
+    width: 50%;
+  }
+
+  .rightContaint {
+    gap: 30%;
+  }
+
+  .email,
+  .password {
+    width: 80%; 
+  }
+
+  .customButton {
+    width: 60%; 
+  }
 }

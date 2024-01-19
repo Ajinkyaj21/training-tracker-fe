@@ -1,0 +1,10 @@
+.buttons{
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    margin: 15px;
+}
+.active{
+    margin-right: 5px;
+}

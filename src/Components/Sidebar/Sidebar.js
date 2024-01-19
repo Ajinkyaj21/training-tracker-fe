@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
-// import Logo from '../../Assets/Logo.jpg';
-import DashboardIcon from '../../Assets/dashboard.png';
+// import { Tooltip } from 'react-tooltip';
+import AdminIcon from '../../Assets/admin.svg';
+import Dashboard from '../../Assets/dashboard-5486.svg';
+import traineesIcon from '../../Assets/trainees.svg';
+import TrainingIcon from '../../Assets/training.svg';
 import { windowDimensions } from '../../utils/windowElem';
 import styles from './Sidebar.module.css';
 
@@ -17,19 +20,19 @@ const SideBar = () => {
 	const menuItem = [{
 		path: "/",
 		name: "Dashboard",
-		icon: DashboardIcon
+		icon: Dashboard
 	}, {
 		path: "/training",
 		name: "Training",
-		icon: DashboardIcon
+		icon: TrainingIcon
 	}, {
 		path: "/trainees",
 		name: "Trainees",
-		icon: DashboardIcon
+		icon: traineesIcon
 	}, {
 		path: "/admin",
 		name: "Admin",
-		icon: DashboardIcon
+		icon: AdminIcon
 	}];
 
 	const Bars = () => {
