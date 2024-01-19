@@ -1,0 +1,17 @@
+.inputBox{
+    border-radius: 5px;
+    border: 0px;
+    padding: 5px;
+    width: "200px";
+	height :"40px";
+}
+.inputBox:focus{
+    border: 1px solid blue;
+}
+.lableCss{
+    color: black;
+    margin-right: 14px;
+}
+.inputBox:hover{
+    border: none;
+}

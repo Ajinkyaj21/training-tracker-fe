@@ -12,8 +12,9 @@
   font-weight: 600;
   margin: 0 px;
   padding: 10px 20px;
+  color:var(--primary-light-theme);
 }
 
 .AtBtn:hover{
-    border-bottom: 2px solid #000;
+    border-bottom: 2px solid var(--primary-light-theme);
 }

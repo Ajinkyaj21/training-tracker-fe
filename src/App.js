@@ -1,7 +1,9 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
+import AddUser from '../src/Layouts/AddUser/AddUser';
 import './App.css';
+import AllocateTraining from './Layouts/AllocateTraining/AllocateTraining';
 import { PageLayout } from './Layouts/PageLayout';
 import Admin from './Pages/Admin/Admin';
 import Dashboard from './Pages/Dashboard/Dashboard';
@@ -14,7 +16,7 @@ import { isloggedIn, isloggedInAdmin } from './utils/Utils';
 function App() {
 	function AdminProtected({ children }) {
 		if (!isloggedInAdmin()) {
-			return <Navigate to="/dashboard" replace />;
+			// return <Navigate to="/dashboard" replace />;
 		}
 		return children;
 	}
@@ -37,6 +39,8 @@ function App() {
 						<Route path="/training" element={<Protected><Training/></Protected>}/>
 						<Route path="/admin" element={<AdminProtected><Admin/></AdminProtected>}/>
 						<Route path="/edit" element={<Protected><Edit/></Protected>}/>
+						<Route path="/allocateTraining" element={<AllocateTraining/>}/>
+						<Route path="/addUser" element={<AddUser/>}/>
 					</Route>
 				</Routes>
 			</BrowserRouter>

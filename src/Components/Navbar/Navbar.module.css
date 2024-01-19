@@ -1,4 +1,3 @@
-/* Review: Align the classnames according to the heirarchy of usage */
 .rootContainer {
     background-color:var(--primary-light-bg-color);
     width: 100%;
@@ -14,4 +13,5 @@
 .logoutImg {
     width: 25px;
     filter: invert(1);
+    margin-right: 20px;
 }

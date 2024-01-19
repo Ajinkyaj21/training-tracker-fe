@@ -5,8 +5,6 @@ import styles from './CustomButton.module.css';
 // Review: have small but meaningful prop names
 export default function Button({
 	children,
-	width,
-	height,
 	color,
 	bgColor,
 	onClick = () => {},
@@ -16,8 +14,8 @@ export default function Button({
 
 	const customStyle = {
 		cursor: disabled ? 'not-allowed' : 'pointer',
-		width: width,
-		height: height,
+		width: "150px",
+		height: "40px",
 		color: color,
 		backgroundColor: bgColor
 		// cursor: selectionComplete ? 'default' : 'not-allowed'
