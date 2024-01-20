@@ -42,35 +42,14 @@ const AddUser = () => {
 		<div className={stylesAU.mainContainer}>
 			<div className={stylesAU.outerContainer}>
 				<form onSubmit={handleSubmit}>
-					<h3 className={stylesAU.title}>Add User</h3>
+					<h4 className={stylesAU.title}>Add User</h4>
 					<div className={stylesAU.inputBoxes} >
-						<div className={stylesAU.enterUserName}>
-							<table className={stylesAU.table}>
-								<tr>
-									{/* <td style={{textAlign: 'right'}}>Username:</td> */}
-									<div className={stylesAU.enterUserName}>
-										<Components.Input type="text" label={'User name'} labelAlignment={'left'} id={'UserId'} value={userName} onChange={(e) => setUserName(e.target.value)}/>
-									</div>
-								</tr>
-								<tr>
-									{/* <td style={{textAlign: 'right'}}>Email:</td> */}
-									<td className={stylesAU.enterEmail}>
-										<Components.Input type="email" label={'Email'} labelAlignment={'left'} id={'emailId'} value={email} onChange={(e) => setEmail(e.target.value)}/>
-									</td>
-								</tr>
-								<tr>
-									<td style={{textAlign: 'right'}}>Password:</td>
-									<td className={stylesAU.enterPassword}>
-										<Components.Input type="password" id={'paswordId'} value={password} onChange={(e) => setPassword(e.target.value)}/>
-									</td>
-								</tr>
-							</table>
-						</div>
-						<div className={stylesAU.conformAdmin}>
-							<Components.Input label="Is Admin:" type="checkbox" value={isAdmin} onChange={handleAdminToggle} />
-						</div>
+						<Components.Input type="text" id={'UserId'} placeholder={'Enter username'} value={userName} onChange={(e) => setUserName(e.target.value)}/>
+						<Components.Input type="email" id={'emailId'} placeholder={'Enter email'} value={userName} onChange={(e) => setEmail(e.target.value)}/>
+						<Components.Input type="password" id={'paswordId'} placeholder={'Enter password'} value={password} onChange={(e) => setPassword(e.target.value)}/>
+						<Components.Input label="Is Admin?" labelAlignment={'left'} width={'auto'} type="checkbox" value={isAdmin} onChange={handleAdminToggle} />
+						<CustomButton type="submit" onClick={handleSubmit}> Add User </CustomButton>
 					</div>
-					<CustomButton type="submit" onClick={handleSubmit}> Add User </CustomButton>
 				</form>
 			</div>
 		</div>

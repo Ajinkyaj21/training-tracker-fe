@@ -9,12 +9,17 @@ const Input = ({
 	name,
 	value,
 	checked,
-	onChange
+	width,
+	height,
+	onChange,
+	placeholder = 'Enter here'
 }) => {
-	// const customStyle = {
-	// 	width: "200px",
-	// 	height: "40px"
-	// };
+
+	const customStyle = {
+		width: width,
+		height: height
+	};
+
 	return (
 		<>
 			<div className={styles.inputContainer}>
@@ -28,10 +33,8 @@ const Input = ({
 						</div>
 					: <></> }
 				<span>
-					<input className={styles.inputBox} type={type} id={id} name={name} value={value}
-						onChange={onChange} checked={checked}
-						placeholder='Enter here'
-					/>
+					<input className={styles.inputBox} style={customStyle} type={type} id={id} name={name} value={value}
+						onChange={onChange} checked={checked} placeholder={placeholder} />
 				</span>
 			</div>
 		</>
