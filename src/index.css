@@ -5,9 +5,8 @@ body {
 		sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-	font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-	font-size: medium;
+	font-family: Verdana, Helvetica, sans-serif;
+	font-size: small;
 }
 
 code {
