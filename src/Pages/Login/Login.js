@@ -2,7 +2,6 @@ import React, { useEffect, useState} from 'react';
 import { useNavigate } from "react-router-dom";
 import Logo from '../../Assets/Logo.jpg';
 import { Components } from '../../Components';
-import { Input } from '../../Components/Input/Input';
 import { login } from '../../Services/Api';
 import { LOCALSTORAGE_ITEMS } from '../../utils/Constants';
 import styles from "./Login.module.css";
@@ -90,8 +89,12 @@ export default function Login() {
 					</div>
 					<div >
 						<form className={styles.formContaint}onSubmit={handleSubmit}>
-							<div className={styles.email}><Input type="email" label={'email'} id={'email'} value={email} onChange={(e) => setEmail(e.target.value)}/></div>
-							<div className={styles.password}><Input type="password" value={password} onChange={(e) => setPassword(e.target.value)}/></div>
+							<div className={styles.email}>
+								<Components.Input type="email" label={'email'} id={'email'} value={email} onChange={(e) => setEmail(e.target.value)}/>
+							</div>
+							<div className={styles.password}>
+								<Components.Input type="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
+							</div>
 							<Components.CustomButton width='100%'>Submit</Components.CustomButton>
 						</form>
 
