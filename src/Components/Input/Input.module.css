@@ -1,3 +1,7 @@
+.inputContainer {
+    text-align: left;
+}
+
 .inputBox{
     border-radius: 5px;
     border: 0px;

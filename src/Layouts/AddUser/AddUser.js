@@ -1,8 +1,7 @@
-
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Components } from '../../Components';
 import CustomButton from "../../Components/Button/CustomButton";
-import { Input } from '../../Components/Input/Input';
 import { addUser } from '../../Services/Api';
 import stylesAU from './AddUser.module.css';
 
@@ -48,27 +47,27 @@ const AddUser = () => {
 						<div className={stylesAU.enterUserName}>
 							<table className={stylesAU.table}>
 								<tr>
-									<td style={{textAlign: 'right'}}>Username:</td>
-									<td className={stylesAU.enterUserName}>
-										<Input type="text" id={'UserId'} value={userName} onChange={(e) => setUserName(e.target.value)}/>
-									</td>
+									{/* <td style={{textAlign: 'right'}}>Username:</td> */}
+									<div className={stylesAU.enterUserName}>
+										<Components.Input type="text" label={'User name'} labelAlignment={'left'} id={'UserId'} value={userName} onChange={(e) => setUserName(e.target.value)}/>
+									</div>
 								</tr>
 								<tr>
-									<td style={{textAlign: 'right'}}>Email:</td>
+									{/* <td style={{textAlign: 'right'}}>Email:</td> */}
 									<td className={stylesAU.enterEmail}>
-										<Input type="email" id={'emailId'} value={email} onChange={(e) => setEmail(e.target.value)}/>
+										<Components.Input type="email" label={'Email'} labelAlignment={'left'} id={'emailId'} value={email} onChange={(e) => setEmail(e.target.value)}/>
 									</td>
 								</tr>
 								<tr>
 									<td style={{textAlign: 'right'}}>Password:</td>
 									<td className={stylesAU.enterPassword}>
-										<Input type="password" id={'paswordId'} value={password} onChange={(e) => setPassword(e.target.value)}/>
+										<Components.Input type="password" id={'paswordId'} value={password} onChange={(e) => setPassword(e.target.value)}/>
 									</td>
 								</tr>
 							</table>
 						</div>
 						<div className={stylesAU.conformAdmin}>
-							<Input label="Is Admin:" type="checkbox" value={isAdmin} onChange={handleAdminToggle} />
+							<Components.Input label="Is Admin:" type="checkbox" value={isAdmin} onChange={handleAdminToggle} />
 						</div>
 					</div>
 					<CustomButton type="submit" onClick={handleSubmit}> Add User </CustomButton>
