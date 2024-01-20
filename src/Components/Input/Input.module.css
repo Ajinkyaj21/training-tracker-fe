@@ -1,21 +1,24 @@
 .inputContainer {
     text-align: left;
+    display: flex;
+    align-items: center;
 }
 
 .inputBox{
     border-radius: 5px;
     border: 0px;
-    padding: 5px;
-    width: "200px";
-	height :"40px";
+    padding: 5px 10px;
+    width: 200px;
+    outline: none;
+    border: 1px solid white;
+    transition: all 0.25s;
 }
+
 .inputBox:focus{
-    border: 1px solid blue;
+    border: 1px solid var(--primary-light-border-color);
 }
+
 .lableCss{
     color: black;
-    margin-right: 14px;
-}
-.inputBox:hover{
-    border: none;
+    margin-right: 10px;
 }

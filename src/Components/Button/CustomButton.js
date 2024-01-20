@@ -6,7 +6,10 @@ import styles from './CustomButton.module.css';
 export default function Button({
 	children,
 	color,
+	width,
+	height,
 	bgColor,
+	boxShadow,
 	onClick = () => {},
 	type = 'submit',
 	disabled = false
@@ -14,11 +17,11 @@ export default function Button({
 
 	const customStyle = {
 		cursor: disabled ? 'not-allowed' : 'pointer',
-		width: "150px",
-		height: "40px",
+		width: width,
+		height: height,
 		color: color,
-		backgroundColor: bgColor
-		// cursor: selectionComplete ? 'default' : 'not-allowed'
+		backgroundColor: bgColor,
+		boxShadow: boxShadow
 	};
 
 	return (

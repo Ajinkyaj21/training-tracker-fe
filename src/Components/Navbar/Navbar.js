@@ -1,11 +1,9 @@
 import React from 'react';
 import { useNavigate } from "react-router-dom";
 // import Logo from "../../Assets/Logo.jpg";
+import { Components } from '..';
 import LogoutIcon from '../../Assets/logout.png';
-// import Button from '../Button/CustomButton';
 import style from "./Navbar.module.css";
-// import Cookies from "js-cookie";
-// import HiddenSideBar from '../Hidden_SideBar/HiddenSideBar';
 
 export default function NavBar() {
 	const navigate = useNavigate();
@@ -28,9 +26,9 @@ export default function NavBar() {
 				{/* <img className={style.img} src={Logo} alt="flairminds"/> */}
 				{/* Review: Logout button is showing only in some views, not in all views */}
 				{/* Review: I don't see requirement of bootstrap here */}
-				<a onClick={logout} width={'50px'}>
+				<Components.CustomButton onClick={logout} width={'60px'} boxShadow={'none'}>
 					<img src={LogoutIcon} className={style.logoutImg} alt='logout'/>
-				</a>
+				</Components.CustomButton>
 			</div>
 		</div>
 	);
