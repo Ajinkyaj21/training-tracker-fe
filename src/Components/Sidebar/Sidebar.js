@@ -49,7 +49,7 @@ const SideBar = () => {
 
 	return (
 		<>
-			<div className={styles.sidebarContainer} style={{width: !isOpen && '60px'}}>
+			<div className={styles.sidebarContainer} style={{width: !isOpen && '55px'}}>
 				{windowWidth > 750 ?
 					<div className={styles.topSection}>
 						<Bars />
