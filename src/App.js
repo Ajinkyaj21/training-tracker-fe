@@ -16,7 +16,8 @@ import { isloggedIn, isloggedInAdmin } from './utils/Utils';
 function App() {
 	function AdminProtected({ children }) {
 		if (!isloggedInAdmin()) {
-			return <Navigate to="/dashboard" replace />;
+			alert("Sorry you can not access this page, Your not admin");
+			return <Navigate to="/" replace />;
 		}
 		return children;
 	}

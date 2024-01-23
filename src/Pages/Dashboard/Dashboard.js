@@ -8,7 +8,7 @@ const Dashboard = () => {
 
 	const fetchDashboardAPI = async () => {
 		const data = await fetchDashboard();
-		setTrainees(data);
+		setTrainees(data.result);
 	};
 
 	useEffect(() => {
@@ -30,80 +30,102 @@ const Dashboard = () => {
 	};
 
 	return (
-		<div className={stylesDash.main}>
-			<div className={stylesDash.div1}>
-				<h2>My Training</h2>
-			</div>
-			<div className={stylesDash.div2}>
-				<div className={stylesDash.oneDiv}>
-					{trainees.map((trainee, index) => (
-						// Review comment: this should not be a button, this should be a clickable div or card
-						<button
-							className={stylesDash.btn}
-							key={index}
-							onClick={() => handleTechnologyClick(trainee.technology)}
-						>
-							<div className={stylesDash.btn_div}>
-								<div className={stylesDash.tech}>{trainee.technology}</div>
-								<div className={`${stylesDash.percentage}
-										${getPercentageColor(trainee.percentage_of_activities)}`}>
-									{Math.round(trainee.percentage_of_activities)}%
-								</div>
-							</div>
-						</button>
-					))}
+		<>
+			<div className={stylesDash.main}>
+				<div className={stylesDash.div1}>
+					<h2>My Training</h2>
 				</div>
-				{selectedTechnology && (
-					<div className={stylesDash.twoDiv}>
-						{trainees.filter((trainee) => trainee.technology === selectedTechnology)
-							.map((selectedTrainee, index) => (
-								<div className={stylesDash.act} key={index}>
-									<div className={stylesDash.display}>
-										<div className={stylesDash.innerDiv1}>
-											<p>Completed:</p>
-										</div>
-										<div className={stylesDash.innerDiv2}>
-											<p>{selectedTrainee.completed}</p>
-										</div>
-									</div>
-									<div className={stylesDash.display}>
-										<div className={stylesDash.innerDiv1}>
-											<p>Progress:</p>
-										</div>
-										<div className={stylesDash.innerDiv2}>
-											<p>{selectedTrainee.in_progress}</p>
-										</div>
-									</div>
-									<div className={stylesDash.display}>
-										<div className={stylesDash.innerDiv1}>
-											<p>Not Started:</p>
-										</div>
-										<div className={stylesDash.innerDiv2}>
-											<p>{selectedTrainee.not_started}</p>
-										</div>
-									</div>
-									<div className={stylesDash.display}>
-										<div className={stylesDash.innerDiv1}>
-											<p>Delayed:</p>
-										</div>
-										<div className={stylesDash.innerDiv2}>
-											<p>{selectedTrainee.delayed_}</p>
-										</div>
-									</div>
-									<div className={stylesDash.display}>
-										<div className={stylesDash.innerDiv1}>
-											<p>Not Reviewed:</p>
-										</div>
-										<div className={stylesDash.innerDiv2}>
-											<p>{selectedTrainee.not_reviewed}</p>
-										</div>
+				<div className={stylesDash.div2}>
+					<div className={stylesDash.oneDiv}>
+						{trainees.map((trainee, index) => (
+							// Review comment: this should not be a button, this should be a clickable div or card
+							<button
+								className={stylesDash.btn}
+								key={index}
+								onClick={() => handleTechnologyClick(trainee.technology)}
+							>
+								<div className={stylesDash.btn_div}>
+									<div className={stylesDash.tech}>{trainee.technology}</div>
+									<div className={`${stylesDash.percentage}
+											${getPercentageColor(trainee.percentage_of_activities)}`}>
+										{Math.round(trainee.percentage_of_activities)}%
 									</div>
 								</div>
-							))}
+							</button>
+						))}
 					</div>
-				)}
+					{selectedTechnology && (
+						<div className={stylesDash.twoDiv}>
+							{trainees.filter((trainee) => trainee.technology === selectedTechnology)
+								.map((selectedTrainee, index) => (
+									<div className={stylesDash.act} key={index}>
+										<div className={stylesDash.display}>
+											<div className={stylesDash.innerDiv1}>
+												<p>Completed:</p>
+											</div>
+											<div className={stylesDash.innerDiv2}>
+												<p>{selectedTrainee.completed}</p>
+											</div>
+										</div>
+										<div className={stylesDash.display}>
+											<div className={stylesDash.innerDiv1}>
+												<p>Progress:</p>
+											</div>
+											<div className={stylesDash.innerDiv2}>
+												<p>{selectedTrainee.in_progress}</p>
+											</div>
+										</div>
+										<div className={stylesDash.display}>
+											<div className={stylesDash.innerDiv1}>
+												<p>Not Started:</p>
+											</div>
+											<div className={stylesDash.innerDiv2}>
+												<p>{selectedTrainee.not_started}</p>
+											</div>
+										</div>
+										<div className={stylesDash.display}>
+											<div className={stylesDash.innerDiv1}>
+												<p>Delayed:</p>
+											</div>
+											<div className={stylesDash.innerDiv2}>
+												<p>{selectedTrainee.delayed_}</p>
+											</div>
+										</div>
+										<div className={stylesDash.display}>
+											<div className={stylesDash.innerDiv1}>
+												<p>Not Reviewed:</p>
+											</div>
+											<div className={stylesDash.innerDiv2}>
+												<p>{selectedTrainee.not_reviewed}</p>
+											</div>
+										</div>
+									</div>
+								))}
+						</div>
+					)}
+				</div>
 			</div>
-		</div>
+
+			<div className={stylesDash.cards}>
+				{trainees.map((trainee, index) => (
+					// Review comment: this should not be a button, this should be a clickable div or card
+					<button
+						className={stylesDash.btn}
+						key={index}
+						onClick={() => handleTechnologyClick(trainee.technology)}
+					>
+						<div className={stylesDash.btn_div}>
+							<div className={stylesDash.tech}>{trainee.technology}</div>
+							<div className={`${stylesDash.percentage}
+											${getPercentageColor(trainee.percentage_of_activities)}`}>
+								{Math.round(trainee.percentage_of_activities)}%
+							</div>
+						</div>
+					</button>
+				))}
+
+			</div>
+		</>
 	);
 };
 

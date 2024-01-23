@@ -18,3 +18,17 @@ justify-content: space-between;
 .active{
     margin-right: 5px;
 }
+.AtBtn{
+    background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: large;
+  font-weight: 600;
+  margin: 0 px;
+  padding: 10px 20px;
+  color:var(--primary-light-theme);
+}
+
+.AtBtn:hover{
+    border-bottom: 2px solid var(--primary-light-theme);
+}

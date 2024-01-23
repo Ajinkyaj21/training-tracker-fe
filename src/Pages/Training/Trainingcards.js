@@ -7,13 +7,14 @@ const Trainingcards = ({ activities, language }) => {
 	const handleEditClick = (activity) => {
 		navigate(`/edit`, { state: { trainee: activity } });
 	};
+	console.info(activities, "activity");
 
 	return (
 		<div className={TrainingStyles.cards}>
 			<div className={TrainingStyles.language}>
 				<h2>{language}</h2>
 			</div>
-			{activities.map((activity, index) => (
+			{activities?.map((activity, index) => (
 				<div className={TrainingStyles.mainCards} key={index}>
 					<div className={TrainingStyles.div1}>
 						<p>Activity Name:{activity.activity_name}</p>

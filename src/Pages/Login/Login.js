@@ -90,7 +90,7 @@ export default function Login() {
 					<div >
 						<form className={styles.formContaint}onSubmit={handleSubmit}>
 							<div className={styles.email}>
-								<Components.Input type="email" label={'email'} id={'email'} value={email} onChange={(e) => setEmail(e.target.value)}/>
+								<Components.Input type="email" id={'email'} value={email} onChange={(e) => setEmail(e.target.value)}/>
 							</div>
 							<div className={styles.password}>
 								<Components.Input type="password" value={password} onChange={(e) => setPassword(e.target.value)}/>

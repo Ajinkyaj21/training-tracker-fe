@@ -13,30 +13,25 @@ const Trainees = () => {
 	const [searchQuery, setSearchQuery] = useState("");
 
 	return (
-		// <div className={stylesT.parentTrainee}>
-		// 	<div className={stylesT.tabNavigation}>
-		// 		<div className={stylesT.buttons}>
-		// 			<div className={stylesT.active}><Components.CustomButton
-		//  onClick={() => handleTabClick('active')}> Active </Components.CustomButton></div>
-		// 			<div className={stylesT.old}>
-		// <Components.CustomButton onClick={() => handleTabClick('old')} > Old </Components.CustomButton></div>
-		// 		</div>
-		// 		<input className={stylesT.input} type="text" placeholder="Search" value={searchQuery}
-		// 			onChange={(e) => setSearchQuery(e.target.value)}
-		// 		/>
-		// 	</div>
-		// 	{activeTab === 'active' && <ActiveTrainee searchQuery={searchQuery} />}
-		// 	{activeTab === 'old' && <OldTrainee searchQuery={searchQuery}/>}
-		// </div>
 		<>
 			<div className={stylesT.mainContainer}>
 				<div className={stylesT.topContainer}>
 					<div className={stylesT.buttonContainer}>
 						<div className={stylesT.active}>
 							<Components.CustomButton onClick={() => handleTabClick('active')}> Active </Components.CustomButton>
+							{/* <button
+								onClick={() => handleTabClick('active')}
+								className={`${stylesT.AtBtn} ${activeTab === 'active' ? stylesT.activeTab : ''}`}
+								style={{ borderBottom: activeTab === 'active' ? '2px solid #001f2b' : 'none' }}
+							>Active</button> */}
 						</div>
 						<div className={stylesT.old}>
 							<Components.CustomButton onClick={() => handleTabClick('old')} > Old </Components.CustomButton>
+							{/* <button
+								onClick={() => handleTabClick('old')}
+								className={`${stylesT.AtBtn} ${activeTab === 'old' ? stylesT.activeTab : ''}`}
+								style={{ borderBottom: activeTab === 'old' ? '2px solid #001f2b' : 'none' }}
+							> Old </button> */}
 						</div>
 					</div>
 					<div className={stylesT.serachContainer}>

@@ -1,0 +1,29 @@
+.trainees_table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    tbody tr:nth-child(even) {
+      background-color:  #ffdeaf; 
+    }
+  
+    tbody tr:nth-child(odd) {
+      background-color: #ffffff; 
+    } 
+  }
+  
+  .trainees_table th,
+  .trainees_table td {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+  
+  .scrollable_body {
+    max-height: 300px; 
+    overflow-y: auto; 
+  }
+  .table_head{
+    background-color: var(--primary-light-bg-color);
+      color: var(--primary-light-color);
+  }
+  

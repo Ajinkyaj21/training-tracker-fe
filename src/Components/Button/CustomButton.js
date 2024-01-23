@@ -5,24 +5,24 @@ import styles from './CustomButton.module.css';
 // Review: have small but meaningful prop names
 export default function Button({
 	children,
-	color,
-	width,
-	height,
-	bgColor,
-	boxShadow,
+	// color,
+	// width,
+	// height,
+	// bgColor,
 	onClick = () => {},
 	type = 'submit',
-	disabled = false
+	disabled = false,
+	customStyle
 }) {
 
-	const customStyle = {
-		cursor: disabled ? 'not-allowed' : 'pointer',
-		width: width,
-		height: height,
-		color: color,
-		backgroundColor: bgColor,
-		boxShadow: boxShadow
-	};
+	// const customStyle = {
+	// 	...customStyle
+	// 	cursor: disabled ? 'not-allowed' : 'pointer',
+	// 	width: width,
+	// 	height: height,
+	// 	color: color,
+	// 	backgroundColor: bgColor,
+	// };
 
 	return (
 		<button className={styles.btn} style={customStyle} onClick={onClick} type={type} disabled={disabled}>

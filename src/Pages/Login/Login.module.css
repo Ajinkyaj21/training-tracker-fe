@@ -118,7 +118,7 @@ flex-direction: row;
 
 .login{
   font-weight: bold;
-  color:var(--primary-light-theme);
+  color: var(--primary-light-bg-color);
 }
 /*-------------------Media Query-----------------*/
 
