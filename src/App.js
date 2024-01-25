@@ -3,8 +3,10 @@ import React from 'react';
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import AddUser from '../src/Layouts/AddUser/AddUser';
 import './App.css';
+import ActiveTrainee from './Layouts/ActiveTrainee/ActiveTrainee';
 import AllocateTraining from './Layouts/AllocateTraining/AllocateTraining';
 import { PageLayout } from './Layouts/PageLayout';
+import TraineeDetails from './Layouts/TraineeDetails/TraineeDetails';
 import Admin from './Pages/Admin/Admin';
 import Dashboard from './Pages/Dashboard/Dashboard';
 import Edit from './Pages/Edit/edit';
@@ -42,6 +44,8 @@ function App() {
 						<Route path="/edit" element={<Protected><Edit/></Protected>}/>
 						<Route path="/allocateTraining" element={<AllocateTraining/>}/>
 						<Route path="/addUser" element={<AddUser/>}/>
+						<Route path="/traineeDetails" element={<TraineeDetails/>}/>
+						<Route path="/activeTrainees/:id" element={<ActiveTrainee/>}/>
 					</Route>
 				</Routes>
 			</BrowserRouter>
