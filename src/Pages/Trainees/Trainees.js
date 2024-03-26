@@ -7,15 +7,18 @@ import stylesT from "./Trainees.module.css";
 
 const Trainees = () => {
 	const [activeTab, setActiveTab] = useState("active");
-	const handleTabClick = (tabName) => {
-		setActiveTab(tabName);
-	};
+	// const handleActiveTabClick = (tabName) => {
+	// 	setActiveTab(tabName);
+	// };
 	const [searchQuery, setSearchQuery] = useState("");
 	// const [activeTab, setActiveTab] = useState("allocateTraining");
 
-	// const handleTabClick = (tabName) => {
-	// 	setActiveTab(tabName);
-	// };
+	const handleTabClick = (tabName) => {
+		setActiveTab(tabName);
+		const isAdmin = localStorage.getItem('adminToken');
+		console.info(isAdmin, "admin check");
+
+	};
 
 	return (
 		<>

@@ -1,6 +1,6 @@
 
 .trainees_table {
-  width: 100%;
+  width: 98.5%;
   border-collapse: collapse;
   margin-top: 20px;
   border-radius: 5px;
@@ -32,7 +32,7 @@
 }
 
 
-.pagination {
+/* .pagination {
   display: flex;
   justify-content: center;
   margin-top: 20px;
@@ -73,5 +73,41 @@
 .pagination .next:hover {
   background-color: #0056b3;
   border-color: #0056b3;
+} */
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
 }
 
+.pagination li {
+  margin: 0 5px;
+}
+
+.pagination li a {
+  display: block;
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  color: #333;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.pagination li.active a,
+.pagination li a:hover {
+  background-color: #007bff;
+  color: #fff;
+  border-color: #007bff;
+}
+
+.pagination li.disabled a {
+  pointer-events: none;
+  background-color: #ddd;
+  color: #666;
+  border-color: #ddd;
+}
+
+  

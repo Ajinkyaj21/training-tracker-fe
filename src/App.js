@@ -1,5 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import AddUser from '../src/Layouts/AddUser/AddUser';
 import './App.css';
@@ -16,6 +16,7 @@ import Training from './Pages/Training/Training';
 import { isloggedIn, isloggedInAdmin } from './utils/Utils';
 
 function App() {
+	const [data, setData] = useState('');
 	function AdminProtected({ children }) {
 		if (!isloggedInAdmin()) {
 			alert("Sorry you can not access this page, Your not admin");
@@ -39,12 +40,12 @@ function App() {
 					<Route path="/" element={<PageLayout/>}>
 						<Route path="/" element={<Protected><Dashboard/></Protected>} />
 						<Route path="/trainees" element={<Protected><Trainees/></Protected>} />
-						<Route path="/training" element={<Protected><Training/></Protected>}/>
+						<Route path="/training" element={<Protected><Training setData={setData}/></Protected>}/>
 						<Route path="/admin" element={<AdminProtected><Admin/></AdminProtected>}/>
-						<Route path="/edit" element={<Protected><Edit/></Protected>}/>
+						<Route path="/edit/:id" element={<Protected><Edit data={data} setData={setData}/></Protected>}/>
 						<Route path="/allocateTraining" element={<AllocateTraining/>}/>
 						<Route path="/addUser" element={<AddUser/>}/>
-						<Route path="/traineeDetails" element={<TraineeDetails/>}/>
+						<Route path="/traineeDetails/:trainee_id" element={<TraineeDetails/>}/>
 						<Route path="/activeTrainees/:id" element={<ActiveTrainee/>}/>
 					</Route>
 				</Routes>

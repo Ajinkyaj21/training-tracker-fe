@@ -1,0 +1,120 @@
+.firstDiv{
+    display : flex;
+    justify-content: end;
+    margin: 30px 50px 0px 0px ;
+}
+.selectBox{
+ margin-left: 10px;
+}
+.trainees_table {
+  
+    width: 98.5%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    border-radius: 5px;
+    margin: 10px;
+    tbody tr:nth-child(even) {
+      background-color:  #ffdeaf; 
+    }
+  
+    tbody tr:nth-child(odd) {
+      background-color: #ffffff; 
+    } 
+  }
+  
+  .trainees_table th,
+  .trainees_table td {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+    text-align: center;
+  }
+  
+  .scrollable_body {
+    max-height: 300px; 
+    overflow-y: auto; 
+  }
+  .table_head{
+    background-color: var(--primary-light-bg-color);
+      color: var(--primary-light-color);
+  }
+ 
+input[type="text"] {
+  padding: 5px;
+  border: 2px solid #001f2b; 
+  border-radius: 5px;
+  width: 200px; 
+  transition: border-color 0.3s ease; 
+}
+
+input[type="text"]:focus,
+input[type="text"]:hover {
+  border-color: #009bd6; 
+  outline: none; 
+}
+.selectBox select {
+  padding: 5px;
+  border: 2px solid #001f2b; 
+  border-radius: 5px;
+  width: 120px; 
+  transition: border-color 0.3s ease; 
+}
+
+.selectBox select:focus,
+.selectBox select:hover {
+  border-color: #009bd6; 
+  outline: none; 
+}
+
+.Icon {
+  width: 15px; 
+  height: 15px; 
+  cursor: pointer; 
+  margin-left: 5px;
+  color: #009bd6 !important;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+}
+
+.pagination li {
+  margin: 0 5px;
+}
+
+.pagination li a {
+  display: block;
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  color: #333;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.pagination li.active a,
+.pagination li a:hover {
+  background-color: #007bff;
+  color: #fff;
+  border-color: #007bff;
+}
+
+.pagination li.disabled a {
+  pointer-events: none;
+  background-color: #ddd;
+  color: #666;
+  border-color: #ddd;
+}
+.view{
+  background-color:var(--primary-light-bg-color);
+  color: white ;
+  border-radius: 5px;
+  width: 70%;
+  border: none;
+  height: 30px;
+}
+
+  

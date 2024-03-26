@@ -32,3 +32,24 @@ justify-content: space-between;
 .AtBtn:hover{
     border-bottom: 2px solid var(--primary-light-theme);
 }
+
+.searchContainer {
+    position: relative;
+  }
+  
+  .input {
+    padding: 5px;
+    border: 2px solid #001f2b;
+    border-radius: 5px;
+    transition: border-color 0.3s ease; 
+    width: 200px;
+  }
+  
+  .input:focus,
+  .input:hover {
+    border-color: #009bd6; 
+    outline: none; 
+  }
+
+  
+ 

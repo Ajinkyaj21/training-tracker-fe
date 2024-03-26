@@ -21,11 +21,12 @@ const AddUser = () => {
 		try {
 			const response = await addUser(email, password, userName);
 			console.info('Response Data:', response.status);
+			// console.info("VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV");
 			if (response.success == true) {
 				alert("success, User successfully added !");
 				navigate('/allocateTraining');
 			} else {
-				alert("fail, User is already added !");
+				confirm("fail, User is already added !");
 				navigate('/addUser');
 			}
 			// console.info('Response Data:', response.data);
@@ -33,7 +34,7 @@ const AddUser = () => {
 			// navigate('/');
 		} catch (error) {
 			console.error('Error posting data:', error);
-			// alert("fail, User is already added !");
+			alert("fail, User is already added !");
 			navigate('/addUser');
 		}
 	};
@@ -45,7 +46,7 @@ const AddUser = () => {
 					<h4 className={stylesAU.title}>Add User</h4>
 					<div className={stylesAU.inputBoxes} >
 						<Components.Input type="text" id={'UserId'} placeholder={'Enter username'} value={userName} onChange={(e) => setUserName(e.target.value)}/>
-						<Components.Input type="email" id={'emailId'} placeholder={'Enter email'} value={userName} onChange={(e) => setEmail(e.target.value)}/>
+						<Components.Input type="email" id={'emailId'} placeholder={'Enter email'} value={email} onChange={(e) => setEmail(e.target.value)}/>
 						<Components.Input type="password" id={'paswordId'} placeholder={'Enter password'} value={password} onChange={(e) => setPassword(e.target.value)}/>
 						<Components.Input label="Is Admin?" labelAlignment={'left'} width={'auto'} type="checkbox" value={isAdmin} onChange={handleAdminToggle} />
 						<CustomButton type="submit" onClick={handleSubmit}> Add User </CustomButton>

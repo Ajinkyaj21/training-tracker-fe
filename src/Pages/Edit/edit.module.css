@@ -1,0 +1,25 @@
+.content{
+    background-color: rgb(220, 164, 91);
+    width:700px;
+    height:500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+.container{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 100px;
+   
+}
+.input{
+    margin: 15px;
+
+}
+/* .card{
+    background-color: rgb(187, 124, 42);
+    width: 50px;
+    height: 60px;
+} */
