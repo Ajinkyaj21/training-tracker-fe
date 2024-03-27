@@ -1,40 +1,30 @@
 import React, { useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import { fetchTraineeDataActiveAdmin } from "../../Services/Api";
-import { fetchTraineeDataActiveUser} from "../../Services/Api";
+import { fetchTraineeDataActiveUser } from "../../Services/Api";
 import stylesActiveT from "./ActiveSearch.module.css";
 
 const ActiveTrainee = ({ searchQuery }) => {
 	const [trainees, setTrainees] = useState([]);
 	const [currentPage, setCurrentPage] = useState(0);
-	const navigate = useNavigate();
+	const [selectedTrainee, setSelectedTrainee] = useState(null);
+	// const navigate = useNavigate();
 
 	const isAdmin = localStorage.getItem('adminToken');
 
-	// const fetchDataFromAPI = async () => {
-	// 	const data = await fetchTraineeData();
-	// 	setTrainees(data.result);
-	// };
-
 	useEffect(() => {
-		if (isAdmin == 1 ) {
-			const fetchDataFromAPI = async () => {
-				const data = await fetchTraineeDataActiveAdmin();
-				setTrainees(data.result);
-
-			};
-			fetchDataFromAPI();
-		} else {
-			const fetchDataFromAPI = async () => {
-				const data = await fetchTraineeDataActiveUser();
-				setTrainees(data.result);
-				console.info(data.result, 'data');
-
-			};
-			fetchDataFromAPI();
-		}
-	}, []);
+		const fetchDataFromAPI = async () => {
+			let data;
+			if (isAdmin == 1) {
+				data = await fetchTraineeDataActiveAdmin();
+			} else {
+				data = await fetchTraineeDataActiveUser();
+			}
+			setTrainees(data.result);
+		};
+		fetchDataFromAPI();
+	}, [isAdmin]);
 
 	const filteredTrainees = trainees.filter((trainee) =>
 		trainee.trainee_name.toLowerCase().includes(searchQuery.toLowerCase())
@@ -47,9 +37,7 @@ const ActiveTrainee = ({ searchQuery }) => {
 	const endIndex = startIndex + itemsPerPage;
 
 	const handleRowClick = (trainee) => {
-		console.info(`Clicked on trainee: ${trainee.trainee_name}`);
-		navigate('/traineeDetails');
-
+		setSelectedTrainee(trainee);
 	};
 
 	return (
@@ -74,18 +62,14 @@ const ActiveTrainee = ({ searchQuery }) => {
 						className={stylesActiveT.scrollable_body}
 						style={{ maxHeight: "300px", overflowY: "auto" }}
 					>
-						{filteredTrainees.slice(startIndex, endIndex).map((trainee, i ) => (
-						// 	<tr
-						// 	key={trainee.trainee_id}
-						// 	onClick={() => navigate(`/traineeDetails/${trainee.trainee_id}`)}
-						// 	style={{ cursor: "pointer", textAlign: "center" }}
-						// >
+						{filteredTrainees.slice(startIndex, endIndex).map((trainee, i) => (
 							<tr
 								key={i}
 								onClick={() => handleRowClick(trainee)}
 								style={{ cursor: "pointer", textAlign: "center" }}
+								data-bs-toggle="modal"
+								data-bs-target="#exampleModal"
 							>
-
 								<td>{trainee.trainee_name}</td>
 								<td>{trainee.technology}</td>
 								<td>{trainee.Completed_Activities_Percentage}</td>
@@ -100,7 +84,7 @@ const ActiveTrainee = ({ searchQuery }) => {
 						))}
 					</tbody>
 				</table>
-				<br/>
+				<br />
 				<ReactPaginate
 					pageCount={Math.ceil(filteredTrainees.length / itemsPerPage)}
 					pageRangeDisplayed={4}
@@ -109,6 +93,30 @@ const ActiveTrainee = ({ searchQuery }) => {
 					containerClassName={stylesActiveT.pagination}
 					activeClassName={stylesActiveT.active}
 				/>
+				<div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+					<div className="modal-dialog modal-dialog-centered">
+						<div className="modal-content">
+							<div className="modal-header">
+								<h5 className="modal-title" id="exampleModalLabel">Trainee Details</h5>
+								<button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+							</div>
+							<div className="modal-body">
+								{selectedTrainee && (
+									<>
+										<p>Name : {selectedTrainee.trainee_name}</p>
+										<p>Technology : {selectedTrainee.technology}</p>
+										<p>Completed % : {selectedTrainee.Completed_Activities_Percentage}</p>
+										<p>Trained by :{selectedTrainee.trainer_name}</p>
+										<p>Unresolved comments : {selectedTrainee.unresolved_comments}</p>
+									</>
+								)}
+							</div>
+							<div className="modal-footer">
+								<button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</>
 	);
