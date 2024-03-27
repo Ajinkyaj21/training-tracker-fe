@@ -132,20 +132,23 @@ const AllocateTraining = () => {
 				"trainee_id": selectedTrainee,
 				"trainer_id": selectedTrainer,
 				activities: activites.map((activity, index) => ({
-					activityId: activity.activity_id,
-					dueDate: activityDueDates[index],
+					"activity_id": activity.activity_id,
+					"due_date": activityDueDates[index],
 					required: requiredStates[index] ? 1 : 0
 				}))
 			};
 			try {
 				const response = await saveActivities(dataToSend);
+				alert('DATA SAVED SUCCESSFULLY.....');
 				if (response.result.data.isDuplicate === true || response.result.status !== 200) {
 					toast.error("The data has already been added.he data has already been added he data has already been added");
 				} else {
 					toast.success("Data saved successfully!");
 					resetForm();
 				}
+
 			} catch (error) {
+				alert("DATA ALREADY EXIST");
 				toast.error("No activities to save.");
 				console.error("Error saving data -", error);
 			}

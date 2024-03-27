@@ -1,10 +1,55 @@
-.buttons{
+.mainContainer{
+    margin: 40px;
+}
+.buttonContainer{
     display: flex;
-    flex-direction: column;
-    justify-content: start;
+    flex-direction: row;
+    justify-content: space-between;
+    gap:30px;
     align-items: start;
-    margin: 15px;
+  
+}
+.topContainer{
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+
 }
 .active{
     margin-right: 5px;
 }
+.AtBtn{
+    background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: large;
+  font-weight: 600;
+  margin: 0 px;
+  padding: 10px 20px;
+  color:var(--primary-light-theme);
+}
+
+.AtBtn:hover{
+    border-bottom: 2px solid var(--primary-light-theme);
+}
+
+.searchContainer {
+    position: relative;
+  }
+  
+  .input {
+    padding: 5px;
+    border: 2px solid #001f2b;
+    border-radius: 5px;
+    transition: border-color 0.3s ease; 
+    width: 200px;
+  }
+  
+  .input:focus,
+  .input:hover {
+    border-color: #009bd6; 
+    outline: none; 
+  }
+
+  
+ 

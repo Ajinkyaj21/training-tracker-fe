@@ -118,13 +118,24 @@ flex-direction: row;
 
 .login{
   font-weight: bold;
-  color:var(--primary-light-theme);
+  color: var(--primary-light-bg-color);
+}
+.submitBtn{
+  background-color:var(--primary-light-bg-color);
+  color: white ;
+  border-radius: 5px;
+  width: 100%;
+  border: none;
+  height: 30px;
 }
 /*-------------------Media Query-----------------*/
 
 @media screen and (max-width: 767px) {
   .mainContainer {
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color:var(--primary-light-bg-color);
   }
 
   /* .leftContainer,
@@ -140,6 +151,7 @@ flex-direction: row;
   }
   .rightContaint {
     gap: 10%;
+    margin-top: 40px;
   }
 
   .email,
@@ -156,6 +168,9 @@ flex-direction: row;
   .customButton {
     width: 80%;
   }
+  /* .logoImg{
+  width: 40px;
+  } */
 }
 
 

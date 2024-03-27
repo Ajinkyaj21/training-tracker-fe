@@ -16,6 +16,7 @@ export default function Login() {
 		try {
 			const response = await login(email, password);
 			const token = response.result.token;
+			// const tokens = response.result.tokens;
 			// Cookies.set("token", token);
 			localStorage.setItem("token", token);
 			//for admin validation
@@ -90,12 +91,13 @@ export default function Login() {
 					<div >
 						<form className={styles.formContaint}onSubmit={handleSubmit}>
 							<div className={styles.email}>
-								<Components.Input type="email" label={'email'} id={'email'} value={email} onChange={(e) => setEmail(e.target.value)}/>
+								<Components.Input type="email" id={'email'} value={email} onChange={(e) => setEmail(e.target.value)} placeholder={'Enter Email'}/>
 							</div>
 							<div className={styles.password}>
-								<Components.Input type="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
+								<Components.Input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder={'Enter Password'}/>
 							</div>
-							<Components.CustomButton width='100%'>Submit</Components.CustomButton>
+							{/* <Components.CustomButton width='100%'>Submit</Components.CustomButton> */}
+							<button className={styles.submitBtn}> Submit </button>
 						</form>
 
 					</div>
