@@ -8,8 +8,10 @@ import AllocateTraining from './Layouts/AllocateTraining/AllocateTraining';
 import { PageLayout } from './Layouts/PageLayout';
 import TraineeDetails from './Layouts/TraineeDetails/TraineeDetails';
 import Admin from './Pages/Admin/Admin';
+import Course from './Pages/Course/Course';
 import Dashboard from './Pages/Dashboard/Dashboard';
 import Edit from './Pages/Edit/edit';
+import LearningSpace from './Pages/LearningSpace/LearningSpace';
 import Login from './Pages/Login/Login';
 import Trainees from './Pages/Trainees/Trainees';
 import Training from './Pages/Training/Training';
@@ -47,6 +49,8 @@ function App() {
 						<Route path="/addUser" element={<AddUser/>}/>
 						<Route path="/traineeDetails/:trainee_id" element={<TraineeDetails/>}/>
 						<Route path="/activeTrainees/:id" element={<ActiveTrainee/>}/>
+						<Route path="/learningSpace" element={<LearningSpace/>}/>
+						<Route path="/course/:name" element={<Course/>}/>
 					</Route>
 				</Routes>
 			</BrowserRouter>

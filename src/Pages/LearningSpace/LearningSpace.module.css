@@ -1,0 +1,20 @@
+.btnDiv{
+    display: flex;
+    justify-content: end;
+    margin: 25px;
+}
+.mainContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* width: 100vh; */
+}
+.container1{
+    background-color: rgb(174, 187, 187);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+    /* height: 100vh;
+    width: 100vh; */
+}

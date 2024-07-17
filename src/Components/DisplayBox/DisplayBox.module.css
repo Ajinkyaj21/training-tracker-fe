@@ -1,0 +1,33 @@
+.displayBox {
+    border: 1px solid #ccc;
+    padding: 20px;
+    text-align: center;
+    margin: 20px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+  }
+  .name{
+    margin: 5px;
+    font-weight: bold;
+  }
+  
+  .logo {
+    max-width: 100px;
+    height: auto;
+  }
+  
+  .description {
+    margin-top: 10px;
+    font-size: 16px;
+    color: #333;
+  }
+  .lowerPart{
+    display: flex;
+    justify-content: space-between;
+    font-size: smaller;
+  }
+  .lastUpdate{
+  }
+  .visit{
+    cursor: pointer;
+  }
