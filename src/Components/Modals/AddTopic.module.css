@@ -1,0 +1,102 @@
+.modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /*middle me lo*/
+    background: #fefefe;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    width: 480px;
+    border-radius: 12px;
+    max-height: 85vh;
+    overflow-y: auto;
+}
+
+.modalContent {
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    height: 100%;
+    overflow: hidden;
+}
+
+.modalHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+}
+
+.modalTitle {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.closeButton {
+    background: none;
+    border: none;
+    font-size: 28px;
+    color: #333;
+    cursor: pointer;
+    outline: none;
+}
+.modalBody {
+    padding: 15px 0;
+    flex: 1;
+    overflow-y: auto;
+}
+
+.formGroup {
+    margin-bottom: 20px;
+}
+
+.formGroup label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+}
+
+.formControl {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.formControl:focus {
+    border-color: #0056b3;
+    box-shadow: 0 0 0 2px rgba(0, 86, 179, 0.2);
+}
+
+.submitButton {
+    width: 100%;
+    padding: 12px;
+    background-color: #0056b3;
+    border: none;
+    color: #fff;
+    font-size: 18px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.submitButton:hover {
+    background-color: #004494;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #666;
+    border-radius: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #e0e0e0;
+    border-radius: 8px;
+}
