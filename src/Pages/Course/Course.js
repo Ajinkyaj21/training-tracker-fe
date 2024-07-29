@@ -1,4 +1,4 @@
-import React from 'react';
+import React , {useState} from 'react';
 // import DisplayBox from '../../Components/DisplayBox/DisplayBox';
 import { useLocation } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
@@ -7,6 +7,7 @@ import Button from '../../Components/Button/CustomButton';
 import AddTopic from '../../Components/Modals/AddTopic';
 import CourseTable from '../../Components/Table/CourseTable';
 import styles from './Course.module.css';
+import AddParticularTopic from '../../Components/Modals/AddParticularTopic';
 
 export default function Course() {
 	const location = useLocation();
@@ -76,12 +77,22 @@ export default function Course() {
 		}
 
 	];
+    const [isAddTopicModalOpen, setIsAddTopicModalOpen] = useState(false);
+
+	const openAddTopic = () => {
+        setIsAddTopicModalOpen(true);
+    };
+
+    const closeAddTopicModal = () => {
+        setIsAddTopicModalOpen(false);
+    };
+
 	const filteredData = tableData.filter(item => item.name.trim().toUpperCase() === name.trim().toUpperCase());
 	return (
 		<div>
 			<div className={styles.header}>
 				<img src={logo} alt="Logo" className={styles.logo} width={"50px"} />
-				<Button type="button" className={`${styles.addTopic}btn btn-primary`} data-toggle="modal" data-target="#addTopic">+ Add Topic</Button>
+				<Button type="button" className={`${styles.addTopic}btn btn-primary`} data-toggle="modal" data-target="#addTopic" onClick={openAddTopic}>+ Add Topic</Button>
 				<AddTopic />
 			</div>
 			<div className={styles.table}>
@@ -111,6 +122,7 @@ export default function Course() {
 					</div>
 				</div>
 			</div>
+			<AddParticularTopic isOpen={isAddTopicModalOpen} onClose={closeAddTopicModal} />
 		</div>
 	);
 }

@@ -1,0 +1,64 @@
+.modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /*middle me lo*/
+    background: #fefefe;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    width: 480px;
+    border-radius: 12px;
+    max-height: 100vh;
+    width: 50%;
+    overflow-y: auto;
+}
+.modalHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    margin: 20px;
+}
+.formGroup {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    padding : 10px;
+    font-size: large;
+}
+input{
+    width: 40%;
+    padding :17px;
+}
+.submitButton {
+    width: 50%;
+    padding: 12px;
+    background-color: #0056b3;
+    border: none;
+    color: #fff;
+    font-size: 18px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+input:focus {
+    outline: none; 
+    border: none;
+    /* border-color: #0056b3; */
+    box-shadow: 0 0 0 2px rgba(0, 86, 179, 0.2);
+    padding :20px;
+    border-radius: 5px;
+}
+
+.submitButton:hover {
+    background-color: #004494;
+}
+.closeButton {
+    background: none;
+    border: none;
+    font-size: 28px;
+    color: #333;
+    cursor: pointer;
+    outline: none;
+}

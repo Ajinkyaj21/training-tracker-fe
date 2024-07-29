@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import styles from './AddTopic.module.css';
+import data from '../../utils/CourseData';
 
-export default function AddTopic({ isOpen, onClose, addNewCourse, data }) {
+export default function AddTopic({ isOpen, onClose }) {
   const [formData, setFormData] = useState({
     moduleName: '',
     description: '',
@@ -37,11 +38,12 @@ export default function AddTopic({ isOpen, onClose, addNewCourse, data }) {
     const newCourse = {
       id,
       name: formData.moduleName,
-      logo: URL.createObjectURL(formData.logo),
+      // logo: URL.createObjectURL(formData.logo),
       description: formData.description,
       lastUpdate: new Date().toLocaleDateString(),
     };
-    addNewCourse(newCourse);
+    data.push(newCourse);
+    console.log("The data after pushing new course is ---> ",data);
     setFormData({
       moduleName: '',
       description: '',

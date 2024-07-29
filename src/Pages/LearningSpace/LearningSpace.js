@@ -1,54 +1,11 @@
 import React, { useState } from 'react';
-import CssLogo from '../../Assets/CssLogo.svg.png';
-import JsIcon from '../../Assets/JsIcon.png';
-import MySQL from '../../Assets/MySQL.svg.png';
-import NodeLogo from '../../Assets/NodeLogo.svg.png';
-import ReactIcon from '../../Assets/React-icon.svg.png';
+import data from '../../utils/CourseData';
 import Button from '../../Components/Button/CustomButton';
 import DisplayBox from '../../Components/DisplayBox/DisplayBox';
 import styles from './LearningSpace.module.css';
 import AddTopic from '../../Components/Modals/AddTopic';
-
+console.log("The data is --> ")
 export default function LearningSpace() {
-    const initialData = [
-        {
-            id: '1',
-            name: 'MySQL',
-            logo: MySQL,
-            description: "This is a description for the display box.",
-            lastUpdate: "22-07-2011"
-        },
-        {
-            id: '2',
-            name: 'JS',
-            logo: JsIcon,
-            description: "This is a description for the display box.",
-            lastUpdate: "22-07-2011"
-        },
-        {
-            id: '3',
-            name: 'REACT',
-            logo: ReactIcon,
-            description: "This is a description for the display box.",
-            lastUpdate: "22-07-2011"
-        },
-        {
-            id: '4',
-            name: 'CSS',
-            logo: CssLogo,
-            description: "This is a description for the display box.",
-            lastUpdate: "22-07-2011"
-        },
-        {
-            id: '5',
-            name: 'NODE',
-            logo: NodeLogo,
-            description: "This is a description for the display box.",
-            lastUpdate: "22-07-2011"
-        }
-    ];
-
-    const [data, setData] = useState(initialData);
     const [isAddTopicModalOpen, setIsAddTopicModalOpen] = useState(false);
 
     const openAddTopic = () => {
@@ -59,11 +16,7 @@ export default function LearningSpace() {
         setIsAddTopicModalOpen(false);
     };
 
-    const addNewCourse = (newCourse) => {		
-        setData((prevData) => [...prevData, newCourse]);
-		initialData.push(newCourse);
-		console.log("The initial Data is ---> ",initialData);
-    };
+    
 
     return (
         <div>
@@ -77,7 +30,7 @@ export default function LearningSpace() {
                     ))}
                 </div>
             </div>
-            <AddTopic isOpen={isAddTopicModalOpen} onClose={closeAddTopicModal} addNewCourse={addNewCourse} data={data} />
+            <AddTopic isOpen={isAddTopicModalOpen} onClose={closeAddTopicModal} />
         </div>
     );
 }
