@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styles from './AddParticularTopic.module.css';
+import DatePicker from 'react-date-picker';
 
 export default function AddParticularTopic({ isOpen, onClose }) {
   const [formData, setFormData] = useState({
@@ -24,8 +25,6 @@ export default function AddParticularTopic({ isOpen, onClose }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(formData);
-    // Handle form submission logic here
-    onClose(); // Close the modal after submitting
   };
 
   return (
@@ -34,62 +33,31 @@ export default function AddParticularTopic({ isOpen, onClose }) {
         <div className={styles.modal}>
           <div className={styles.modalContent}>
             <div className={styles.modalHeader}>
-              <h3 className={styles.modalTitle}>Add New Course</h3>
+              <h4 className={styles.modalTitle}>Add New Topic</h4>
               <button type="button" className={styles.closeButton} onClick={onClose}>&times;</button>
             </div>
             {/* <hr className={styles.horizontalLine} /> */}
             <div className={styles.modalBody}>
               <form onSubmit={handleSubmit}>
                 <div className={styles.formGroup}>
-                  <label>Topic:</label>
-                  <input
-                    type="text"
-                    className={styles.formControl}
-                    name="topic"
-                    value={formData.topic}
-                    onChange={handleChange}
-                    required
-                  />
+                  <label>Topic</label>
+                  <input type="text" className={styles.formControl} name="topic" value={formData.topic} onChange={handleChange} required />
                 </div>
                 <div className={styles.formGroup}>
                   <label>Article</label>
-                  <input
-                    type="text"
-                    className={styles.formControl}
-                    name="article"
-                    value={formData.article}
-                    onChange={handleChange}
-                  />
+                  <input type="text" className={styles.formControl} name="article" value={formData.article} onChange={handleChange} />
                 </div>
                 <div className={styles.formGroup}>
                   <label>YouTube Link</label>
-                  <input
-                    type="url"
-                    className={styles.formControl}
-                    name="youtubeLink"
-                    value={formData.youtubeLink}
-                    onChange={handleChange}
-                  />
+                  <input type="url" className={styles.formControl} name="youtubeLink" value={formData.youtubeLink} onChange={handleChange} />
                 </div>
                 <div className={styles.formGroup}>
                   <label>Practice</label>
-                  <input
-                    type="text"
-                    className={styles.formControl}
-                    name="practice"
-                    value={formData.practice}
-                    onChange={handleChange}
-                  />
+                  <input type="text" className={styles.formControl} name="practice" value={formData.practice} onChange={handleChange} />
                 </div>
                 <div className={styles.formGroup}>
                   <label>Assignments</label>
-                  <input
-                    type="text"
-                    className={styles.formControl}
-                    name="assignments"
-                    value={formData.assignments}
-                    onChange={handleChange}
-                  />
+                  <input type="text" className={styles.formControl} name="assignments" value={formData.assignments} onChange={handleChange} />
                 </div>
                 <button type="submit" className={styles.submitButton}>Save</button>
               </form>
