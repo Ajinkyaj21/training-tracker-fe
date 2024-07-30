@@ -4,7 +4,6 @@ import Button from '../../Components/Button/CustomButton';
 import DisplayBox from '../../Components/DisplayBox/DisplayBox';
 import styles from './LearningSpace.module.css';
 import AddTopic from '../../Components/Modals/AddTopic';
-console.log("The data is --> ")
 export default function LearningSpace() {
     const [isAddTopicModalOpen, setIsAddTopicModalOpen] = useState(false);
 
@@ -15,8 +14,6 @@ export default function LearningSpace() {
     const closeAddTopicModal = () => {
         setIsAddTopicModalOpen(false);
     };
-
-    
 
     return (
         <div>

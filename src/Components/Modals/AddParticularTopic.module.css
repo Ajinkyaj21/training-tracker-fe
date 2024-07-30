@@ -7,9 +7,11 @@
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
     width: 480px;
     border-radius: 12px;
-    max-height: 100vh;
-    width: 50%;
+    max-height: 90vh;
     overflow-y: auto;
+}
+.modalTitle{
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
 .modalHeader {
     display: flex;
@@ -21,19 +23,20 @@
     margin: 20px;
 }
 .formGroup {
-    margin-bottom: 20px;
+    margin: 10px;
     display: flex;
     justify-content: space-between;
     padding : 10px;
-    font-size: large;
+    font-size: medium ;
+    /* margin-left: 10px; */
 }
 input{
-    width: 40%;
-    padding :17px;
+    width: 300px;
+    padding :7px;
 }
 .submitButton {
     width: 50%;
-    padding: 12px;
+    padding: 10px;
     background-color: #0056b3;
     border: none;
     color: #fff;
@@ -47,7 +50,7 @@ input:focus {
     border: none;
     /* border-color: #0056b3; */
     box-shadow: 0 0 0 2px rgba(0, 86, 179, 0.2);
-    padding :20px;
+    padding :9px;
     border-radius: 5px;
 }
 

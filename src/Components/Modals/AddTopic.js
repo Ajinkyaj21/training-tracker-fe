@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import styles from './AddTopic.module.css';
 import data from '../../utils/CourseData';
+import DatePicker from 'react-date-picker';
 
 export default function AddTopic({ isOpen, onClose }) {
   const [formData, setFormData] = useState({
     moduleName: '',
     description: '',
-    visitDate: '',
+    visitDate: new Date(),
     topic: '',
     article: '',
     youtubeLink: '',
@@ -31,6 +32,13 @@ export default function AddTopic({ isOpen, onClose }) {
     }));
   };
 
+  const handleDateChange = (date) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      visitDate: date,
+    }));
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const id = (data.length + 1).toString();
@@ -43,11 +51,10 @@ export default function AddTopic({ isOpen, onClose }) {
       lastUpdate: new Date().toLocaleDateString(),
     };
     data.push(newCourse);
-    console.log("The data after pushing new course is ---> ",data);
     setFormData({
       moduleName: '',
       description: '',
-      visitDate: '',
+      visitDate: new Date(),
       topic: '',
       article: '',
       youtubeLink: '',
@@ -67,7 +74,6 @@ export default function AddTopic({ isOpen, onClose }) {
               <h5 className={styles.modalTitle}>Add New Course</h5>
               <button type="button" className={styles.closeButton} onClick={onClose}>&times;</button>
             </div>
-            <hr className={styles.horizontalLine}/>
             <div className={styles.modalBody}>
               <form onSubmit={handleSubmit}>
                 <div className={styles.formGroup}>
@@ -88,8 +94,12 @@ export default function AddTopic({ isOpen, onClose }) {
                   <textarea className={styles.formControl} name="description" value={formData.description} onChange={handleChange} required />
                 </div>
                 <div className={styles.formGroup}>
-                  <label>Visit Date</label>   
-                  <input type="date" className={styles.formControl} name="visitDate" value={formData.visitDate} onChange={handleChange} />                         
+                  <label>Visit Date</label>
+                  <DatePicker
+                    onChange={handleDateChange}
+                    value={formData.visitDate}
+                    className={styles.formControl}
+                  />
                 </div>
                 <div className={styles.formGroup}>
                   <label>Topic</label>
