@@ -1,132 +1,111 @@
 import React, { useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { postCourse } from '../../Services/Api';
 import styles from './AddTopic.module.css';
-import data from '../../utils/CourseData';
-import DatePicker from 'react-date-picker';
 
-export default function AddTopic({ isOpen, onClose }) {
-  const [formData, setFormData] = useState({
-    moduleName: '',
-    description: '',
-    visitDate: new Date(),
-    topic: '',
-    article: '',
-    youtubeLink: '',
-    practice: '',
-    assignments: '',
-    logo: null,
-  });
+export default function AddTopic({ isOpen, onClose, displayCourse }) {
+	const [formData, setFormData] = useState({
+		moduleName: '',
+		description: '',
+		logo: null
+	});
+	const [uploadedLogo, setUploadedLogo] = useState(null);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-  };
+	const [renderLogo, setRenderLogo] = useState(null);
 
-  const handleFileChange = (e) => {
-    const file = e.target.files[0];
-    setFormData((prevData) => ({
-      ...prevData,
-      logo: file,
-    }));
-  };
+	const handleChange = (e) => {
+		const { name, value } = e.target;
+		setFormData((prevData) => ({
+			...prevData,
+			[name]: value
+		}));
+	};
 
-  const handleDateChange = (date) => {
-    setFormData((prevData) => ({
-      ...prevData,
-      visitDate: date,
-    }));
-  };
+	// const handleFileChange = (e) => {
+	// 	const file = e.target.files[0];
+	// 	setFormData((prevData) => ({
+	// 		...prevData,
+	// 		logo: file
+	// 	}));
+	// };
+	const uploadLogo = (e) => {
+		setUploadedLogo(e.target.files[0]);
+		const uploadedImage = e.target.files[0];
+		if (uploadedImage) {
+			const reader = new FileReader();
+			reader.onload = () => {
+				setRenderLogo(reader.result);
+			};
+			reader.readAsDataURL(uploadedImage);
+		}
+	};
+	console.info(uploadedLogo);
+	const handleSubmit = async (e) => {
+		e.preventDefault();
+		console.info("Form submitted");
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const id = (data.length + 1).toString();
+		const postData = {
+			technology: formData.moduleName,
+			description: formData.description,
+			image: renderLogo
 
-    const newCourse = {
-      id,
-      name: formData.moduleName,
-      // logo: URL.createObjectURL(formData.logo),
-      description: formData.description,
-      lastUpdate: new Date().toLocaleDateString(),
-    };
-    data.push(newCourse);
-    setFormData({
-      moduleName: '',
-      description: '',
-      visitDate: new Date(),
-      topic: '',
-      article: '',
-      youtubeLink: '',
-      practice: '',
-      assignments: '',
-      logo: null,
-    });
-    onClose();
-  };
+		};
+		console.info("Post Data:", postData);
 
-  return (
-    <>
-      {isOpen && (
-        <div className={styles.modal}>
-          <div className={styles.modalContent}>
-            <div className={styles.modalHeader}>
-              <h5 className={styles.modalTitle}>Add New Course</h5>
-              <button type="button" className={styles.closeButton} onClick={onClose}>&times;</button>
-            </div>
-            <div className={styles.modalBody}>
-              <form onSubmit={handleSubmit}>
-                <div className={styles.formGroup}>
-                  <label>Module Name</label>
-                  <input type="text" className={styles.formControl} name="moduleName" value={formData.moduleName} onChange={handleChange} required />
-                </div>
-                <div className={styles.formGroup}>
-                  <label>Logo</label>
-                  <input
-                    type="file"
-                    onChange={handleFileChange}
-                    accept="image/*"
-                    className={styles.formControl}
-                  />
-                </div>
-                <div className={styles.formGroup}>
-                  <label>Description</label>
-                  <textarea className={styles.formControl} name="description" value={formData.description} onChange={handleChange} required />
-                </div>
-                <div className={styles.formGroup}>
-                  <label>Visit Date</label>
-                  <DatePicker
-                    onChange={handleDateChange}
-                    value={formData.visitDate}
-                    className={styles.formControl}
-                  />
-                </div>
-                <div className={styles.formGroup}>
-                  <label>Topic</label>
-                  <input type="text" className={styles.formControl} name="topic" value={formData.topic} onChange={handleChange} required />
-                </div>
-                <div className={styles.formGroup}>
-                  <label>Article</label>
-                  <input type="text" className={styles.formControl} name="article" value={formData.article} onChange={handleChange} />
-                </div>
-                <div className={styles.formGroup}>
-                  <label>YouTube Link</label>
-                  <input type="url" className={styles.formControl} name="youtubeLink" value={formData.youtubeLink} onChange={handleChange} />
-                </div>
-                <div className={styles.formGroup}>
-                  <label>Practice</label>
-                  <input type="text" className={styles.formControl} name="practice" value={formData.practice} onChange={handleChange} />
-                </div>
-                <div className={styles.formGroup}>
-                  <label>Assignments</label>
-                  <input type="text" className={styles.formControl} name="assignments" value={formData.assignments} onChange={handleChange} />
-                </div>
-                <button type="submit" className={styles.submitButton}>Save changes</button>
-              </form>
-            </div>
-          </div>
-        </div>
-      )}
-    </>
-  );
+		try {
+			const res = await postCourse(postData);
+			console.info("Response from postCourse API:", res);
+			toast.success("Course added successfully!");
+		} catch (err) {
+			console.error("Error while posting course data:", err);
+			toast.error("Error adding course.");
+		}
+		displayCourse();
+		setFormData({
+			moduleName: '',
+			description: '',
+			logo: null
+		});
+		onClose();
+	};
+
+	return (
+		<>
+			{isOpen && (
+				<div className={styles.modal}>
+					<div className={styles.modalContent}>
+						<div className={styles.modalHeader}>
+							<h5 className={styles.modalTitle}>Add New Course</h5>
+							<button type="button" className={styles.closeButton} onClick={onClose}>&times;</button>
+						</div>
+						<div className={styles.modalBody}>
+							<form onSubmit={handleSubmit}>
+								<div className={styles.formGroup}>
+									<label>Course Name<span className={styles.stare}>*</span></label>
+									<input type="text" className={styles.formControl} name="moduleName" value={formData.moduleName} onChange={handleChange} required />
+								</div>
+								<div className={styles.formGroup}>
+									<label>Logo</label>
+									<input
+										type="file"
+										onChange={uploadLogo}
+										accept="image/*"
+										className={styles.formControl}
+									/>
+								</div>
+								<div className={styles.formGroup}>
+									<label>Description</label>
+									<textarea className={styles.formControl} name="description" value={formData.description} onChange={handleChange} required />
+								</div>
+								<button type="submit" className={styles.submitButton}>Save changes</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			)}
+			<ToastContainer />
+
+		</>
+	);
 }

@@ -6,13 +6,14 @@ const CourseTable = ({ tableHead, tableData }) => {
 			<thead>
 				<tr>
 					{tableHead.map((header, index) => (
-						<th key={index} className={styles.tableHeader}>{header}</th>
+						<th key={index} className={styles.tableHeader}>{header.lable}</th>
 					))}
 				</tr>
 			</thead>
 			<tbody>
 				{tableData.map((row, rowIndex) => (
 					<tr key={rowIndex} className={styles.tableRow}>
+						{console.info(row, "row")}
 						{row.map((cell, cellIndex) => (
 							<td key={cellIndex} className={styles.tableCell}>{cell}</td>
 						))}

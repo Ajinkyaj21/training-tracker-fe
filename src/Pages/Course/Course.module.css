@@ -21,3 +21,13 @@
 .addTopic{
     margin: 20px;
 }
+.courseName{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+.name{
+    /* text-align: center; */
+    font-weight: bold;
+}
