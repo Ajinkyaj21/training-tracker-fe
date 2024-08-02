@@ -1,7 +1,9 @@
 import axios from 'axios';
 // import Cookies from 'js-cookie';
-const NodeURL = 'http://localhost:9091';
+const NodeURL = 'http://localhost:9090';
 // const NodeURL = 'https://d40vhfq2-9090.inc1.devtunnels.ms';
+// const NodeURL = 'https://7x5wt80g-9090.inc1.devtunnels.ms';//for learning space
+
 // const NodeURL = 'https://fc10m5q8-9091.inc1.devtunnels.ms';
 // const loginisAdmin = localStorage.getItem("is_admin");
 const loginisAdmin = localStorage.getItem("adminToken");
@@ -10,7 +12,6 @@ const loginisAdmin = localStorage.getItem("adminToken");
 // 	withCredntials: true,
 // 	credentials: 'include'
 // };
-
 export const loginDatas = (formData) => {
 	const params = {
 		email: formData.email,
@@ -163,4 +164,26 @@ export const fetchTraineeDataTrainingCards = async (setSelectedValue) => {
 		"status_id": parseInt(setSelectedValue)
 	}, { headers });
 	return response.data;
+};
+
+export const getCourse = () => {
+	// const headers={
+
+	// };
+	const response = axios.get(`${NodeURL}/tech/getCourses`);
+	return response;
+};
+
+export const postCourse = (courseData) => {
+	const headers = {
+		'authorization': `Bearer ${localStorage.getItem('token')}`,
+		withCredntials: true,
+		credentials: 'include'
+	};
+	const params = {
+		technology: courseData.technology,
+		image: courseData.image,
+		description: courseData.description
+	};
+	return axios.post(`${NodeURL}/tech/addNewCourse`, params, {headers});
 };

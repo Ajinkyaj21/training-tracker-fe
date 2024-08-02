@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import AdminIcon from '../../Assets/admin.svg';
 import Dashboard from '../../Assets/dashboard-5486.svg';
+import learning from '../../Assets/Learning_.png';
 import learningSpace from '../../Assets/learningSpace.png';
 import traineesIcon from '../../Assets/trainees.svg';
 import TrainingIcon from '../../Assets/training.svg';
@@ -32,7 +33,7 @@ const SideBar = () => {
 	}, {
 		path: "/learningSpace",
 		name: "LearningSpace",
-		icon: learningSpace
+		icon: learning
 	}, {
 		path: "/admin",
 		name: "Admin",
