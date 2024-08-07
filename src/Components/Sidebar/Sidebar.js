@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import AdminIcon from '../../Assets/admin.svg';
 import Dashboard from '../../Assets/dashboard-5486.svg';
 import learning from '../../Assets/Learning_.png';
-import learningSpace from '../../Assets/learningSpace.png';
+// import learningSpace from '../../Assets/learningSpace.png';
 import traineesIcon from '../../Assets/trainees.svg';
 import TrainingIcon from '../../Assets/training.svg';
 import { windowDimensions } from '../../utils/windowElem';
