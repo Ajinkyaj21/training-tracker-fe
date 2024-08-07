@@ -3,7 +3,7 @@ import Button from '../../Components/Button/CustomButton';
 import DisplayBox from '../../Components/DisplayBox/DisplayBox';
 import AddTopic from '../../Components/Modals/AddTopic';
 import {getCourse} from '../../Services/Api';
-import data from '../../utils/CourseData';
+// import data from '../../utils/CourseData';
 import styles from './LearningSpace.module.css';
 export default function LearningSpace() {
 	const [isAddTopicModalOpen, setIsAddTopicModalOpen] = useState(false);
