@@ -104,7 +104,7 @@ const TablePage = ({ setData }) => {
 					<div className={TrainingStyles.input}>
 						<div>
 
-							<input className={styles.inputTypeText}
+							<input className={TrainingStyles.inputTypeText}
 								type="text"
 								placeholder="Search Activity Name"
 								value={searchQuery}

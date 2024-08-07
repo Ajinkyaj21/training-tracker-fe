@@ -19,7 +19,7 @@ export default function LearningSpace() {
 	const displayCourse = async () => {
 		try {
 			const res = await getCourse();
-			console.info(res, "--22");
+			// console.info(res, "--22");
 			setGetCourses(res.data.result);
 
 		} catch (err) {
@@ -38,14 +38,15 @@ export default function LearningSpace() {
 			</div>
 			<div className={styles.mainContainer}>
 				<div className={styles.container1}>
-					{/* {getCourses?.map((item, index) => (
+					{getCourses?.map((item, index) => (<>
+						{console.info(item, "<--42")}
 						<DisplayBox key={index} id={item.tech_id} logo={item.image}
-							name={item.technology} description={item.description}/>
-					))} */}
-					{data.map((item, index) => (
+							name={item.technology} description={item.description}/></>
+					))}
+					{/* {data.map((item, index) => (
 						<DisplayBox key={index} logo={item.logo} name={item.name}
 							description={item.description} lastUpdate={item.lastUpdate} />
-					))}
+					))} */}
 				</div>
 			</div>
 			<AddTopic isOpen={isAddTopicModalOpen} onClose={closeAddTopicModal} displayCourse ={displayCourse}/>
