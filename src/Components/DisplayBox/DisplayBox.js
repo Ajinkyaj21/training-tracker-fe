@@ -35,14 +35,14 @@ export default function DisplayBox({ id, logo, name, description, lastUpdate }) 
 			{/* <p className={styles.description}>{description}</p> */}
 			<div className={ styles.descriptionContainer}>
 				<p className={ isExpanded ? styles.fixHeighted : styles.description}>{fullDescription}</p>
-				{/* {description?.length > 100 && (
+				{description?.length > 100 && (
 					<div
 						className={styles.readMoreButton}
 						onClick={toggleExpand}
 					>
 						{isExpanded ? 'Read Less' : 'Read More'}
 					</div>
-				)} */}
+				)}
 			</div>
 			<div className={styles.lowerPart}>
 				<Button type="button" className="btn btn-primary" onClick={handleVisit}>Start Learning</Button>
