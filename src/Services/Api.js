@@ -188,3 +188,24 @@ export const postCourse = (courseData) => {
 	};
 	return axios.post(`${NodeURL}/tech/addNewCourse`, params, {headers});
 };
+export const postNewTopic = (postData) => {
+	const headers = {
+		'authorization': `Bearer ${localStorage.getItem('token')}`,
+		withCredntials: true,
+		credentials: 'include'
+	};
+	const params = {
+		id: postData.ids,
+		topic: postData.topic,
+		article: postData.article,
+		youtube: postData.youtube,
+		practice: postData.practice,
+		assignments: postData.assignments
+	};
+	const response = axios.post(`${NodeURL}/tech/addNewTopic/${postData.ids}`, params, { headers });
+	return response;
+};
+export const getTopic = (id) => {
+	const response = axios.get(`${NodeURL}/tech/getTopics/${id}`);
+	return response;
+};

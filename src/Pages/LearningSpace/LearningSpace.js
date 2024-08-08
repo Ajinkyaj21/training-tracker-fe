@@ -30,18 +30,25 @@ export default function LearningSpace() {
 		displayCourse();
 
 	}, []);
+	const formatDate = (dateString) => {
+		return dateString.substring(0, 10);
+	};
 
 	return (
 		<div>
 			<div className={styles.btnDiv}>
 				<Button type="button" className="btn btn-primary" onClick={openAddTopic}>+ Add Course</Button>
 			</div>
+			<div>
+				<h4 className={styles.allCourses}>All Courses</h4>
+			</div>
 			<div className={styles.mainContainer}>
 				<div className={styles.container1}>
 					{getCourses?.map((item, index) => (<>
 						{console.info(item, "<--42")}
 						<DisplayBox key={index} id={item.tech_id} logo={item.image}
-							name={item.technology} description={item.description}/></>
+							name={item.technology} description={item.description}
+							lastUpdate={formatDate(item.created_at)}/></>
 					))}
 					{/* {data.map((item, index) => (
 						<DisplayBox key={index} logo={item.logo} name={item.name}

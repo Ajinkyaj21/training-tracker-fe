@@ -19,6 +19,8 @@
     margin: 20px;
 }
 .addTopic{
+    display: flex;
+    justify-content: end;
     margin: 20px;
 }
 .courseName{
@@ -30,4 +32,13 @@
 .name{
     /* text-align: center; */
     font-weight: bold;
+}
+.describtionContainer{
+    margin: 15px;
+}
+.addtopicContainer{
+   
+}
+.backBtn{
+    cursor: pointer;
 }
