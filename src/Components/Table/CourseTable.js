@@ -7,8 +7,9 @@ import Assignment from '../../Assets/upload.png';
 import YouTube from '../../Assets/youtube.svg';
 // import Edit from '../Modals/EditModal/Edit';
 import styles from './CourseTable.module.css';
-const CourseTable = ({ tableHead, tableData, setYoutubeSrc, handleFileUpload }) => {
+const CourseTable = ({ tableHead, tableData, setYoutubeSrc, handleFileUpload, setEditData, editData }) => {
 	console.info(tableData, 'vv');
+	const isAdmin = localStorage.getItem('adminToken');
 	// const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
 	// const openEditModal = () => {
@@ -38,6 +39,13 @@ const CourseTable = ({ tableHead, tableData, setYoutubeSrc, handleFileUpload }) 
 
 	const handleEditClick = (row) => {
 		console.info(row, "edit row");
+		setEditData({
+			Topic: row.topic,
+			Article: row.Article,
+			Assignments: row.Assignments,
+			Practice: row.Practice,
+			Youtube: row.Youtube
+		});
 	};
 
 	return (
@@ -56,7 +64,7 @@ const CourseTable = ({ tableHead, tableData, setYoutubeSrc, handleFileUpload }) 
 							{tableHead.map((header, cellIndex) => (
 								<td key={cellIndex} className={styles.tableCell}>
 									{header.key in imageColumns ? (
-										header.key === 'Edit' ? (
+										isAdmin == 1 && header.key === 'Edit' ? (
 											<img
 												src={Edit}
 												alt="Edit"
@@ -64,6 +72,7 @@ const CourseTable = ({ tableHead, tableData, setYoutubeSrc, handleFileUpload }) 
 												onClick={() => handleEditClick(row)}
 												data-bs-toggle="modal"
 												data-bs-target="#exampleModalEdit"
+												title="Edit"
 											/>
 										) : row[header.key] ? (
 											header.key === 'Youtube' ? (
@@ -73,6 +82,7 @@ const CourseTable = ({ tableHead, tableData, setYoutubeSrc, handleFileUpload }) 
 													data-bs-toggle="modal"
 													data-bs-target="#exampleModalVideo"
 													onClick={() => setYoutubeSrc(row[header.key])}
+													title="Video Tutorilas"
 												>
 													<img
 														src={imageColumns[header.key]}
@@ -86,6 +96,7 @@ const CourseTable = ({ tableHead, tableData, setYoutubeSrc, handleFileUpload }) 
 													alt={header.key}
 													className={styles.image}
 													onClick={() => handleDownload(row[header.key])}
+													title="Practice"
 												/>
 											) : header.key === 'Assignments' ? (
 												<>
@@ -93,6 +104,7 @@ const CourseTable = ({ tableHead, tableData, setYoutubeSrc, handleFileUpload }) 
 														src={imageColumns[header.key]}
 														alt={header.key}
 														className={styles.image}
+														title="Assignments"
 														onClick={() =>
 															document.getElementById(`fileInput-${rowIndex}`).click()}
 													/>
@@ -109,6 +121,7 @@ const CourseTable = ({ tableHead, tableData, setYoutubeSrc, handleFileUpload }) 
 														src={imageColumns[header.key]}
 														alt={header.key}
 														className={styles.image}
+														title="Article"
 													/>
 												</Link>
 											)

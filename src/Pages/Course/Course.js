@@ -25,6 +25,20 @@ export default function Course() {
 	// const [assignments, setAssignments] = useState({});
 	const [youtubeSrc, setYoutubeSrc] = useState(null);
 	const [displayTopic, setDisplayTopic] = useState([]);
+	const [editData, setEditData] = useState({
+		moduleName: '',
+		description: '',
+		visitDate: '',
+		topic: '',
+		article: '',
+		youtubeLink: '',
+		practice: '',
+		assignments: ''
+	});
+	const isAdmin = localStorage.getItem('adminToken');
+	useEffect(() => {
+		console.info(editData, 'editdatas');
+	}, [editData]);
 	const navigate = useNavigate();
 
 	console.info(id, "course page id");
@@ -61,7 +75,7 @@ export default function Course() {
 	// const articleLink = 'https://www.w3schools.com/js/js_functions.asp';
 	// const practiceDocLink = '/30-days-of-react-ebook-fullstackio.pdf';
 	// const tableHead = ["Id", "Topic", "Article", "YouTube", "Practice", "Assignments", "Edit"];
-	const tableHead = [{lable: "Topic Name", key: "topic"}, {lable: "Article", key: "Article"}, {lable: "Video Tutorial", key: "Youtube"}, {lable: "Practice Doc.", key: "Practice"}, {lable: "Assignment", key: "Assignments"}, {lable: "Edit", key: "Edit"}];
+	const tableHead = [{lable: "Src No.", key: "tech_topic_id"}, {lable: "Topic Name", key: "topic"}, {lable: "Article", key: "Article"}, {lable: "Video Tutorial", key: "Youtube"}, {lable: "Practice Doc.", key: "Practice"}, {lable: "Assignment", key: "Assignments"}, {lable: "Edit", key: "Edit"}];
 
 	const [isAddTopicModalOpen, setIsAddTopicModalOpen] = useState(false);
 
@@ -120,8 +134,9 @@ export default function Course() {
 					<img src={Back} alt="Back" className={styles.backBtn} onClick={handelBack} width={"30px"} />
 					{/* <Button onClick={handelBack} >Back</Button> */}
 				</div>
-
-				<Button type="button" className={`${styles.addTopic}btn btn-primary`} data-toggle="modal" data-target="#addTopic" onClick={openAddTopic}>+ Add Topic</Button>
+				{isAdmin == 1 ? (
+					<Button type="button" className={`${styles.addTopic}btn btn-primary`} data-toggle="modal" data-target="#addTopic" onClick={openAddTopic}>+ Add Topic</Button>
+				) : null}
 			</div>
 			<div className={styles.courseName}>
 				<img src={logo} alt="Logo" className={styles.logo} width={"50px"} />
@@ -139,8 +154,10 @@ export default function Course() {
 					tableData={displayTopic}
 					setYoutubeSrc = {setYoutubeSrc}
 					handleFileUpload={handleFileUpload}
+					setEditData={setEditData}
+					editData={editData}
 				/>
-				<Edit getTopics={getTopics}/>
+				<Edit getTopics={getTopics} editData={editData} setEditData={setEditData} id={id}/>
 			</div>
 			<div className={styles.footer}>
 

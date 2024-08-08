@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 // import { Form } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { postNewTopic } from '../../Services/Api';
 import styles from './AddParticularTopic.module.css';
 
@@ -18,7 +20,7 @@ export default function AddParticularTopic({ isOpen, onClose, id, getTopics}) {
 		console.info(id, "<---18 id");
 		const postData = {
 			ids: id,
-			topic: formData?.topic,
+			topic: formData.topic,
 			article: formData.article,
 			youtube: formData.youtubeLink,
 			practice: formData.practice,
@@ -27,8 +29,10 @@ export default function AddParticularTopic({ isOpen, onClose, id, getTopics}) {
 		try {
 			const res = await postNewTopic(postData);
 			console.info(res);
+			toast.success("Topic added succesfully..!");
 		} catch {
 			console.info("error");
+			toast.error("Topic already exists..!");
 		}
 	};
 
@@ -96,6 +100,7 @@ export default function AddParticularTopic({ isOpen, onClose, id, getTopics}) {
 					</div>
 				</div>
 			)}
+			<ToastContainer />
 		</>
 	);
 }

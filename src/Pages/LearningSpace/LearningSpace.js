@@ -8,7 +8,8 @@ import styles from './LearningSpace.module.css';
 export default function LearningSpace() {
 	const [isAddTopicModalOpen, setIsAddTopicModalOpen] = useState(false);
 	const [getCourses, setGetCourses] = useState();
-	{ console.info(getCourses); }
+	const isAdmin = localStorage.getItem('adminToken');
+	{ console.info(isAdmin, "admin"); }
 	const openAddTopic = () => {
 		setIsAddTopicModalOpen(true);
 	};
@@ -36,9 +37,11 @@ export default function LearningSpace() {
 
 	return (
 		<div>
-			<div className={styles.btnDiv}>
-				<Button type="button" className="btn btn-primary" onClick={openAddTopic}>+ Add Course</Button>
-			</div>
+			{isAdmin == 1 ? (
+				<div className={styles.btnDiv}>
+					<Button type="button" className="btn btn-primary" onClick={openAddTopic}>+ Add Course</Button>
+				</div>
+			) : null}
 			<div>
 				<h4 className={styles.allCourses}>All Courses</h4>
 			</div>

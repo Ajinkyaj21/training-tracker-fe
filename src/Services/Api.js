@@ -209,3 +209,20 @@ export const getTopic = (id) => {
 	const response = axios.get(`${NodeURL}/tech/getTopics/${id}`);
 	return response;
 };
+export const editTopic = (editData) => {
+	const headers = {
+		'authorization': `Bearer ${localStorage.getItem('token')}`,
+		withCredntials: true,
+		credentials: 'include'
+	};
+	const params = {
+		id: editData.ids,
+		topic: editData.topic,
+		article: editData.article,
+		youtube: editData.youtube,
+		practice: editData.practice,
+		assignments: editData.assignments
+	};
+	const response = axios.put(`${NodeURL}/tech/editTopic/${editData.ids}`, params, { headers });
+	return response;
+};

@@ -1,25 +1,38 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styles from './Edit.module.css';
 
-export default function Edit(getTopics) {
-	const [editData, setEditData] = useState({
-		moduleName: '',
-		description: '',
-		visitDate: '',
-		topic: '',
-		article: '',
-		youtubeLink: '',
-		practice: '',
-		assignments: ''
-	});
-	const handleEditSubmit = async (event) => {
-		event.preventDefault();
+export default function Edit({getTopics, editData, setEditData, id}) {
+
+	// const handleEditSubmit = async (event) => {
+	// 	event.preventDefault();
+	// 	try {
+	// 		// await updateTopic(editData); // one more api
+	// 		getTopics();
+	// 	} catch (error) {
+	// 		console.error("Error updating topic:", error);
+	// 	}
+	// };
+	const editTopic = async() => {
+		// console.info(id, "<---18 id");
+		const editDatas = {
+			ids: id,
+			topic: editData.topic,
+			article: editData.article,
+			youtube: editData.youtubeLink,
+			practice: editData.practice,
+			assignments: editData.assignments
+		};
 		try {
-			await updateTopic(editData); // one more api
-			getTopics();
+			const res = await editTopic(editDatas);
+			console.info(res);
 		} catch (error) {
 			console.error("Error updating topic:", error);
 		}
+	};
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		editTopic();
+		getTopics();
 	};
 
 	return (
@@ -31,11 +44,11 @@ export default function Edit(getTopics) {
 						<button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 					</div>
 					<div className="modal-body">
-						{console.info(editData, 'editdata')}
+						{/* {console.info(editData, 'editdata')} */}
 						{editData && (
-							<form onSubmit={handleEditSubmit}>
+							<form onSubmit={(e) => handleSubmit(e)}>
 								<div className="mb-3">
-									<label htmlFor="topicName" className="form-label">Topic Name</label>
+									<label htmlFor="topicName" className={`form-label ${styles.formGroup}`}>Topic Name</label>
 									<input
 										type="text"
 										className="form-control"
@@ -46,7 +59,7 @@ export default function Edit(getTopics) {
 									/>
 								</div>
 								<div className="mb-3">
-									<label htmlFor="articleLink" className="form-label">Article Link</label>
+									<label htmlFor="articleLink" className={`form-label ${styles.formGroup}`}>Article Link</label>
 									<input
 										type="text"
 										className="form-control"
@@ -56,7 +69,7 @@ export default function Edit(getTopics) {
 									/>
 								</div>
 								<div className="mb-3">
-									<label htmlFor="youtubeLink" className="form-label">YouTube Link</label>
+									<label htmlFor="youtubeLink" className={`form-label ${styles.formGroup}`}>YouTube Link</label>
 									<input
 										type="text"
 										className="form-control"
@@ -66,7 +79,7 @@ export default function Edit(getTopics) {
 									/>
 								</div>
 								<div className="mb-3">
-									<label htmlFor="practiceLink" className="form-label">Practice Link</label>
+									<label htmlFor="practiceLink" className={`form-label ${styles.formGroup}`}>Practice Link</label>
 									<input
 										type="text"
 										className="form-control"
@@ -76,7 +89,7 @@ export default function Edit(getTopics) {
 									/>
 								</div>
 								<div className="mb-3">
-									<label htmlFor="assignments" className="form-label">Assignments</label>
+									<label htmlFor="assignments" className={`form-label ${styles.formGroup}`}>Assignments</label>
 									<input
 										type="text"
 										className="form-control"
@@ -88,6 +101,7 @@ export default function Edit(getTopics) {
 								<button type="submit" className="btn btn-primary">Save changes</button>
 							</form>
 						)}
+						<div className={styles.sampe}></div>
 					</div>
 				</div>
 			</div>
@@ -140,23 +154,29 @@ export default function Edit(getTopics) {
 // 							<form onSubmit={(e) => handleEditSubmit(e)}>
 // 								<div className={styles.formGroup}>
 // 									<label>Topic<span>*</span></label>
-// 									<input type="text" className={styles.formControl} name="topic" value={editData.topic} onChange={handleChange} required />
+// eslint-disable-next-line @stylistic/js/max-len
+// 									<input type="text" className={styles.formControl} name="topic" value={editData.topic}
+//  onChange={handleChange} required />
 // 								</div>
 // 								<div className={styles.formGroup}>
 // 									<label>Article<span>*</span></label>
-// 									<input type="text" className={styles.formControl} name="article" value={editData.article} onChange={handleChange} />
+// 									<input type="text" className={styles.formControl} name="article"
+//  value={editData.article} onChange={handleChange} />
 // 								</div>
 // 								<div className={styles.formGroup}>
 // 									<label>YouTube Link<span>*</span></label>
-// 									<input type="url" className={styles.formControl} name="youtubeLink" value={editData.youtubeLink} onChange={handleChange} />
+// 									<input type="url" className={styles.formControl} name="youtubeLink"
+//  value={editData.youtubeLink} onChange={handleChange} />
 // 								</div>
 // 								<div className={styles.formGroup}>
 // 									<label>Practice<span>*</span></label>
-// 									<input type="text" className={styles.formControl} name="practice" value={editData.practice} onChange={handleChange} />
+// 									<input type="text" className={styles.formControl} name="practice"
+//  value={editData.practice} onChange={handleChange} />
 // 								</div>
 // 								<div className={styles.formGroup}>
 // 									<label>Assignments<span>*</span></label>
-// 									<input type="text" className={styles.formControl} name="assignments" value={editData.assignments} onChange={handleChange} />
+// 									<input type="text" className={styles.formControl}
+//  name="assignments" value={editData.assignments} onChange={handleChange} />
 // 								</div>
 // 								<button type="submit" className={styles.submitButton}>Save</button>
 // 							</form>
