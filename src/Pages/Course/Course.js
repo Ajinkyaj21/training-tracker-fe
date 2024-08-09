@@ -70,13 +70,18 @@ export default function Course() {
 	// const closeModal = () => {
 	// 	setIsModalOpen(false);
 	// };
-
 	const link = 'https://www.youtube.com/embed/CKSdHsQyPYk?si=T6KU4ILrk5cE-xgM';
 	// const articleLink = 'https://www.w3schools.com/js/js_functions.asp';
 	// const practiceDocLink = '/30-days-of-react-ebook-fullstackio.pdf';
 	// const tableHead = ["Id", "Topic", "Article", "YouTube", "Practice", "Assignments", "Edit"];
-	const tableHead = [{lable: "Src No.", key: "tech_topic_id"}, {lable: "Topic Name", key: "topic"}, {lable: "Article", key: "Article"}, {lable: "Video Tutorial", key: "Youtube"}, {lable: "Practice Doc.", key: "Practice"}, {lable: "Assignment", key: "Assignments"}, {lable: "Edit", key: "Edit"}];
-
+	let tableHead;
+	const tableHead1 = [{lable: "Sr No.", key: "tech_topic_id"}, {lable: "Topic Name", key: "topic"}, {lable: "Article", key: "Article"}, {lable: "Video Tutorial", key: "Youtube"}, {lable: "Practice Doc.", key: "Practice"}, {lable: "Upload Assignment", key: "Assignments"}, { label: "Edit", key: "Edit" }];
+	const tableHead2 = [{lable: "Sr No.", key: "tech_topic_id"}, {lable: "Topic Name", key: "topic"}, {lable: "Article", key: "Article"}, {lable: "Video Tutorial", key: "Youtube"}, {lable: "Practice Doc.", key: "Practice"}, {lable: "Upload Assignment", key: "Assignments"}];
+	if (isAdmin == 1) {
+		tableHead = tableHead1;
+	} else {
+		tableHead = tableHead2;
+	}
 	const [isAddTopicModalOpen, setIsAddTopicModalOpen] = useState(false);
 
 	const openAddTopic = () => {

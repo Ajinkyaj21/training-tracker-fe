@@ -22,4 +22,8 @@
     width: 30px;
     cursor: pointer;
   }
+  .topicName {
+    text-align: left; 
+    padding-left: 10px; 
+}
   

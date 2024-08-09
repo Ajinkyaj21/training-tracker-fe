@@ -81,3 +81,7 @@ span{
 label{
     text-align: left;
 }
+.radioBtn{
+    display: flex;
+    justify-content: space-around;
+}
