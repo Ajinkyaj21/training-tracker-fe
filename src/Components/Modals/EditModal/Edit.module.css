@@ -80,4 +80,14 @@ span{
 }
 label{
     text-align: left;
+    font-weight: bold;
 }
+.radioText{
+    text-align: left;
+    font-weight: bold;
+}
+.radioBtn{
+    display: flex;
+    justify-content: space-around;
+    margin: 10px;
+  }
