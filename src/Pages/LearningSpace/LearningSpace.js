@@ -49,8 +49,8 @@ export default function LearningSpace() {
 				<div className={styles.container1}>
 					{getCourses?.map((item, index) => (<>
 						{console.info(item, "<--42")}
-						<DisplayBox key={index} id={item.tech_id} logo={item.image}
-							name={item.technology} description={item.description}
+						<DisplayBox key={index} id={item.course_id} logo={item.image}
+							name={item.course} description={item.description}
 							lastUpdate={formatDate(item.created_at)}/></>
 					))}
 					{/* {data.map((item, index) => (

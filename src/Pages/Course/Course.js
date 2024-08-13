@@ -2,17 +2,19 @@ import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 // import { useNavigate, Link } from 'react-router-dom';
-// import Article from '../../Assets/artical.png';
-// import Edit from '../../Assets/edit.png';
-// import Practice from '../../Assets/openDocument.png';
-// import Upload from '../../Assets/upload.png';
-// import YouTube from '../../Assets/youtube.svg';
-// import Back from '../../Assets/back.png';
+import Article from '../../Assets/artical.png';
 import Back from '../../Assets/back1.png';
+import EditImg from '../../Assets/edit.png';
+import Practice from '../../Assets/openDocument.png';
+import Status from '../../Assets/status.png';
+import Upload from '../../Assets/upload.png';
+import YouTube from '../../Assets/youtube.svg';
+// import Back from '../../Assets/back.png';
 import Button from '../../Components/Button/CustomButton';
 import AddParticularTopic from '../../Components/Modals/AddParticularTopic';
 import AddTopic from '../../Components/Modals/AddTopic';
-import Edit from '../../Components/Modals/EditModal/Edit';
+import Edit from '../../Components/Modals/EditModal/EditModal';
+import VideoModal from '../../Components/Modals/VideoModal/VideoModal';
 import CourseTable from '../../Components/Table/CourseTable';
 import { getTopic } from '../../Services/Api';
 import styles from './Course.module.css';
@@ -31,10 +33,11 @@ export default function Course() {
 		visitDate: '',
 		topic: '',
 		article: '',
-		youtubeLink: '',
+		youtube: '',
 		practice: '',
 		assignments: ''
 	});
+	const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
 	const isAdmin = localStorage.getItem('adminToken');
 	useEffect(() => {
 		console.info(editData, 'editdatas');
@@ -59,29 +62,30 @@ export default function Course() {
 		getTopics();
 	}, [id]);
 
-	// useEffect(() => {
-	// 	console.info(displayTopic, 'displayTopic');
-	// }, [displayTopic]);
+	const openVideoModal = (src) => {
+		setYoutubeSrc(src);
+		// setYoutubeSrc;
+		setIsVideoModalOpen(true);
+	};
 
-	// const openModal = () => {
-	// 	setIsModalOpen(true);
-	// };
-
-	// const closeModal = () => {
-	// 	setIsModalOpen(false);
-	// };
-	const link = 'https://www.youtube.com/embed/CKSdHsQyPYk?si=T6KU4ILrk5cE-xgM';
+	const closeVideoModal = () => {
+		setIsVideoModalOpen(false);
+		setYoutubeSrc('');
+	};
+	// const link = 'https://www.youtube.com/embed/CKSdHsQyPYk?si=T6KU4ILrk5cE-xgM';
 	// const articleLink = 'https://www.w3schools.com/js/js_functions.asp';
 	// const practiceDocLink = '/30-days-of-react-ebook-fullstackio.pdf';
 	// const tableHead = ["Id", "Topic", "Article", "YouTube", "Practice", "Assignments", "Edit"];
-	let tableHead;
-	const tableHead1 = [{lable: "Sr No.", key: "tech_topic_id"}, {lable: "Topic Name", key: "topic"}, {lable: "Article", key: "Article"}, {lable: "Video Tutorial", key: "Youtube"}, {lable: "Practice Doc.", key: "Practice"}, {lable: "Upload Assignment", key: "Assignments"}, { label: "Edit", key: "Edit" }];
-	const tableHead2 = [{lable: "Sr No.", key: "tech_topic_id"}, {lable: "Topic Name", key: "topic"}, {lable: "Article", key: "Article"}, {lable: "Video Tutorial", key: "Youtube"}, {lable: "Practice Doc.", key: "Practice"}, {lable: "Upload Assignment", key: "Assignments"}];
-	if (isAdmin == 1) {
-		tableHead = tableHead1;
-	} else {
-		tableHead = tableHead2;
-	}
+	const tableHead = [
+		{lable: "Sr No.", key: "srNo"},
+		{lable: "Topic Name", key: "topic"},
+		{lable: "Article", key: "article", type: "imageLink", imgsrc: Article},
+		{lable: "Video Tutorial", key: "youtube", type: "imageLink", imgsrc: YouTube},
+		{lable: "Practice Doc.", key: "Practice", type: "imageLink", imgsrc: Practice },
+		{lable: "Upload Assignment", key: "Assignments", type: "imageLink", imgsrc: Upload},
+		{lable: "Status", key: "status", type: "dropDown", imgsrc: Status},
+		...(isAdmin == 1 ? [{ lable: "Edit", key: "Edit", type: "imageLink", imgsrc: EditImg }] : [])
+	];
 	const [isAddTopicModalOpen, setIsAddTopicModalOpen] = useState(false);
 
 	const openAddTopic = () => {
@@ -98,39 +102,6 @@ export default function Course() {
 			// I think one api chahiye ye ass backend send krne keliye
 		}
 	};
-
-	// const handleUploadClick = (index) => {
-	// 	document.getElementById(`fileInput-${index}`).click();
-	// };
-
-	// const onFileUpload = (e, index) => {
-	// 	const file = e.target.files[0];
-	// 	if (file) {
-	// 		setAssignments(prev => ({
-	// 			...prev,
-	// 			[index]: file
-	// 		}));
-	// 	}
-	// };
-
-	// const filteredData = tableData.filter(item => item.name?.trim().toUpperCase() === name?.trim().toUpperCase());
-
-	// const updatedTableData = filteredData.map((item) => ({
-	// 	...item,
-	// 	asignments: (
-	// 		<>
-	// 			<img src={Upload} alt="Logo" className={styles.logo} width={"30px"}
-	// 				onClick={() => handleUploadClick(item.id)} />
-	// 			<input
-	// 				type="file"
-	// 				id={`fileInput-${item.id}`}
-	// 				style={{ display: 'none' }}
-	// 				onChange={(e) => onFileUpload(e, item.id)}
-	// 			/>
-	// 			{assignments[item.id] && <span>{assignments[item.id].name}</span>}
-	// 		</>
-	// 	)
-	// }));
 
 	return (
 		<div>
@@ -157,48 +128,27 @@ export default function Course() {
 				<CourseTable
 					tableHead={tableHead}
 					tableData={displayTopic}
-					setYoutubeSrc = {setYoutubeSrc}
+					setYoutubeSrc={setYoutubeSrc}
 					handleFileUpload={handleFileUpload}
 					setEditData={setEditData}
 					editData={editData}
+					openVideoModal={openVideoModal}
+					getTopics={getTopics}
+					id={id}
 				/>
-				<Edit getTopics={getTopics} editData={editData} setEditData={setEditData} id={id}/>
+				{/* <Edit getTopics={getTopics} editData={editData} setEditData={setEditData} id={id}/> */}
 			</div>
 			<div className={styles.footer}>
 
 			</div>
+			<VideoModal
+				isOpen={isVideoModalOpen}
+				onClose={closeVideoModal}
+				videoSrc={youtubeSrc}
+			/>
 			{console.info(displayTopic.tech_id, 'displayTopic.tech_topic_id')}
 			<AddParticularTopic isOpen={isAddTopicModalOpen} onClose={closeAddTopicModal}
 				id={id} getTopics={getTopics}/>
-			<div className="modal" id="exampleModalVideo" tabIndex="-1"
-				aria-labelledby="exampleModalLabel" aria-hidden="true">
-				<div className="modal-dialog modal-lg">
-					<div className="modal-content">
-						<div className="modal-header">
-							<h5 className="modal-title">YouTube</h5>
-							<button type="button" className="btn-close"
-								data-bs-dismiss="modal" aria-label="Close"></button>
-						</div>
-						<div className="modal-body">
-							{console.info(youtubeSrc, 'yttttt')}
-							<iframe
-								width="100%"
-								height="450"
-								// src={youtubeSrc && youtubeSrc}
-								// src={'https://www.youtube.com/embed/CKSdHsQyPYk?si=T6KU4ILrk5cE-xgM'}
-								src={link}
-								title="YouTube video player"
-								allow="accelerometer; autoplay; clipboard-write;
-								encrypted-media; gyroscope; picture-in-picture"
-								allowFullScreen
-							></iframe>
-						</div>
-						<div className="modal-footer">
-							<button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-						</div>
-					</div>
-				</div>
-			</div>
 		</div>
 	);
 }

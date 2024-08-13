@@ -1,53 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import Article from '../../Assets/artical.png';
-import Edit from '../../Assets/edit.png';
-import Practice from '../../Assets/practice.png';
-import Assignment from '../../Assets/upload.png';
-import YouTube from '../../Assets/youtube.svg';
-// import Edit from '../Modals/EditModal/Edit';
+import EditModal from '../../Components/Modals/EditModal/EditModal';
 import styles from './CourseTable.module.css';
-const CourseTable = ({ tableHead, tableData, setYoutubeSrc, handleFileUpload, setEditData, editData }) => {
-	console.info(tableData, 'vv');
+
+const CourseTable = ({ tableHead, tableData, openVideoModal, setYoutubeSrc, setEditData, editData, getTopics, id}) => {
 	const isAdmin = localStorage.getItem('adminToken');
-	// const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+	const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
-	// const openEditModal = () => {
-	// 	setIsEditModalOpen(true);
-	// };
-
-	// const closeEditModal = () => {
-	// 	setIsEditModalOpen(false);
-	// };
-	console.info(editData);
-	const imageColumns = {
-		Article: Article,
-		Youtube: YouTube,
-		Practice: Practice,
-		Assignments: Assignment,
-		Edit: Edit
+	const handleEditClick = (rowData) => {
+		setEditData(rowData);
+		setIsEditModalOpen(true);
 	};
 
-	const handleDownload = (url) => {
-		const link = document.createElement('a');
-		link.href = url;
-		link.setAttribute('download', '');
-		document.body.appendChild(link);
-		link.click();
-		document.body.removeChild(link);
-	};
+	const handleEditSubmit = (updatedData) => {
+		console.info(updatedData, 'Updated Data');
 
-	const handleEditClick = (row) => {
-		console.info(row, "edit row");
-		setEditData({
-			Topic: row.topic,
-			Article: row.Article,
-			Assignments: row.Assignments,
-			Practice: row.Practice,
-			Youtube: row.Youtube
-		});
+		getTopics();
 	};
-
+	const handleStatusChange = (rowIndex, event) => {
+		const newStatus = event.target.value;
+		const updatedData = [...tableData];
+		updatedData[rowIndex].status = newStatus;
+        // Update the tableData state or send the updated status to the backend
+        // For example: updateTableData(updatedData);
+	};
 	return (
 		<>
 			<table className={styles.table}>
@@ -62,80 +38,60 @@ const CourseTable = ({ tableHead, tableData, setYoutubeSrc, handleFileUpload, se
 					{tableData.map((row, rowIndex) => (
 						<tr key={rowIndex} className={styles.tableRow}>
 							{tableHead.map((header, cellIndex) => (
-								<td key={cellIndex} className={`${styles.tableCell} ${header.key === 'topic' ? styles.topicName : ''}`}>
-									{header.key in imageColumns ? (
-										isAdmin == 1 && header.key === 'Edit' ? (
+								<td key={cellIndex} className={styles.tableCell}>
+									{header.key === 'srNo' ?
+										rowIndex + 1 :
+										header.type === "videoLink" ?
 											<img
-												src={Edit}
-												alt="Edit"
+												src={header.imgsrc}
+												alt=""
 												className={styles.image}
-												onClick={() => handleEditClick(row)}
-												data-bs-toggle="modal"
-												data-bs-target="#exampleModalEdit"
-												title="Edit"
+												onClick={() => {
+													setYoutubeSrc(row[header.key]);
+													openVideoModal(row[header.key]);
+												}}
+												style={{ cursor: 'pointer' }}
 											/>
-										) : row[header.key] ? (
-											header.key === 'Youtube' ? (
-												<Link
-													type="button"
-													className="btn btn-link"
-													data-bs-toggle="modal"
-													data-bs-target="#exampleModalVideo"
-													onClick={() => setYoutubeSrc(row[header.key])}
-													title="Video Tutorilas"
-												>
-													<img
-														src={imageColumns[header.key]}
-														alt={header.key}
-														className={styles.image}
-													/>
+											: header.type === "imageLink" ?
+												<Link to={row && row[header.key]} target='_blank'>
+													<img src={header.imgsrc} alt="" className={styles.image} />
 												</Link>
-											) : header.key === 'Practice' ? (
-												<img
-													src={imageColumns[header.key]}
-													alt={header.key}
-													className={styles.image}
-													onClick={() => handleDownload(row[header.key])}
-													title="Practice"
-												/>
-											) : header.key === 'Assignments' ? (
-												<>
-													<img
-														src={imageColumns[header.key]}
-														alt={header.key}
-														className={styles.image}
-														title="Assignments"
-														onClick={() =>
-															document.getElementById(`fileInput-${rowIndex}`).click()}
-													/>
-													<input
-														type="file"
-														id={`fileInput-${rowIndex}`}
-														style={{ display: 'none' }}
-														onChange={(e) => handleFileUpload(e, rowIndex)}
-													/>
-												</>
-											) : (
-												<Link to={row[header.key]} target='_blank'>
-													<img
-														src={imageColumns[header.key]}
-														alt={header.key}
-														className={styles.image}
-														title="Article"
-													/>
-												</Link>
-											)
-										) : '-'
-									) : (
-										row[header.key] !== null ? row[header.key] : '-'
-									)}
+												: header.key === 'status' ?
+													<select
+														value={row.status || ''}
+														onChange={(e) => handleStatusChange(rowIndex, e)}
+														className={styles.dropdown}
+													>
+														<option value="">Select Status</option>
+														<option value="Complete">Complete</option>
+														<option value="Incomplete">Incomplete</option>
+														<option value="In Progress">In Progress</option>
+													</select>
+													: header.key === 'Edit' && isAdmin == 1 ?
+														<img
+															src={header.imgsrc}
+															alt="Edit"
+															className={styles.image}
+															onClick={() => handleEditClick(row)}
+															style={{ cursor: 'pointer' }}
+														/>
+														:
+														row[header.key]
+									}
 								</td>
 							))}
 						</tr>
 					))}
 				</tbody>
 			</table>
-			{/* <Edit isOpen= {isEditModalOpen} onClose={closeEditModal}></Edit> */}
+			<EditModal
+				isOpen={isEditModalOpen}
+				onClose={() => setIsEditModalOpen(false)}
+				editData={editData}
+				handleEditSubmit={handleEditSubmit}
+				getTopics={getTopics}
+				id={id}
+			/>
 		</>
 	);
 };
