@@ -27,6 +27,7 @@
     display: flex;
     justify-content: flex-start;
     margin-bottom: 20px;
+    font-weight: bold;
 }
 
 .tabButton {
@@ -48,8 +49,8 @@
 .activeButton {
     /* background-color: #007bff; */
     /* text-c */
-    color: #295890;
-    border-bottom: 3px solid #007bff;
+    color: var(--primary-light-bg-color);
+    border-bottom: 3px solid var(--primary-light-bg-color);
 }
 
 .btnDiv {

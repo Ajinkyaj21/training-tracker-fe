@@ -73,13 +73,13 @@ export default function LearningSpace() {
 					className={`${styles.tabButton} ${activeTab === 'course' ? styles.activeButton : ''}`}
 					onClick={() => setActiveTab('course')}
 				>
-                    Course
+					<h6>Course</h6>
 				</button>
 				<button
 					className={`${styles.tabButton} ${activeTab === 'session' ? styles.activeButton : ''}`}
 					onClick={() => setActiveTab('session')}
 				>
-                    Session
+					<h6>Session</h6>
 				</button>
 			</div>
 

@@ -226,3 +226,11 @@ export const editTopic = (editData) => {
 	const response = axios.put(`${NodeURL}/tech/editTopic/${editData.ids}`, params, { headers });
 	return response;
 };
+export const updateStatusForTopic = (statusData ) => {
+	const params = {
+		id: statusData.id,
+		status: statusData.status
+	};
+	const response = axios.put(`${NodeURL}/tech/updateStatus/${statusData.id}`, params);
+	return response;
+};

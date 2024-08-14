@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Tooltip } from 'react-tooltip';
 import EditModal from '../../Components/Modals/EditModal/EditModal';
+import { updateStatusForTopic } from '../../Services/Api';
 import styles from './CourseTable.module.css';
-
 const CourseTable = ({ tableHead, tableData, openVideoModal, setYoutubeSrc, setEditData, editData, getTopics, id}) => {
 	const isAdmin = localStorage.getItem('adminToken');
 	const [isEditModalOpen, setIsEditModalOpen] = useState(false);
@@ -18,13 +18,23 @@ const CourseTable = ({ tableHead, tableData, openVideoModal, setYoutubeSrc, setE
 
 		getTopics();
 	};
-	const handleStatusChange = (rowIndex, event) => {
+	const handleStatusChange = async(rowIndex, event) => {
+		console.info(event.target.value, "event");
 		const newStatus = event.target.value;
 		const updatedData = [...tableData];
 		updatedData[rowIndex].status = newStatus;
-		// Update the tableData state or send the updated status to the backend
-		// For example: updateTableData(updatedData);
+		try {
+			const statusData = {
+				id: id,
+				status: newStatus
+			};
+			const res = await updateStatusForTopic(statusData);
+			console.info(res);
+		} catch (err) {
+			console.info(err);
+		}
 	};
+
 	return (
 		<>
 			<table className={styles.table}>
@@ -69,7 +79,7 @@ const CourseTable = ({ tableHead, tableData, openVideoModal, setYoutubeSrc, setE
 												</>
 												: header.key === 'status' ?
 													<select
-														value={row.status || ''}
+														// value={row.status || ''}
 														onChange={(e) => handleStatusChange(rowIndex, e)}
 														className={styles.dropdown}
 													>
