@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { Tooltip } from 'react-tooltip';
 import EditModal from '../../Components/Modals/EditModal/EditModal';
 import styles from './CourseTable.module.css';
 
@@ -21,8 +22,8 @@ const CourseTable = ({ tableHead, tableData, openVideoModal, setYoutubeSrc, setE
 		const newStatus = event.target.value;
 		const updatedData = [...tableData];
 		updatedData[rowIndex].status = newStatus;
-        // Update the tableData state or send the updated status to the backend
-        // For example: updateTableData(updatedData);
+		// Update the tableData state or send the updated status to the backend
+		// For example: updateTableData(updatedData);
 	};
 	return (
 		<>
@@ -42,39 +43,55 @@ const CourseTable = ({ tableHead, tableData, openVideoModal, setYoutubeSrc, setE
 									{header.key === 'srNo' ?
 										rowIndex + 1 :
 										header.type === "videoLink" ?
-											<img
-												src={header.imgsrc}
-												alt=""
-												className={styles.image}
-												onClick={() => {
-													setYoutubeSrc(row[header.key]);
-													openVideoModal(row[header.key]);
-												}}
-												style={{ cursor: 'pointer' }}
-											/>
+											<>
+												<img
+													src={header.imgsrc}
+													alt=""
+													className={styles.image}
+													onClick={() => {
+														setYoutubeSrc(row[header.key]);
+														openVideoModal();
+													}}
+													style={{ cursor: 'pointer' }}
+												/>
+												<Tooltip id="video-tooltip" place="top" effect="solid">
+													Watch Video
+												</Tooltip>
+											</>
 											: header.type === "imageLink" ?
-												<Link to={row && row[header.key]} target='_blank'>
-													<img src={header.imgsrc} alt="" className={styles.image} />
-												</Link>
+												<>
+													<Link to={row && row[header.key]} target='_blank'>
+														<img src={header.imgsrc} alt="" className={styles.image} />
+													</Link>
+													<Tooltip id="image-tooltip" place="top" effect="solid">
+														View Image
+													</Tooltip>
+												</>
 												: header.key === 'status' ?
 													<select
 														value={row.status || ''}
 														onChange={(e) => handleStatusChange(rowIndex, e)}
 														className={styles.dropdown}
 													>
-														<option value="">Select Status</option>
+														<option value="" disabled selected>Select Status</option>
 														<option value="Complete">Complete</option>
-														<option value="Incomplete">Incomplete</option>
+														<option value="Incomplete">Not Started</option>
 														<option value="In Progress">In Progress</option>
 													</select>
 													: header.key === 'Edit' && isAdmin == 1 ?
-														<img
-															src={header.imgsrc}
-															alt="Edit"
-															className={styles.image}
-															onClick={() => handleEditClick(row)}
-															style={{ cursor: 'pointer' }}
-														/>
+														<>
+															<img
+																src={header.imgsrc}
+																alt="Edit"
+																className={styles.image}
+																onClick={() => handleEditClick(row)}
+																style={{ cursor: 'pointer' }}
+																title="Edit"
+															/>
+															<Tooltip id="edit-tooltip" place="top" effect="solid">
+																Edit
+															</Tooltip>
+														</>
 														:
 														row[header.key]
 									}

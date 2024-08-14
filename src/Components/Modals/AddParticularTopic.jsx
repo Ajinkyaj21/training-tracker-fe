@@ -21,22 +21,40 @@ export default function AddParticularTopic({ isOpen, onClose, id, getTopics }) {
 	const [articleUploadType, setArticleUploadType] = useState('link');
 	const [practiceUploadType, setPracticeUploadType] = useState('link');
 
+	const convertFileToBase64 = (file) => {
+		return new Promise((resolve, reject) => {
+			const reader = new FileReader();
+			reader.readAsDataURL(file);
+			reader.onload = () => resolve(reader.result);
+			reader.onerror = (error) => reject(error);
+		});
+	};
+
 	const addNewTopic = async () => {
-		const postData = {
-			ids: id,
-			topic: formData.topic,
-			article: articleUploadType === 'link' ? formData.articleLink : formData.articleFile,
-			youtube: formData.youtube,
-			practice: practiceUploadType === 'link' ? formData.practiceLink : formData.practiceFile,
-			assignments: formData.assignments
-		};
 		try {
+			const articleData = articleUploadType === 'link'
+				? formData.articleLink
+				: await convertFileToBase64(formData.articleFile);
+
+			const practiceData = practiceUploadType === 'link'
+				? formData.practiceLink
+				: await convertFileToBase64(formData.practiceFile);
+
+			const postData = {
+				ids: id,
+				topic: formData.topic,
+				article: articleData,
+				youtube: formData.youtube,
+				practice: practiceData,
+				assignments: formData.assignments
+			};
+
 			const res = await postNewTopic(postData);
-			console.info(res);
+			console.info(res, "res for add new topic");
 			toast.success("Topic added successfully!");
 			getTopics();
-		} catch {
-			toast.error("Topic already exists!");
+		} catch (error) {
+			toast.error("Failed to add topic!");
 		}
 	};
 
@@ -95,7 +113,7 @@ export default function AddParticularTopic({ isOpen, onClose, id, getTopics }) {
 											<input
 												type="radio"
 												name="articleUploadType"
-												value={formData.article}
+												value="link"
 												checked={articleUploadType === 'link'}
 												onChange={() => setArticleUploadType('link')}
 											/>
@@ -116,7 +134,7 @@ export default function AddParticularTopic({ isOpen, onClose, id, getTopics }) {
 								{articleUploadType === 'link' ? (
 									<div className={styles.formGroup}>
 										<label>Article Link<span>*</span></label>
-										<input type="url" className={styles.formControl} name="articleLink" value={formData.article} onChange={handleChange} />
+										<input type="url" className={styles.formControl} name="articleLink" value={formData.articleLink} onChange={handleChange} />
 									</div>
 								) : (
 									<div className={styles.formGroup}>
@@ -126,7 +144,7 @@ export default function AddParticularTopic({ isOpen, onClose, id, getTopics }) {
 								)}
 								<div className={styles.formGroup}>
 									<label>YouTube Link<span>*</span></label>
-									<input type="url" className={styles.formControl} name="youtubeLink" value={formData.youtube} onChange={handleChange} />
+									<input type="url" className={styles.formControl} name="youtube" value={formData.youtube} onChange={handleChange} />
 								</div>
 								<div className={styles.formGroup}>
 									<label>Practice Upload Type<span>*</span></label>

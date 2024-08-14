@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styles from './Edit.module.css';
 
-const EditModal = ({ isOpen, onClose, editData, handleEditSubmit,id, getTopics }) => {
+const EditModal = ({ isOpen, onClose, editData, id, getTopics }) => {
 	const [formData, setFormData] = useState(editData);
 
 	useEffect(() => {

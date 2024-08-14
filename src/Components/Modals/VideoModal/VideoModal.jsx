@@ -1,35 +1,36 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import Modal from 'react-bootstrap/Modal';
+import ReactPlayer from 'react-player';
+import styles from './VideoModal.module.css';
 
-const VideoModal = ({ isOpen, onClose, videoSrc }) => {
-	if (!isOpen) return null;
+const VideoModal = ({ isOpen, onClose, videoSrc, getTopics, id }) => {
+	// if (!isOpen) return null;
+	const link = videoSrc ? videoSrc.replace("watch?v=", "embed/") : "https://www.youtube.com/embed/llerWRF4Vf8";
+	useEffect(() => {
+		getTopics();
+	}, []);
 
 	return (
-		<div className="modal show" style={{ display: 'block' }}>
-			<div className="modal-dialog modal-lg">
-				<div className="modal-content">
-					<div className="modal-header">
-						<h5 className="modal-title">YouTube Video</h5>
-						<button type="button" className="btn-close" onClick={onClose}></button>
-					</div>
-					<div className="modal-body">
-						<iframe
-							width="100%"
-							height="450"
-							src={videoSrc}
-							title="YouTube video player"
-							frameBorder="0"
-							allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-							allowFullScreen
-						></iframe>
-					</div>
-					<div className="modal-footer">
-						<button type="button" className="btn btn-secondary" onClick={onClose}>
-                        Close
-						</button>
+		<>
+			<Modal show={isOpen} onHide={onClose}>
+				<div className={styles.modalOverlay}>
+					<div className={styles.modalContent}>
+						<div className={styles.modalHeader}>
+							<h5>YouTube Video</h5>
+							<button type="button" className={styles.closeButton} onClick={onClose}>×</button>
+						</div>
+						{console.info(videoSrc && videoSrc, "videosrcModal")}
+						<div className={styles.modalBody}>
+							<ReactPlayer url={videoSrc } controls= {true} playing={true} />
+						</div>
+						<div className={styles.modalFooter}>
+							<button type="button" className={styles.closeButton} onClick={onClose}>Close</button>
+						</div>
 					</div>
 				</div>
-			</div>
-		</div>
+			</Modal>
+		</>
+
 	);
 };
 

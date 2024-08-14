@@ -23,3 +23,52 @@
     font-weight: bold;
     margin: 10px;
 }
+.buttonGroup {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 20px;
+}
+
+.tabButton {
+    background-color: transparent;
+    border: none;
+    color: #020202;
+    padding: 10px 20px;
+    margin: 20px 30px;
+    cursor: pointer;
+    font-weight: bold;
+    /* border-radius: 4px; */
+    transition: background-color 0.3s ease;
+}
+
+.tabButton:hover {
+    /* background-color: #e0e0e0; */
+}
+
+.activeButton {
+    /* background-color: #007bff; */
+    /* text-c */
+    color: #295890;
+    border-bottom: 3px solid #007bff;
+}
+
+.btnDiv {
+    margin: 20px;
+}
+
+/* .allCourses {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.mainContainer {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+} */
+
+.container1 {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}

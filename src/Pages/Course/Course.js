@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 // import { useNavigate, Link } from 'react-router-dom';
-import Article from '../../Assets/artical.png';
+import Article from '../../Assets/article.png';
 import Back from '../../Assets/back1.png';
 import EditImg from '../../Assets/edit.png';
-import Practice from '../../Assets/openDocument.png';
+import Practice from '../../Assets/practice.png';
 import Status from '../../Assets/status.png';
 import Upload from '../../Assets/upload.png';
 import YouTube from '../../Assets/youtube.svg';
@@ -62,15 +62,15 @@ export default function Course() {
 		getTopics();
 	}, [id]);
 
-	const openVideoModal = (src) => {
-		setYoutubeSrc(src);
+	const openVideoModal = () => {
+		// setYoutubeSrc(src);
 		// setYoutubeSrc;
 		setIsVideoModalOpen(true);
 	};
 
 	const closeVideoModal = () => {
 		setIsVideoModalOpen(false);
-		setYoutubeSrc('');
+		// setYoutubeSrc('');
 	};
 	// const link = 'https://www.youtube.com/embed/CKSdHsQyPYk?si=T6KU4ILrk5cE-xgM';
 	// const articleLink = 'https://www.w3schools.com/js/js_functions.asp';
@@ -80,11 +80,11 @@ export default function Course() {
 		{lable: "Sr No.", key: "srNo"},
 		{lable: "Topic Name", key: "topic"},
 		{lable: "Article", key: "article", type: "imageLink", imgsrc: Article},
-		{lable: "Video Tutorial", key: "youtube", type: "imageLink", imgsrc: YouTube},
+		{lable: "Video Tutorial", key: "youtube", type: "videoLink", imgsrc: YouTube},
 		{lable: "Practice Doc.", key: "Practice", type: "imageLink", imgsrc: Practice },
 		{lable: "Upload Assignment", key: "Assignments", type: "imageLink", imgsrc: Upload},
 		{lable: "Status", key: "status", type: "dropDown", imgsrc: Status},
-		...(isAdmin == 1 ? [{ lable: "Edit", key: "Edit", type: "imageLink", imgsrc: EditImg }] : [])
+		...(isAdmin == 1 ? [{ lable: "Edit", key: "Edit", imgsrc: EditImg }] : [])
 	];
 	const [isAddTopicModalOpen, setIsAddTopicModalOpen] = useState(false);
 
@@ -141,10 +141,13 @@ export default function Course() {
 			<div className={styles.footer}>
 
 			</div>
+			{console.info(youtubeSrc && youtubeSrc, "videosrc")}
 			<VideoModal
 				isOpen={isVideoModalOpen}
 				onClose={closeVideoModal}
 				videoSrc={youtubeSrc}
+				getTopics={getTopics}
+				id={id}
 			/>
 			{console.info(displayTopic.tech_id, 'displayTopic.tech_topic_id')}
 			<AddParticularTopic isOpen={isAddTopicModalOpen} onClose={closeAddTopicModal}
