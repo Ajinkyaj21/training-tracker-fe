@@ -19,21 +19,18 @@ const CourseTable = ({ tableHead, tableData, openVideoModal, setYoutubeSrc, setE
 		getTopics();
 	};
 	const handleStatusChange = async(rowIndex, event) => {
-		console.info(event.target.value, "event");
-		const newStatus = event.target.value;
-		const updatedData = [...tableData];
-		updatedData[rowIndex].status = newStatus;
-		try {
-			const statusData = {
-				id: id,
-				status: newStatus
-			};
-			const res = await updateStatusForTopic(statusData);
-			console.info(res);
-		} catch (err) {
-			console.info(err);
-		}
-	};
+        const newStatus = event.target.value;
+        try {
+            const statusData = {
+                id: tableData[rowIndex].topic_id,
+                status: newStatus
+            };
+            const res = await updateStatusForTopic(statusData);
+            console.info(res);
+        } catch (err) {
+            console.info(err);
+        }
+    };
 
 	return (
 		<>
@@ -79,15 +76,15 @@ const CourseTable = ({ tableHead, tableData, openVideoModal, setYoutubeSrc, setE
 												</>
 												: header.key === 'status' ?
 													<select
-														// value={row.status || ''}
-														onChange={(e) => handleStatusChange(rowIndex, e)}
-														className={styles.dropdown}
-													>
-														<option value="" disabled selected>Select Status</option>
-														<option value="Complete">Complete</option>
-														<option value="Incomplete">Not Started</option>
-														<option value="In Progress">In Progress</option>
-													</select>
+                                                        value={tableData ? tableData[rowIndex].status : ""}
+                                                        onChange={(e) => handleStatusChange(rowIndex, e)}
+                                                        className={styles.dropdown}
+                                                    >
+                                                        <option value="" disabled selected>Select Status</option>
+                                                        <option value="Complete">Complete</option>
+                                                        <option value="Not Started">Not Started</option>
+                                                        <option value="In Progress">In Progress</option>
+                                                    </select>
 													: header.key === 'Edit' && isAdmin == 1 ?
 														<>
 															<img

@@ -228,7 +228,7 @@ export const editTopic = (editData) => {
 };
 export const updateStatusForTopic = (statusData ) => {
 	const params = {
-		id: statusData.id,
+		// id: statusData.id,
 		status: statusData.status
 	};
 	const response = axios.put(`${NodeURL}/tech/updateStatus/${statusData.id}`, params);
