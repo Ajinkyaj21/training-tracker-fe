@@ -3,9 +3,9 @@ import Modal from 'react-bootstrap/Modal';
 import ReactPlayer from 'react-player';
 import styles from './VideoModal.module.css';
 
-const VideoModal = ({ isOpen, onClose, videoSrc, getTopics, id }) => {
+const VideoModal = ({ isOpen, onClose, videoSrc, getTopics }) => {
 	// if (!isOpen) return null;
-	const link = videoSrc ? videoSrc.replace("watch?v=", "embed/") : "https://www.youtube.com/embed/llerWRF4Vf8";
+	// const link = videoSrc ? videoSrc.replace("watch?v=", "embed/") : "https://www.youtube.com/embed/llerWRF4Vf8";
 	useEffect(() => {
 		getTopics();
 	}, []);

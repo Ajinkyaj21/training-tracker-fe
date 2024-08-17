@@ -216,14 +216,14 @@ export const editTopic = (editData) => {
 		credentials: 'include'
 	};
 	const params = {
-		id: editData.ids,
-		topic: editData.topic,
-		article: editData.article,
-		youtube: editData.youtube,
-		practice: editData.practice,
-		assignments: editData.assignments
+		'tech_topic_id': editData.ids,
+		'topic': editData.topic,
+		'article': editData.article,
+		'youtube': editData.youtube,
+		'practice': editData.practice,
+		'assignments': editData.assignments
 	};
-	const response = axios.put(`${NodeURL}/tech/editTopic/${editData.ids}`, params, { headers });
+	const response = axios.put(`${NodeURL}/tech/editTopic/${editData.courseId}`, params, { headers });
 	return response;
 };
 export const updateStatusForTopic = (statusData ) => {

@@ -4,7 +4,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { postNewTopic } from '../../Services/Api';
 import styles from './AddParticularTopic.module.css';
 
-export default function AddParticularTopic({ isOpen, onClose, id, getTopics }) {
+export default function AddParticularTopic({ isOpen, onClose, id, getTopics, editTopics }) {
 	const [formData, setFormData] = useState({
 		moduleName: '',
 		description: '',
@@ -97,7 +97,7 @@ export default function AddParticularTopic({ isOpen, onClose, id, getTopics }) {
 				<div className={styles.modal}>
 					<div className={styles.modalContent}>
 						<div className={styles.modalHeader}>
-							<h4 className={styles.modalTitle}>Add New Topic</h4>
+							<h4 className={styles.modalTitle}>{editTopics ? 'Edit Topic' : 'Add New Topic'}</h4>
 							<button type="button" className={styles.closeButton} onClick={onClose}>&times;</button>
 						</div>
 						<div className={styles.modalBody}>

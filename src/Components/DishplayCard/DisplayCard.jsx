@@ -9,14 +9,18 @@ export default function DisplayCard({ links }) {
 				<div key={index} className={styles.card}>
 					<ReactPlayer
 						url={link.link}
-						width='100%'
-						height='100%'
+						width='400'
+						height='300'
 						controls={true}
 					/>
 					<div className={styles.cardDescription}>
 						{link.description.length > 100
 							? `${link.description.substring(0, 100)}...`
 							: link.description}
+						<div className={styles.otherDetails}>
+							<p className={styles.description}>By&nbsp;{link.author}</p>
+							<p className={styles.description}>On&nbsp;{link.date}</p>
+						</div>
 					</div>
 				</div>
 			))}

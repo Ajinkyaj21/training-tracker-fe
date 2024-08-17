@@ -7,9 +7,11 @@ import styles from './CourseTable.module.css';
 const CourseTable = ({ tableHead, tableData, openVideoModal, setYoutubeSrc, setEditData, editData, getTopics, id}) => {
 	const isAdmin = localStorage.getItem('adminToken');
 	const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+	const [currentIndex, setCurrentIndex] = useState(null);
 
-	const handleEditClick = (rowData) => {
+	const handleEditClick = (rowData, rowIndex) => {
 		setEditData(rowData);
+		setCurrentIndex(rowIndex);
 		setIsEditModalOpen(true);
 	};
 
@@ -19,18 +21,18 @@ const CourseTable = ({ tableHead, tableData, openVideoModal, setYoutubeSrc, setE
 		getTopics();
 	};
 	const handleStatusChange = async(rowIndex, event) => {
-        const newStatus = event.target.value;
-        try {
-            const statusData = {
-                id: tableData[rowIndex].topic_id,
-                status: newStatus
-            };
-            const res = await updateStatusForTopic(statusData);
-            console.info(res);
-        } catch (err) {
-            console.info(err);
-        }
-    };
+		const newStatus = event.target.value;
+		try {
+			const statusData = {
+				id: tableData[rowIndex].topic_id,
+				status: newStatus
+			};
+			const res = await updateStatusForTopic(statusData);
+			console.info(res);
+		} catch (err) {
+			console.info(err);
+		}
+	};
 
 	return (
 		<>
@@ -76,22 +78,22 @@ const CourseTable = ({ tableHead, tableData, openVideoModal, setYoutubeSrc, setE
 												</>
 												: header.key === 'status' ?
 													<select
-                                                        value={tableData ? tableData[rowIndex].status : ""}
-                                                        onChange={(e) => handleStatusChange(rowIndex, e)}
-                                                        className={styles.dropdown}
-                                                    >
-                                                        <option value="" disabled selected>Select Status</option>
-                                                        <option value="Complete">Complete</option>
-                                                        <option value="Not Started">Not Started</option>
-                                                        <option value="In Progress">In Progress</option>
-                                                    </select>
+														value={tableData ? tableData[rowIndex].status : ""}
+														onChange={(e) => handleStatusChange(rowIndex, e)}
+														className={styles.dropdown}
+													>
+														<option value="" disabled selected>Select Status</option>
+														<option value="Complete">Complete</option>
+														<option value="Not Started">Not Started</option>
+														<option value="In Progress">In Progress</option>
+													</select>
 													: header.key === 'Edit' && isAdmin == 1 ?
 														<>
 															<img
 																src={header.imgsrc}
 																alt="Edit"
 																className={styles.image}
-																onClick={() => handleEditClick(row)}
+																onClick={() => handleEditClick(row, rowIndex)}
 																style={{ cursor: 'pointer' }}
 																title="Edit"
 															/>
@@ -114,6 +116,7 @@ const CourseTable = ({ tableHead, tableData, openVideoModal, setYoutubeSrc, setE
 				editData={editData}
 				handleEditSubmit={handleEditSubmit}
 				getTopics={getTopics}
+				currentIndex={currentIndex}
 				id={id}
 			/>
 		</>
