@@ -13,7 +13,6 @@ import YouTube from '../../Assets/youtube.svg';
 import Button from '../../Components/Button/CustomButton';
 import AddParticularTopic from '../../Components/Modals/AddParticularTopic';
 import AddTopic from '../../Components/Modals/AddTopic';
-import Edit from '../../Components/Modals/EditModal/EditModal';
 import VideoModal from '../../Components/Modals/VideoModal/VideoModal';
 import CourseTable from '../../Components/Table/CourseTable';
 import { getTopic } from '../../Services/Api';
@@ -51,8 +50,6 @@ export default function Course() {
 	const getTopics = async() => {
 		try {
 			const res = await getTopic(id);
-			console.info(res, "getTopicData");
-			console.info(res.data.result, "res.data.result");
 			setDisplayTopic(res.data.result);
 		} catch {
 			console.info("error");

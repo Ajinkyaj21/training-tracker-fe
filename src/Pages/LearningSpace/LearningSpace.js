@@ -39,31 +39,24 @@ export default function LearningSpace() {
 	const links = [
 		{
 			id: "1",
-			description: "A JavaScript function is a block of JavaScript code, that can be executed when  for For example, a function can be called when an event occurs, like when the user clicks a button." ,
-			link: "https://youtu.be/Zo-6_qx8uxg?si=4qMylLCF-NZJrpSu"
+			description: "Session on Test Driven development in ReactJS and NodeJS",
+			author: "Ajinkya Jagadale",
+			date: "02 Aug 2024",
+			link: "https://stlearningspacesfm001.blob.core.windows.net/uploads/Session on Test Driven Development in React and Node JS-20240802_112510-Meeting Recording.mp4"
 		},
 		{
 			id: "2",
-			description: "We recommend reading this tutorial, in the sequence listed in the menuIf you have a large screen, the menu will always be present on the left.If you have a small screen, open the menu by clicking the top menu sign ☰.",
-			link: "https://youtu.be/6IQUg7EWExs?si=ZtBJ25IwuE5IoN0I"
-		}, {
+			description: "Session on Google Cloud",
+			author: "Narayan Pisharoty",
+			date: "02 July 2024",
+			link: "https://stlearningspacesfm001.blob.core.windows.net/uploads/Session on Google Cloud-20240702_072208-Meeting Recording.mp4"
+		},
+		{
 			id: "3",
-			description: "The negative infinity is a constant value represents the lowest available value. It means that no other number is lesser than this value. It can be generate using a self-made function or by an arithmetic operation. JavaScript shows the NEGATIVE_INFINITY value as -Infinity.",
-			link: "https://youtu.be/Zo-6_qx8uxg?si=4qMylLCF-NZJrpSu"
-		},
-		{
-			id: "4",
-			description: "A JavaScript function is a block of JavaScript code, that can be executed when  for For example, a function can be called when an event occurs, like when the user clicks a button." ,
-			link: "https://youtu.be/Zo-6_qx8uxg?si=4qMylLCF-NZJrpSu"
-		},
-		{
-			id: "5",
-			description: "We recommend reading this tutorial, in the sequence listed in the menuIf you have a large screen, the menu will always be present on the left.If you have a small screen, open the menu by clicking the top menu sign ☰.",
-			link: "https://youtu.be/6IQUg7EWExs?si=ZtBJ25IwuE5IoN0I"
-		}, {
-			id: "6",
-			description: "The negative infinity is a constant value represents the lowest available value. It means that no other number is lesser than this value. It can be generate using a self-made function or by an arithmetic operation. JavaScript shows the NEGATIVE_INFINITY value as -Infinity.",
-			link: "https://youtu.be/Zo-6_qx8uxg?si=4qMylLCF-NZJrpSu"
+			description: "Introduction to AI",
+			author: "Shriman Tiwari",
+			date: "12 June 2024",
+			link: "https://stlearningspacesfm001.blob.core.windows.net/uploads/Introduction to AI-20240612_124352-Enregistrement de la réunion.mp4"
 		}
 	];
 	return (

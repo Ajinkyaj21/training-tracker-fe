@@ -5,7 +5,7 @@ import i from '../../Assets/info.svg';
 import Button from '../Button/CustomButton';
 import styles from './DisplayBox.module.css';
 
-export default function DisplayBox({ id, logo, name, description, lastUpdate }) {
+export default function DisplayBox({ id, logo, name, description, lastUpdate}) {
 	const navigate = useNavigate();
 	// const [isExpanded, setIsExpanded] = useState(false);
 	const truncatedDescription = description?.length > 100
