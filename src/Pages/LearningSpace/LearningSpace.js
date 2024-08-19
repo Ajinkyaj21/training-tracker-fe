@@ -39,16 +39,18 @@ export default function LearningSpace() {
 	const links = [
 		{
 			id: "1",
-			description: "Session on Test Driven development in ReactJS and NodeJS",
+			description: "Test Driven development in ReactJS and NodeJS",
 			author: "Ajinkya Jagadale",
 			date: "02 Aug 2024",
+			location: 'Flairminds Software Pvt Ltd',
 			link: "https://stlearningspacesfm001.blob.core.windows.net/uploads/Session on Test Driven Development in React and Node JS-20240802_112510-Meeting Recording.mp4"
 		},
 		{
 			id: "2",
-			description: "Session on Google Cloud",
+			description: "Google Cloud",
 			author: "Narayan Pisharoty",
 			date: "02 July 2024",
+			location: 'Flairminds Software Pvt Ltd',
 			link: "https://stlearningspacesfm001.blob.core.windows.net/uploads/Session on Google Cloud-20240702_072208-Meeting Recording.mp4"
 		},
 		{
@@ -56,6 +58,7 @@ export default function LearningSpace() {
 			description: "Introduction to AI",
 			author: "Shriman Tiwari",
 			date: "12 June 2024",
+			location: 'Flairminds Software Pvt Ltd',
 			link: "https://stlearningspacesfm001.blob.core.windows.net/uploads/Introduction to AI-20240612_124352-Enregistrement de la réunion.mp4"
 		}
 	];
@@ -109,7 +112,7 @@ export default function LearningSpace() {
 					<div>
 						<h4 className={styles.allCourses}>All Sessions</h4>
 					</div>
-					<div>
+					<div className={styles.displayCard}>
 						<DisplayCard links={links}></DisplayCard>
 					</div>
 				</div>
