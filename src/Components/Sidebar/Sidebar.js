@@ -6,6 +6,7 @@ import learning from '../../Assets/Learning_.png';
 // import learningSpace from '../../Assets/learningSpace.png';
 import traineesIcon from '../../Assets/trainees.svg';
 import TrainingIcon from '../../Assets/training.svg';
+import { isloggedInAdmin } from '../../utils/Utils';
 import { windowDimensions } from '../../utils/windowElem';
 import styles from './Sidebar.module.css';
 
@@ -13,6 +14,7 @@ const SideBar = () => {
 	const [isOpen, setIsOpen] = useState(false);
 	const toggle = () => setIsOpen(!isOpen);
 	const [windowWidth, setWindowWidth] = useState(0);
+	const isAdmin = isloggedInAdmin();
 
 	useEffect(() => {
 		setWindowWidth(windowDimensions.width);
@@ -34,11 +36,12 @@ const SideBar = () => {
 		path: "/learningSpace",
 		name: "LearningSpace",
 		icon: learning
-	}, {
+	},
+	isAdmin ? {
 		path: "/admin",
 		name: "Admin",
 		icon: AdminIcon
-	}];
+	} : {}];
 
 	const Bars = () => {
 		return (
