@@ -84,9 +84,9 @@ const CourseTable = ({ tableHead, tableData, openVideoModal, setYoutubeSrc, setE
 														className={styles.dropdown}
 													>
 														<option value="" disabled selected>Select Status</option>
-														<option value="Complete">Complete</option>
 														<option value="Not Started">Not Started</option>
 														<option value="In Progress">In Progress</option>
+														<option value="Complete">Complete</option>
 													</select>
 													: header.key === 'Edit' && isAdmin == 1 ?
 														<>
@@ -103,7 +103,7 @@ const CourseTable = ({ tableHead, tableData, openVideoModal, setYoutubeSrc, setE
 															</Tooltip>
 														</>
 														:
-														row[header.key]
+														(row[header.key] === "" || row[header.key] === null) ? "-" : row[header.key]
 									}
 								</td>
 							))}
