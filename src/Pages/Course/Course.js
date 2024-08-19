@@ -78,7 +78,7 @@ export default function Course() {
 		{lable: "Topic Name", key: "topic"},
 		{lable: "Article", key: "article", type: "imageLink", imgsrc: Article},
 		{lable: "Video Tutorial", key: "youtube", type: "videoLink", imgsrc: YouTube},
-		{lable: "Practice Doc.", key: "Practice", type: "imageLink", imgsrc: Practice },
+		{lable: "Practice Doc.", key: "Practice", type: "practiceLink", imgsrc: Practice },
 		{lable: "Upload Assignment", key: "Assignments", type: "imageLink", imgsrc: Upload},
 		{lable: "Status", key: "status", type: "dropDown", imgsrc: Status},
 		...(isAdmin == 1 ? [{ lable: "Edit", key: "Edit", imgsrc: EditImg }] : [])
@@ -96,7 +96,6 @@ export default function Course() {
 		const file = e.target.files[0];
 		if (file) {
 			console.info(`File uploaded for row ${index}:`, file);
-			// I think one api chahiye ye ass backend send krne keliye
 		}
 	};
 

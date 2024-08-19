@@ -50,61 +50,81 @@ const CourseTable = ({ tableHead, tableData, openVideoModal, setYoutubeSrc, setE
 						<tr key={rowIndex} className={styles.tableRow}>
 							{tableHead.map((header, cellIndex) => (
 								<td key={cellIndex} className={styles.tableCell}>
-									{header.key === 'srNo' ?
-										rowIndex + 1 :
-										header.type === "videoLink" ?
-											<>
+									{header.key === 'srNo' ? (
+										rowIndex + 1
+									) : header.type === "videoLink" ? (
+										<>
+											<img
+												src={header.imgsrc}
+												alt=""
+												className={`${styles.image} ${(row[header.key] === "" || row[header.key] === null) ? styles.fadedImage : ""}`}
+												onClick={() => {
+													if (row[header.key]) {
+														setYoutubeSrc(row[header.key]);
+														openVideoModal();
+													}
+												}}
+												style={{ cursor: row[header.key] ? 'pointer' : 'not-allowed' }}
+											/>
+											<Tooltip id="video-tooltip" place="top" effect="solid">
+												Watch Video
+											</Tooltip>
+										</>
+									) : header.type === "imageLink" ? (
+										<>
+											<Link to={row && row[header.key]} target='_blank' style={{ pointerEvents: row[header.key] ? 'auto' : 'none' }}>
 												<img
 													src={header.imgsrc}
 													alt=""
-													className={styles.image}
-													onClick={() => {
-														setYoutubeSrc(row[header.key]);
-														openVideoModal();
-													}}
-													style={{ cursor: 'pointer' }}
+													className={`${styles.image} ${(row[header.key] === "" || row[header.key] === null) ? styles.fadedImage : ""}`}
 												/>
-												<Tooltip id="video-tooltip" place="top" effect="solid">
-													Watch Video
-												</Tooltip>
-											</>
-											: header.type === "imageLink" ?
-												<>
-													<Link to={row && row[header.key]} target='_blank'>
-														<img src={header.imgsrc} alt="" className={styles.image} />
-													</Link>
-													<Tooltip id="image-tooltip" place="top" effect="solid">
-														View Image
-													</Tooltip>
-												</>
-												: header.key === 'status' ?
-													<select
-														value={tableData ? tableData[rowIndex].status : ""}
-														onChange={(e) => handleStatusChange(rowIndex, e)}
-														className={styles.dropdown}
-													>
-														<option value="" disabled selected>Select Status</option>
-														<option value="Not Started">Not Started</option>
-														<option value="In Progress">In Progress</option>
-														<option value="Complete">Complete</option>
-													</select>
-													: header.key === 'Edit' && isAdmin == 1 ?
-														<>
-															<img
-																src={header.imgsrc}
-																alt="Edit"
-																className={styles.image}
-																onClick={() => handleEditClick(row, rowIndex)}
-																style={{ cursor: 'pointer' }}
-																title="Edit"
-															/>
-															<Tooltip id="edit-tooltip" place="top" effect="solid">
-																Edit
-															</Tooltip>
-														</>
-														:
-														(row[header.key] === "" || row[header.key] === null) ? "-" : row[header.key]
-									}
+											</Link>
+											<Tooltip id="image-tooltip" place="top" effect="solid">
+												View Image
+											</Tooltip>
+										</>
+									) : header.type === "practiceLink" ? (
+										<>
+											<Link to={row && row[header.key]} target='_blank' style={{ pointerEvents: row[header.key] ? 'auto' : 'none' }}>
+												<img
+													src={header.imgsrc}
+													alt="Practice Doc"
+													className={`${styles.image} ${(row[header.key] === "" || row[header.key] === null) ? styles.fadedImage : ""}`}
+												/>
+											</Link>
+											<Tooltip id="practice-doc-tooltip" place="top" effect="solid">
+													Practice Doc
+											</Tooltip>
+										</>
+									) : header.key === 'status' ? (
+										<select
+											value={tableData ? tableData[rowIndex].status : ""}
+											onChange={(e) => handleStatusChange(rowIndex, e)}
+											className={styles.dropdown}
+										>
+											<option value="" disabled selected>Select Status</option>
+											<option value="Not Started">Not Started</option>
+											<option value="In Progress">In Progress</option>
+											<option value="Complete">Complete</option>
+										</select>
+									) : header.key === 'Edit' && isAdmin == 1 ? (
+										<>
+											<img
+												src={header.imgsrc}
+												alt="Edit"
+												className={styles.image}
+												onClick={() => handleEditClick(row, rowIndex)}
+												style={{ cursor: 'pointer' }}
+												title="Edit"
+											/>
+											<Tooltip id="edit-tooltip" place="top" effect="solid">
+												Edit
+											</Tooltip>
+										</>
+									) : (
+										row[header.key]
+									)}
+
 								</td>
 							))}
 						</tr>

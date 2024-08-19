@@ -110,7 +110,7 @@ export default function EditModal({ isOpen, onClose, editData, id, getTopics }) 
 									<input type="text" className={styles.formControl} name="topic" value={formData.topic} onChange={handleChange} required />
 								</div>
 								<div className={styles.formGroup}>
-									<label>Article Upload Type<span>*</span></label>
+									<label>Article Upload Type</label>
 									<div className={styles.radioBtn}>
 										<label>
 											<input
@@ -136,21 +136,21 @@ export default function EditModal({ isOpen, onClose, editData, id, getTopics }) 
 								</div>
 								{articleUploadType === 'link' ? (
 									<div className={styles.formGroup}>
-										<label>Article Link<span>*</span></label>
+										<label>Article Link</label>
 										<input type="url" className={styles.formControl} name="articleLink" value={formData.articleLink} onChange={handleChange} />
 									</div>
 								) : (
 									<div className={styles.formGroup}>
-										<label>Article File<span>*</span></label>
+										<label>Article File</label>
 										<input type="file" className={styles.formControl} name="articleFile" onChange={(e) => handleFileChange(e, 'articleFile')} />
 									</div>
 								)}
 								<div className={styles.formGroup}>
-									<label>YouTube Link<span>*</span></label>
+									<label>YouTube Link</label>
 									<input type="url" className={styles.formControl} name="youtube" value={formData.youtube} onChange={handleChange} />
 								</div>
 								<div className={styles.formGroup}>
-									<label>Practice Upload Type<span>*</span></label>
+									<label>Practice Upload Type</label>
 									<div className={styles.radioBtn}>
 										<label>
 											<input
@@ -176,12 +176,12 @@ export default function EditModal({ isOpen, onClose, editData, id, getTopics }) 
 								</div>
 								{practiceUploadType === 'link' ? (
 									<div className={styles.formGroup}>
-										<label>Practice Link<span>*</span></label>
+										<label>Practice Link</label>
 										<input type="url" className={styles.formControl} name="practiceLink" value={formData.practiceLink} onChange={handleChange} />
 									</div>
 								) : (
 									<div className={styles.formGroup}>
-										<label>Practice File<span>*</span></label>
+										<label>Practice File</label>
 										<input type="file" className={styles.formControl} name="practiceFile" onChange={(e) => handleFileChange(e, 'practiceFile')} />
 									</div>
 								)}

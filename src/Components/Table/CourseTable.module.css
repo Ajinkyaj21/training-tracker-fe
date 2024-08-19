@@ -32,7 +32,8 @@
   border: 1px solid #ccc;
   border-radius: 4px;
 }
-.fadedIcon {
-  opacity: 0.5; /* Adjust opacity to achieve the faded effect */
-  cursor: not-allowed; /* Change cursor to indicate non-clickable */
+.fadedImage {
+  opacity: 0.5;
+  cursor: not-allowed !important;
+  pointer-events: none;
 }
