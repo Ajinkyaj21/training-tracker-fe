@@ -106,11 +106,6 @@ export default function LearningSpace() {
 
 			{activeTab === 'session' && (
 				<div>
-					{isAdmin == 1 ? (
-						<div className={styles.btnDiv}>
-							<Button type="button" className="btn btn-primary" onClick={openAddTopic}>+ Add Session</Button>
-						</div>
-					) : null}
 					<div>
 						<h4 className={styles.allCourses}>All Sessions</h4>
 					</div>

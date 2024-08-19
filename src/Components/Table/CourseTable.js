@@ -29,6 +29,7 @@ const CourseTable = ({ tableHead, tableData, openVideoModal, setYoutubeSrc, setE
 			};
 			const res = await updateStatusForTopic(statusData);
 			console.info(res);
+			getTopics();
 		} catch (err) {
 			console.info(err);
 		}
