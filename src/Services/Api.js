@@ -1,9 +1,9 @@
 import axios from 'axios';
 // import Cookies from 'js-cookie';
-//const NodeURL = 'http://localhost:9090';
+const NodeURL = 'http://localhost:9090';
 
 // const NodeURL = 'https://d40vhfq2-9090.inc1.devtunnels.ms';
-const NodeURL = 'https://7x5wt80g-9090.inc1.devtunnels.ms'; //for learning space
+// const NodeURL = 'https://7x5wt80g-9090.inc1.devtunnels.ms'; //for learning space
 
 // const NodeURL = 'https://fc10m5q8-9091.inc1.devtunnels.ms';
 // const loginisAdmin = localStorage.getItem("is_admin");
@@ -233,4 +233,26 @@ export const updateStatusForTopic = (statusData ) => {
 	};
 	const response = axios.put(`${NodeURL}/tech/updateStatus/${statusData.id}`, params);
 	return response;
+};
+// export const uploadDoc = (formData) => {
+// 	console.info(formData, "fffff");
+// 	const param = {
+// 		id: formData.id,
+// 		assignments: formData.file
+// 	};
+// 	const response = axios.put(`${NodeURL}/tech/uploadAssignment/${formData.id}`, param);
+// 	return response;
+// };
+export const uploadDoc = async (formData) => {
+	try {
+		const response = await axios.put(`${NodeURL}/tech/uploadAssignment/${formData.get('tech_topic_id')}`, formData, {
+			headers: {
+				'Content-Type': 'multipart/form-data'
+			}
+		});
+		return response;
+	} catch (error) {
+		console.error('Error in uploadDoc API:', error);
+		throw error;
+	}
 };

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Tooltip } from 'react-tooltip';
 import EditModal from '../../Components/Modals/EditModal/EditModal';
-import { postNewTopic, updateStatusForTopic } from '../../Services/Api';
+import { postNewTopic, updateStatusForTopic, uploadDoc } from '../../Services/Api';
 import styles from './CourseTable.module.css';
 
 const CourseTable = ({ tableHead, tableData, openVideoModal, setYoutubeSrc, setEditData, editData, getTopics, id}) => {
@@ -37,20 +37,35 @@ const CourseTable = ({ tableHead, tableData, openVideoModal, setYoutubeSrc, setE
 		}
 	};
 
-	const handleFileChange = (event) => {
+	const handleFileChange = async(event, rowIndex) => {
 		setSelectedFile(event.target.files[0]);
 		console.info(event.target.files[0], 'Selected File');
+		const formData = new FormData();
+		formData.append('assignments', event.target.files[0]);
+		formData.append('tech_topic_id', tableData[rowIndex].topic_id);
+
+		try {
+			const response = await uploadDoc(formData);
+			if (response.status === 200) {
+				console.info('File uploaded successfully');
+				getTopics();
+			} else {
+				console.error('Failed to upload file');
+			}
+		} catch (err) {
+			console.error('Error uploading file:', err);
+		}
 	};
 
 	const handleFileUpload = async (rowIndex) => {
 		if (selectedFile) {
 			const formData = new FormData();
-			formData.append('file', selectedFile);
-			formData.append('id', tableData[rowIndex].topic_id);
+			formData.append('assignments', event.target.files[0]);
+			formData.append('tech_topic_id', tableData[rowIndex].topic_id);
 
 			try {
-				const response = await postNewTopic(formData);
-				if (response.ok) {
+				const response = await uploadDoc(formData);
+				if (response.status === 200) {
 					console.info('File uploaded successfully');
 					getTopics();
 				} else {
@@ -59,7 +74,8 @@ const CourseTable = ({ tableHead, tableData, openVideoModal, setYoutubeSrc, setE
 			} catch (err) {
 				console.error('Error uploading file:', err);
 			}
-
+		} else {
+			console.warn('No file selected for upload');
 		}
 	};
 
@@ -127,17 +143,18 @@ const CourseTable = ({ tableHead, tableData, openVideoModal, setYoutubeSrc, setE
 									) : header.type === "uploadAssignments" ? (
 										<>
 											<div>
+												<img
+													onClick={() => handleFileUpload(rowIndex)}
+													src={header.imgsrc}
+													alt="uploadAssignments"
+													className={`${styles.image} ${(row[header.key] === "" || row[header.key] === null) ? styles.fadedImage : ""}`}
+												/>
 												<button
 													className={styles.uploadButton}
 												>
-													<img
-														onClick={() => handleFileUpload(rowIndex)}
-														src={header.imgsrc}
-														alt="uploadAssignments"
-														className={`${styles.image} ${(row[header.key] === "" || row[header.key] === null) ? styles.fadedImage : ""}`}
-													/><input
+													<input
 														type="file"
-														onChange={handleFileChange}
+														onChange={() => handleFileChange(event, rowIndex)}
 														className={styles.fileInput}
 													/>
 												</button>
