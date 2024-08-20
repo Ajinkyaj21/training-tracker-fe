@@ -2,12 +2,14 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Tooltip } from 'react-tooltip';
 import EditModal from '../../Components/Modals/EditModal/EditModal';
-import { updateStatusForTopic } from '../../Services/Api';
+import { postNewTopic, updateStatusForTopic } from '../../Services/Api';
 import styles from './CourseTable.module.css';
+
 const CourseTable = ({ tableHead, tableData, openVideoModal, setYoutubeSrc, setEditData, editData, getTopics, id}) => {
 	const isAdmin = localStorage.getItem('adminToken');
 	const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 	const [currentIndex, setCurrentIndex] = useState(null);
+	const [selectedFile, setSelectedFile] = useState(null);
 
 	const handleEditClick = (rowData, rowIndex) => {
 		setEditData(rowData);
@@ -17,9 +19,9 @@ const CourseTable = ({ tableHead, tableData, openVideoModal, setYoutubeSrc, setE
 
 	const handleEditSubmit = (updatedData) => {
 		console.info(updatedData, 'Updated Data');
-
 		getTopics();
 	};
+
 	const handleStatusChange = async(rowIndex, event) => {
 		const newStatus = event.target.value;
 		try {
@@ -32,6 +34,32 @@ const CourseTable = ({ tableHead, tableData, openVideoModal, setYoutubeSrc, setE
 			getTopics();
 		} catch (err) {
 			console.info(err);
+		}
+	};
+
+	const handleFileChange = (event) => {
+		setSelectedFile(event.target.files[0]);
+		console.info(event.target.files[0], 'Selected File');
+	};
+
+	const handleFileUpload = async (rowIndex) => {
+		if (selectedFile) {
+			const formData = new FormData();
+			formData.append('file', selectedFile);
+			formData.append('id', tableData[rowIndex].topic_id);
+
+			try {
+				const response = await postNewTopic(formData);
+				if (response.ok) {
+					console.info('File uploaded successfully');
+					getTopics();
+				} else {
+					console.error('Failed to upload file');
+				}
+			} catch (err) {
+				console.error('Error uploading file:', err);
+			}
+
 		}
 	};
 
@@ -80,7 +108,7 @@ const CourseTable = ({ tableHead, tableData, openVideoModal, setYoutubeSrc, setE
 												/>
 											</Link>
 											<Tooltip id="image-tooltip" place="top" effect="solid">
-												View Image
+												View Article
 											</Tooltip>
 										</>
 									) : header.type === "practiceLink" ? (
@@ -96,13 +124,35 @@ const CourseTable = ({ tableHead, tableData, openVideoModal, setYoutubeSrc, setE
 												Practice Doc
 											</Tooltip>
 										</>
+									) : header.type === "uploadAssignments" ? (
+										<>
+											<div>
+												<button
+													className={styles.uploadButton}
+												>
+													<img
+														onClick={() => handleFileUpload(rowIndex)}
+														src={header.imgsrc}
+														alt="uploadAssignments"
+														className={`${styles.image} ${(row[header.key] === "" || row[header.key] === null) ? styles.fadedImage : ""}`}
+													/><input
+														type="file"
+														onChange={handleFileChange}
+														className={styles.fileInput}
+													/>
+												</button>
+												<Tooltip id="practice-doc-tooltip" place="top" effect="solid">
+												Upload Assignment
+												</Tooltip>
+											</div>
+										</>
 									) : header.key === 'status' ? (
 										<select
 											value={tableData ? tableData[rowIndex].status : ""}
 											onChange={(e) => handleStatusChange(rowIndex, e)}
 											className={styles.dropdown}
 										>
-											<option value="" disabled selected>Select Status</option>
+											<option value="" disabled>Select Status</option>
 											<option value="Not Started">Not Started</option>
 											<option value="In Progress">In Progress</option>
 											<option value="Complete">Complete</option>
@@ -124,7 +174,6 @@ const CourseTable = ({ tableHead, tableData, openVideoModal, setYoutubeSrc, setE
 									) : (
 										row[header.key]
 									)}
-
 								</td>
 							))}
 						</tr>

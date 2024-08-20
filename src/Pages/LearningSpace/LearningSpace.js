@@ -96,7 +96,6 @@ export default function LearningSpace() {
 						<h4 className={styles.allCourses}>All Courses</h4>
 					</div>
 
-					{/* Loader */}
 					{loading ? (
 						<div className="d-flex justify-content-center">
 							<div className="spinner-border" role="status">

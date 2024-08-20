@@ -21,6 +21,7 @@
   .image{
     width: 30px;
     cursor: pointer;
+    margin: 0px 10px;
   }
   .topicName {
     text-align: left; 
@@ -36,4 +37,12 @@
   filter: grayscale(1);
   cursor: not-allowed !important;
   /* pointer-events: none; */
+}
+.fileInput{
+  /* border: transparent!important; */
+}
+.uploadButton{
+  border: transparent!important;
+  background-color: transparent;
+  
 }

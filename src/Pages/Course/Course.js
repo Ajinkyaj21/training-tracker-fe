@@ -79,7 +79,7 @@ export default function Course() {
 		{lable: "Article", key: "article", type: "imageLink", imgsrc: Article},
 		{lable: "Video Tutorial", key: "youtube", type: "videoLink", imgsrc: YouTube},
 		{lable: "Practice Doc.", key: "Practice", type: "practiceLink", imgsrc: Practice },
-		{lable: "Upload Assignment", key: "Assignments", type: "imageLink", imgsrc: Upload},
+		{lable: "Upload Assignment", key: "Assignments", type: "uploadAssignments", imgsrc: Upload},
 		{lable: "Status", key: "status", type: "dropDown", imgsrc: Status},
 		...(isAdmin == 1 ? [{ lable: "Edit", key: "Edit", imgsrc: EditImg }] : [])
 	];

@@ -31,7 +31,7 @@ export default function NavBar() {
 				{/* <img className={style.img} src={Logo} alt="flairminds"/> */}
 				{/* Review: Logout button is showing only in some views, not in all views */}
 				{/* Review: I don't see requirement of bootstrap here */}
-				<p className={style.userProfile}>{localStorage.getItem("username").replace(/@[^@]+$/, '')}</p>
+				<p className={style.userProfile}>{localStorage.getItem("username")?.replace(/@[^@]+$/, '')}</p>
 				<Components.CustomButton onClick={logout} customStyle={logoutBtnStyle} >
 					<img src={LogoutIcon} className={style.logoutImg} alt='logout'/>
 				</Components.CustomButton>
