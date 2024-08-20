@@ -9,6 +9,7 @@ import styles from './LearningSpace.module.css';
 export default function LearningSpace() {
 	const [isAddTopicModalOpen, setIsAddTopicModalOpen] = useState(false);
 	const [getCourses, setGetCourses] = useState([]);
+	const [loading, setLoading] = useState(true);
 	const [activeTab, setActiveTab] = useState('course');
 	const isAdmin = localStorage.getItem('adminToken');
 
@@ -22,10 +23,13 @@ export default function LearningSpace() {
 
 	const displayCourse = async () => {
 		try {
+			setLoading(true);
 			const res = await getCourse();
 			setGetCourses(res.data.result);
 		} catch (err) {
 			console.error(err);
+		} finally {
+			setLoading(false);
 		}
 	};
 
@@ -36,6 +40,7 @@ export default function LearningSpace() {
 	const formatDate = (dateString) => {
 		return dateString.substring(0, 10);
 	};
+
 	const links = [
 		{
 			id: "1",
@@ -62,6 +67,7 @@ export default function LearningSpace() {
 			link: "https://stlearningspacesfm001.blob.core.windows.net/uploads/Introduction to AI-20240612_124352-Enregistrement de la réunion.mp4"
 		}
 	];
+
 	return (
 		<>
 			<div className={styles.buttonGroup}>
@@ -89,20 +95,31 @@ export default function LearningSpace() {
 					<div>
 						<h4 className={styles.allCourses}>All Courses</h4>
 					</div>
-					<div className={styles.mainContainer}>
-						<div className={styles.container1}>
-							{getCourses.map((item, index) => (
-								<DisplayBox
-									key={index}
-									id={item.course_id}
-									logo={item.image}
-									name={item.course}
-									description={item.description}
-									lastUpdate={formatDate(item.created_at)}
-								/>
-							))}
+
+					{/* Loader */}
+					{loading ? (
+						<div className="d-flex justify-content-center">
+							<div className="spinner-border" role="status">
+								<span className="visually-hidden">Loading...</span>
+							</div>
 						</div>
-					</div>
+					) : (
+						<div className={styles.mainContainer}>
+							<div className={styles.container1}>
+								{getCourses.map((item, index) => (
+									<DisplayBox
+										key={index}
+										id={item.course_id}
+										logo={item.image}
+										name={item.course}
+										description={item.description}
+										lastUpdate={formatDate(item.created_at)}
+									/>
+								))}
+							</div>
+						</div>
+					)}
+
 					<AddTopic isOpen={isAddTopicModalOpen} onClose={closeAddTopicModal} displayCourse={displayCourse} />
 				</div>
 			)}

@@ -93,7 +93,7 @@ const CourseTable = ({ tableHead, tableData, openVideoModal, setYoutubeSrc, setE
 												/>
 											</Link>
 											<Tooltip id="practice-doc-tooltip" place="top" effect="solid">
-													Practice Doc
+												Practice Doc
 											</Tooltip>
 										</>
 									) : header.key === 'status' ? (

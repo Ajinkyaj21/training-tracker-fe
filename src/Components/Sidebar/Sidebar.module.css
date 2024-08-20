@@ -4,17 +4,17 @@
 	color: var(--primary-light-color);
 	height: 100vh;
 	position: sticky;
-	width: 135px;
+	width: 180px;
 	top: 0;
 	cursor: pointer;
-	transition: all 0.5s;
+	/* transition: all 0.5s; */
 }
 
 .topSection {
 	align-items: center;
 	display: flex;
 	/* background-color: red; */
-	padding: 15px;
+	padding: 10px 8px;
 }
 
 .bars {
@@ -29,7 +29,7 @@
 	transition: all 0.25s;
 	text-decoration: none;
 	margin: 5px 0;
-	padding: 5px 13px;
+	padding: 10px 5px;
 	border-radius: 5px;
 }
 

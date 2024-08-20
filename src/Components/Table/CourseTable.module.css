@@ -33,7 +33,7 @@
   border-radius: 4px;
 }
 .fadedImage {
-  opacity: 0.5;
+  filter: grayscale(1);
   cursor: not-allowed !important;
-  pointer-events: none;
+  /* pointer-events: none; */
 }

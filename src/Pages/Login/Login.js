@@ -22,6 +22,7 @@ export default function Login() {
 			//for admin validation
 			const isAdmin = response.result.is_admin;
 			localStorage.setItem("adminToken", isAdmin);
+			localStorage.setItem("username", email);
 			if (isAdmin) {
 				navigate("/admin");
 			} else {
