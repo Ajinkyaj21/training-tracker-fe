@@ -26,6 +26,7 @@ export default function Course() {
 	// const [assignments, setAssignments] = useState({});
 	const [youtubeSrc, setYoutubeSrc] = useState(null);
 	const [displayTopic, setDisplayTopic] = useState([]);
+	const [loading, setLoading] = useState(true);
 	const [editData, setEditData] = useState({
 		moduleName: '',
 		description: '',
@@ -47,15 +48,19 @@ export default function Course() {
 	const handelBack = () => {
 		navigate(`/LearningSpace`);
 	};
-	const getTopics = async() => {
+	const getTopics = async () => {
 		try {
+			setLoading(true);
 			const res = await getTopic(id);
-			console.log(res.data.result);
+			console.info("API response:", res.data.result);
 			setDisplayTopic(res.data.result);
 		} catch {
 			console.info("error");
+		} finally {
+			setLoading(false);
 		}
 	};
+
 	useEffect(() => {
 		getTopics();
 	}, [id]);
@@ -120,21 +125,31 @@ export default function Course() {
 			<div className={styles.describtionContainer}>
 				<p>{description}</p>
 			</div>
-			<div className={styles.table}>
-				{console.info(displayTopic, "topic")}
-				<CourseTable
-					tableHead={tableHead}
-					tableData={displayTopic}
-					setYoutubeSrc={setYoutubeSrc}
-					handleFileUpload={handleFileUpload}
-					setEditData={setEditData}
-					editData={editData}
-					openVideoModal={openVideoModal}
-					getTopics={getTopics}
-					id={id}
-				/>
-				{/* <Edit getTopics={getTopics} editData={editData} setEditData={setEditData} id={id}/> */}
-			</div>
+			{loading ? (
+				<div className="d-flex justify-content-center m-3">
+					<div className="spinner-border text-info" role="status">
+						<span className="visually-hidden">Loading...</span>
+					</div>
+				</div>
+			) :
+				(
+
+					<div className={styles.table}>
+						{console.info(displayTopic, "topic")}
+						<CourseTable
+							tableHead={tableHead}
+							tableData={displayTopic}
+							setYoutubeSrc={setYoutubeSrc}
+							handleFileUpload={handleFileUpload}
+							setEditData={setEditData}
+							editData={editData}
+							openVideoModal={openVideoModal}
+							getTopics={getTopics}
+							id={id}
+						/>
+						{/* <Edit getTopics={getTopics} editData={editData} setEditData={setEditData} id={id}/> */}
+					</div>
+				)}
 			<div className={styles.footer}>
 
 			</div>

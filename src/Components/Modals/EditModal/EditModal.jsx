@@ -5,30 +5,19 @@ import { editTopic } from '../../../Services/Api';
 import styles from './Edit.module.css';
 
 export default function EditModal({ isOpen, onClose, editData, id, getTopics }) {
-
 	const [formData, setFormData] = useState({
 		moduleName: '',
 		description: '',
 		visitDate: '',
 		topic: '',
 		articleLink: '',
-		articleFile: '',
+		articleFile: null,
 		youtube: '',
 		practiceLink: '',
-		practiceFile: '',
-		assignments: ''
+		practiceFile: null
 	});
 	const [articleUploadType, setArticleUploadType] = useState('link');
 	const [practiceUploadType, setPracticeUploadType] = useState('link');
-
-	const convertFileToBase64 = (file) => {
-		return new Promise((resolve, reject) => {
-			const reader = new FileReader();
-			reader.readAsDataURL(file);
-			reader.onload = () => resolve(reader.result);
-			reader.onerror = (error) => reject(error);
-		});
-	};
 
 	useEffect(() => {
 		if (editData) {
@@ -38,12 +27,13 @@ export default function EditModal({ isOpen, onClose, editData, id, getTopics }) 
 				visitDate: '',
 				topic: editData.topic || '',
 				articleLink: editData.article || '',
-				articleFile: '',
+				articleFile: null,
 				youtube: editData.youtube || '',
 				practiceLink: editData.practice || '',
-				practiceFile: '',
-				assignments: editData.assignments || ''
+				practiceFile: null
 			});
+			setArticleUploadType(editData.article ? 'link' : 'file');
+			setPracticeUploadType(editData.practice ? 'link' : 'file');
 		}
 	}, [editData]);
 
@@ -62,30 +52,32 @@ export default function EditModal({ isOpen, onClose, editData, id, getTopics }) 
 		}));
 	};
 
-	const handleSubmit = async(e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
-			const articleData = articleUploadType === 'link'
-				? formData.articleLink
-				: await convertFileToBase64(formData.articleFile);
+			const formDataToSend = new FormData();
+			formDataToSend.append('tech_topic_id', editData.topic_id);
+			formDataToSend.append('tech_id', id);
+			formDataToSend.append('topic', formData.topic);
+			formDataToSend.append('youtube', formData.youtube);
+			formDataToSend.append('assignments', formData.assignments);
 
-			const practiceData = practiceUploadType === 'link'
-				? formData.practiceLink
-				: await convertFileToBase64(formData.practiceFile);
-			const postData = {
-				ids: editData.topic_id,
-				courseId: id,
-				topic: formData.topic,
-				article: articleData,
-				youtube: formData.youtube,
-				practice: practiceData,
-				assignments: formData.assignments
-			};
+			if (articleUploadType === 'link') {
+				formDataToSend.append('article', formData.articleLink);
+			} else if (formData.articleFile) {
+				formDataToSend.append('article', formData.articleFile);
+			}
 
-			const res = await editTopic(postData);
+			if (practiceUploadType === 'link') {
+				formDataToSend.append('practice', formData.practiceLink);
+			} else if (formData.practiceFile) {
+				formDataToSend.append('practice', formData.practiceFile);
+			}
+
+			const res = await editTopic(formDataToSend);
 			if (res.data.success) {
 				console.info(res, "res for add new topic");
-				toast.success("Topic added successfully!");
+				toast.success("Topic edited successfully!");
 				getTopics();
 				onClose();
 			}

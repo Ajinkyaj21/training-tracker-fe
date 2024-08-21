@@ -52,6 +52,7 @@ export default function AddParticularTopic({ isOpen, onClose, id, getTopics, edi
 				postData.append('practice', formData.practiceFile);
 			}
 			console.info(postData, "postData for addtopic");
+
 			const res = await postNewTopic(postData);
 			console.info(res, "res for add new topic");
 			toast.success("Topic added successfully!");
