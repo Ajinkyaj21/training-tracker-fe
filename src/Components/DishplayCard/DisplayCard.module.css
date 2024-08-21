@@ -43,7 +43,7 @@
 	justify-content: space-between;
 	align-items: center;
 	width: 100%;
-	margin-bottom: 0;
+	margin-top: 20px;
 }
 .otherDetails>:nth-of-type(2){
 	background-color: green;
@@ -57,4 +57,18 @@
 }
 .locationIcon{
 	height: 20px;
+}
+.topics{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 10px;
+	margin-bottom: 20px;
+}
+.topic{
+	background-color: rgb(104, 104, 104);
+	padding: 10px;
+	color: #fff;
+	border-radius: 20px;
+	min-width: 70px;
 }
