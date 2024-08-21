@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Tooltip } from 'react-tooltip';
 import EditModal from '../../Components/Modals/EditModal/EditModal';
-import { postNewTopic, updateStatusForTopic, uploadDoc } from '../../Services/Api';
+import { updateStatusForTopic, uploadDoc } from '../../Services/Api';
 import styles from './CourseTable.module.css';
 
 const CourseTable = ({ tableHead, tableData, openVideoModal, setYoutubeSrc, setEditData, editData, getTopics, id}) => {

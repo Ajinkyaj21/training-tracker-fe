@@ -28,6 +28,13 @@ export default function DisplayCard({ links }) {
 							<img className={styles.locationIcon} src={LocationIcon} alt="location"/>
 							<p className={styles.place}>{link.location}</p>
 						</div>
+						<div className={styles.topics}>
+							{
+								link.topicsCovered.map((topic, index) => {
+									return <p className={styles.topic} key={index}>{topic}</p>;
+								})
+							}
+						</div>
 					</div>
 				</div>
 			))}

@@ -48,6 +48,7 @@ export default function LearningSpace() {
 			author: "Ajinkya Jagadale",
 			date: "02 Aug 2024",
 			location: 'Flairminds Software Pvt Ltd',
+			topicsCovered: ['React.js', 'Vitest', 'Jest', 'Nodejs'],
 			link: "https://stlearningspacesfm001.blob.core.windows.net/uploads/Session on Test Driven Development in React and Node JS-20240802_112510-Meeting Recording.mp4"
 		},
 		{
@@ -56,6 +57,7 @@ export default function LearningSpace() {
 			author: "Narayan Pisharoty",
 			date: "02 July 2024",
 			location: 'Flairminds Software Pvt Ltd',
+			topicsCovered: ['Cloud', 'Google Cloud', 'Python'],
 			link: "https://stlearningspacesfm001.blob.core.windows.net/uploads/Session on Google Cloud-20240702_072208-Meeting Recording.mp4"
 		},
 		{
@@ -64,6 +66,7 @@ export default function LearningSpace() {
 			author: "Shriman Tiwari",
 			date: "12 June 2024",
 			location: 'Flairminds Software Pvt Ltd',
+			topicsCovered: ['Python', 'AI/ML', 'SQL', 'Clustering'],
 			link: "https://stlearningspacesfm001.blob.core.windows.net/uploads/Introduction to AI-20240612_124352-Enregistrement de la réunion.mp4"
 		}
 	];

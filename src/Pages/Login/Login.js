@@ -23,11 +23,7 @@ export default function Login() {
 			const isAdmin = response.result.is_admin;
 			localStorage.setItem("adminToken", isAdmin);
 			localStorage.setItem("username", email);
-			if (isAdmin) {
-				navigate("/admin");
-			} else {
-				navigate('/');
-			}
+			navigate("/learningSpace");
 		} catch (error) {
 			console.error("Error: ", error);
 		}
