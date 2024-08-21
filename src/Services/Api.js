@@ -188,23 +188,6 @@ export const postCourse = (courseData) => {
 	};
 	return axios.post(`${NodeURL}/tech/addNewCourse`, params, {headers});
 };
-export const postNewTopic = (postData) => {
-	const headers = {
-		'authorization': `Bearer ${localStorage.getItem('token')}`,
-		withCredntials: true,
-		credentials: 'include'
-	};
-	const params = {
-		id: postData.ids,
-		topic: postData.topic,
-		article: postData.article,
-		youtube: postData.youtube,
-		practice: postData.practice,
-		assignments: postData.assignments
-	};
-	const response = axios.post(`${NodeURL}/tech/addNewTopic/${postData.ids}`, params, { headers });
-	return response;
-};
 export const getTopic = (id) => {
 	const response = axios.get(`${NodeURL}/tech/getTopics/${id}`);
 	return response;
@@ -234,15 +217,46 @@ export const updateStatusForTopic = (statusData ) => {
 	const response = axios.put(`${NodeURL}/tech/updateStatus/${statusData.id}`, params);
 	return response;
 };
-// export const uploadDoc = (formData) => {
-// 	console.info(formData, "fffff");
-// 	const param = {
-// 		id: formData.id,
-// 		assignments: formData.file
-// 	};
-// 	const response = axios.put(`${NodeURL}/tech/uploadAssignment/${formData.id}`, param);
-// 	return response;
+// export const postNewTopic = async (postData) => {
+// 	try {
+// 		const params = {
+// 			id: postData.ids,
+// 			topic: postData.topic,
+// 			article: postData.article,
+// 			youtube: postData.youtube,
+// 			practice: postData.practice
+// 		};
+// 		const response = axios.post(`${NodeURL}/tech/addNewTopic/${postData.ids}`, params, {headers: {
+// 			'Content-Type': 'multipart/form-data'
+// 		}});
+// 		return response;
+// 	} catch (error) {
+// 		console.error('Error in addNewTopic API:', error);
+// 		throw error;
+// 	}
+
 // };
+export const postNewTopic = async (postData) => {
+	try {
+		const response = await axios.post(
+			`${NodeURL}/tech/addNewTopic/${postData.get('ids')}`,
+			postData,
+			{
+				headers: {
+					'Content-Type': 'multipart/form-data',
+					'authorization': `Bearer ${localStorage.getItem('token')}`,
+					withCredntials: true,
+					credentials: 'include'
+				}
+			}
+		);
+		return response;
+	} catch (error) {
+		console.error('Error in addNewTopic API:', error);
+		throw error;
+	}
+};
+
 export const uploadDoc = async (formData) => {
 	try {
 		const response = await axios.put(`${NodeURL}/tech/uploadAssignment/${formData.get('tech_topic_id')}`, formData, {

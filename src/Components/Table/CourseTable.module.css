@@ -40,6 +40,8 @@
 }
 .fileInput{
   /* border: transparent!important; */
+  /* display: none; */
+  /* visibility: hidden; */
 }
 .uploadButton{
   border: transparent!important;

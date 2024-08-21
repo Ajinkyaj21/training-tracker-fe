@@ -50,6 +50,7 @@ export default function Course() {
 	const getTopics = async() => {
 		try {
 			const res = await getTopic(id);
+			console.log(res.data.result);
 			setDisplayTopic(res.data.result);
 		} catch {
 			console.info("error");

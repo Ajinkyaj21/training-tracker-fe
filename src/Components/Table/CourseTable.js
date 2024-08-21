@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
 import { Tooltip } from 'react-tooltip';
 import EditModal from '../../Components/Modals/EditModal/EditModal';
 import { updateStatusForTopic, uploadDoc } from '../../Services/Api';
@@ -10,6 +11,7 @@ const CourseTable = ({ tableHead, tableData, openVideoModal, setYoutubeSrc, setE
 	const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 	const [currentIndex, setCurrentIndex] = useState(null);
 	const [selectedFile, setSelectedFile] = useState(null);
+	const [loading, setLoading] = useState(true);
 
 	const handleEditClick = (rowData, rowIndex) => {
 		setEditData(rowData);
@@ -29,11 +31,13 @@ const CourseTable = ({ tableHead, tableData, openVideoModal, setYoutubeSrc, setE
 				id: tableData[rowIndex].topic_id,
 				status: newStatus
 			};
+			setLoading(true);
 			const res = await updateStatusForTopic(statusData);
 			console.info(res);
 			getTopics();
 		} catch (err) {
 			console.info(err);
+			setLoading(false);
 		}
 	};
 
@@ -48,6 +52,7 @@ const CourseTable = ({ tableHead, tableData, openVideoModal, setYoutubeSrc, setE
 			const response = await uploadDoc(formData);
 			if (response.status === 200) {
 				console.info('File uploaded successfully');
+				toast.success("Topic added successfully!");
 				getTopics();
 			} else {
 				console.error('Failed to upload file');
@@ -67,6 +72,7 @@ const CourseTable = ({ tableHead, tableData, openVideoModal, setYoutubeSrc, setE
 				const response = await uploadDoc(formData);
 				if (response.status === 200) {
 					console.info('File uploaded successfully');
+					toast.success("Assignment added successfully!");
 					getTopics();
 				} else {
 					console.error('Failed to upload file');
@@ -129,13 +135,17 @@ const CourseTable = ({ tableHead, tableData, openVideoModal, setYoutubeSrc, setE
 										</>
 									) : header.type === "practiceLink" ? (
 										<>
-											<Link to={row && row[header.key]} target='_blank' style={{ pointerEvents: row[header.key] ? 'auto' : 'none' }}>
+											{console.info(row && row.practice, "link")}
+											{/* <Link to={row && row[header.key]} target='_blank' 
+											style={{ pointerEvents: row[header.key] ? 'auto' : 'none' }}> */}
+											<a href={row.practice} download>
 												<img
 													src={header.imgsrc}
 													alt="Practice Doc"
 													className={`${styles.image} ${(row[header.key] === "" || row[header.key] === null) ? styles.fadedImage : ""}`}
 												/>
-											</Link>
+											</a>
+											{/* </Link> */}
 											<Tooltip id="practice-doc-tooltip" place="top" effect="solid">
 												Practice Doc
 											</Tooltip>
@@ -143,24 +153,28 @@ const CourseTable = ({ tableHead, tableData, openVideoModal, setYoutubeSrc, setE
 									) : header.type === "uploadAssignments" ? (
 										<>
 											<div>
-												<img
-													onClick={() => handleFileUpload(rowIndex)}
-													src={header.imgsrc}
-													alt="uploadAssignments"
-													className={`${styles.image} ${(row[header.key] === "" || row[header.key] === null) ? styles.fadedImage : ""}`}
-												/>
+												<label htmlFor={`file-upload-${rowIndex}`}>
+													<img
+														onClick={() => handleFileUpload(rowIndex)}
+														src={header.imgsrc}
+														alt="uploadAssignments"
+														className={`${styles.image} ${(row[header.key] === "" || row[header.key] === null) ? styles.fadedImage : ""}`}
+													/>
+												</label>
 												<button
 													className={styles.uploadButton}
 												>
 													<input
 														type="file"
-														onChange={() => handleFileChange(event, rowIndex)}
+														id={`file-upload-${rowIndex}`}
+														onChange={(event) => handleFileChange(event, rowIndex)}
 														className={styles.fileInput}
 													/>
 												</button>
 												<Tooltip id="practice-doc-tooltip" place="top" effect="solid">
 												Upload Assignment
 												</Tooltip>
+												<ToastContainer/>
 											</div>
 										</>
 									) : header.key === 'status' ? (
@@ -206,6 +220,7 @@ const CourseTable = ({ tableHead, tableData, openVideoModal, setYoutubeSrc, setE
 				currentIndex={currentIndex}
 				id={id}
 			/>
+			<ToastContainer />
 		</>
 	);
 };

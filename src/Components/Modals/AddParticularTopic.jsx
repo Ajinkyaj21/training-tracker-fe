@@ -6,57 +6,16 @@ import styles from './AddParticularTopic.module.css';
 
 export default function AddParticularTopic({ isOpen, onClose, id, getTopics, editTopics }) {
 	const [formData, setFormData] = useState({
-		moduleName: '',
-		description: '',
-		visitDate: '',
 		topic: '',
 		articleLink: '',
-		articleFile: '',
+		articleFile: null,
 		youtube: '',
 		practiceLink: '',
-		practiceFile: '',
-		assignments: ''
+		practiceFile: null
 	});
 
 	const [articleUploadType, setArticleUploadType] = useState('link');
 	const [practiceUploadType, setPracticeUploadType] = useState('link');
-
-	const convertFileToBase64 = (file) => {
-		return new Promise((resolve, reject) => {
-			const reader = new FileReader();
-			reader.readAsDataURL(file);
-			reader.onload = () => resolve(reader.result);
-			reader.onerror = (error) => reject(error);
-		});
-	};
-
-	const addNewTopic = async () => {
-		try {
-			const articleData = articleUploadType === 'link'
-				? formData.articleLink
-				: await convertFileToBase64(formData.articleFile);
-
-			const practiceData = practiceUploadType === 'link'
-				? formData.practiceLink
-				: await convertFileToBase64(formData.practiceFile);
-
-			const postData = {
-				ids: id,
-				topic: formData.topic,
-				article: articleData,
-				youtube: formData.youtube,
-				practice: practiceData,
-				assignments: formData.assignments
-			};
-
-			const res = await postNewTopic(postData);
-			console.info(res, "res for add new topic");
-			toast.success("Topic added successfully!");
-			getTopics();
-		} catch (error) {
-			toast.error("Failed to add topic!");
-		}
-	};
 
 	const handleChange = (e) => {
 		const { name, value } = e.target;
@@ -72,21 +31,46 @@ export default function AddParticularTopic({ isOpen, onClose, id, getTopics, edi
 			[field]: e.target.files[0]
 		}));
 	};
+	console.info(id, "idddddddddd");
+	const addNewTopic = async () => {
+		try {
+			const postData = new FormData();
+			postData.append('ids', id);
+			postData.append('topic', formData.topic);
+
+			if (articleUploadType === 'link') {
+				postData.append('article', formData.articleLink);
+			} else if (formData.articleFile) {
+				postData.append('article', formData.articleFile);
+			}
+
+			postData.append('youtube', formData.youtube);
+
+			if (practiceUploadType === 'link') {
+				postData.append('practice', formData.practiceLink);
+			} else if (formData.practiceFile) {
+				postData.append('practice', formData.practiceFile);
+			}
+			console.info(postData, "postData for addtopic");
+			const res = await postNewTopic(postData);
+			console.info(res, "res for add new topic");
+			toast.success("Topic added successfully!");
+			getTopics();
+		} catch (error) {
+			toast.error("Failed to add topic!");
+		}
+	};
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		addNewTopic();
 		setFormData({
-			moduleName: '',
-			description: '',
-			visitDate: '',
 			topic: '',
 			articleLink: '',
-			articleFile: '',
+			articleFile: null,
 			youtube: '',
 			practiceLink: '',
-			practiceFile: '',
-			assignments: ''
+			practiceFile: null
 		});
 		onClose();
 	};
