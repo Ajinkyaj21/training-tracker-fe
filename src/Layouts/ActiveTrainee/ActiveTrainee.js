@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import ReactPaginate from "react-paginate";
+import ReactPaginate from 'react-paginate';
 // import { useNavigate } from 'react-router-dom';
 import { fetchTraineeDataActiveAdmin } from "../../Services/Api";
 import { fetchTraineeDataActiveUser } from "../../Services/Api";

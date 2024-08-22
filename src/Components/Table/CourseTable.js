@@ -11,7 +11,6 @@ const CourseTable = ({ tableHead, tableData, openVideoModal, setYoutubeSrc, setE
 	const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 	const [currentIndex, setCurrentIndex] = useState(null);
 	const [selectedFile, setSelectedFile] = useState(null);
-	const [loading, setLoading] = useState(true);
 
 	const handleEditClick = (rowData, rowIndex) => {
 		setEditData(rowData);
@@ -31,13 +30,13 @@ const CourseTable = ({ tableHead, tableData, openVideoModal, setYoutubeSrc, setE
 				id: tableData[rowIndex].topic_id,
 				status: newStatus
 			};
-			setLoading(true);
+
 			const res = await updateStatusForTopic(statusData);
 			console.info(res);
 			getTopics();
 		} catch (err) {
 			console.info(err);
-			setLoading(false);
+
 		}
 	};
 
@@ -136,7 +135,7 @@ const CourseTable = ({ tableHead, tableData, openVideoModal, setYoutubeSrc, setE
 									) : header.type === "practiceLink" ? (
 										<>
 											{console.info(row && row.practice, "link")}
-											{/* <Link to={row && row[header.key]} target='_blank' 
+											{/* <Link to={row && row[header.key]} target='_blank'
 											style={{ pointerEvents: row[header.key] ? 'auto' : 'none' }}> */}
 											<a href={row.practice} download>
 												<img

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import ReactPaginate from "react-paginate";
+import ReactPaginate from 'react-paginate';
 import { useNavigate } from "react-router-dom";
 import EditIcon from '../../Assets/editIcon.svg';
 // import { Components } from "../../Components";
