@@ -1,7 +1,8 @@
 import axios from 'axios';
 // import Cookies from 'js-cookie';
 //const NodeURL = 'http://localhost:9090';
-const NodeURL = "https://training-tracker-be.vercel.app"; //Production server
+//const NodeURL = "https://training-tracker-be.vercel.app"; //Production server
+const NodeURL = "http://4.213.78.161:9090";//Azure production
 // const NodeURL = 'https://d40vhfq2-9090.inc1.devtunnels.ms';
 // const NodeURL = 'https://7x5wt80g-9090.inc1.devtunnels.ms'; //for learning space
 
