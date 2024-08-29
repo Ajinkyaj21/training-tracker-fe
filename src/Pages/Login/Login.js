@@ -1,6 +1,6 @@
 import React, { useEffect, useState} from 'react';
 import { useNavigate } from "react-router-dom";
-import Logo from '../../Assets/Logo.jpg';
+import Logo from '../../Assets/fmlogos.jpeg';
 import { Components } from '../../Components';
 import { login } from '../../Services/Api';
 import { LOCALSTORAGE_ITEMS } from '../../utils/Constants';
@@ -78,6 +78,7 @@ export default function Login() {
 			<div className={styles.leftContainer}>
 				<div className={styles.logo}>
 					<img src={Logo} className={styles.logoImg} alt="logo"/>
+					<h1 style={{color: "white", marginTop: "2rem", fontWeight: "semibold"}}>FlairMinds Software</h1>
 				</div>
 			</div>
 			<div className={styles.rightContainer}>
