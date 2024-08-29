@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react';
 import Button from '../../Components/Button/CustomButton';
 import DisplayCard from '../../Components/DishplayCard/DisplayCard';
 import DisplayBox from '../../Components/DisplayBox/DisplayBox';
+import AddSession from '../../Components/Modals/AddSession/AddSession';
 import AddTopic from '../../Components/Modals/AddTopic';
-import { getCourse } from '../../Services/Api';
+import { getCourse, getSessions } from '../../Services/Api';
 import styles from './LearningSpace.module.css';
 
 export default function LearningSpace() {
@@ -12,6 +13,14 @@ export default function LearningSpace() {
 	const [loading, setLoading] = useState(true);
 	const [activeTab, setActiveTab] = useState('course');
 	const isAdmin = localStorage.getItem('adminToken');
+	const [isAddSessionModalOpen, setIsAddSessionModalOpen ] = useState(false);
+	const [selectedVideoIndex, setSelectedVideoIndex] = useState(null);
+	const [sessionData, setSessionData] = useState([]);
+	useEffect(() => {
+		displayCourse();
+		console.info(selectedVideoIndex);
+		setSelectedVideoIndex(null);
+	}, []);
 
 	const openAddTopic = () => {
 		setIsAddTopicModalOpen(true);
@@ -41,36 +50,23 @@ export default function LearningSpace() {
 		return dateString.substring(0, 10);
 	};
 
-	const links = [
-		{
-			id: "1",
-			description: "Test Driven development in ReactJS and NodeJS",
-			author: "Ajinkya Jagadale",
-			date: "02 Aug 2024",
-			location: 'Flairminds Software Pvt Ltd',
-			topicsCovered: ['React.js', 'Vitest', 'Jest', 'Nodejs'],
-			link: "https://stlearningspacesfm001.blob.core.windows.net/uploads/Session on Test Driven Development in React and Node JS-20240802_112510-Meeting Recording.mp4"
-		},
-		{
-			id: "2",
-			description: "Google Cloud",
-			author: "Narayan Pisharoty",
-			date: "02 July 2024",
-			location: 'Flairminds Software Pvt Ltd',
-			topicsCovered: ['Cloud', 'Google Cloud', 'Python'],
-			link: "https://stlearningspacesfm001.blob.core.windows.net/uploads/Session on Google Cloud-20240702_072208-Meeting Recording.mp4"
-		},
-		{
-			id: "3",
-			description: "Introduction to AI",
-			author: "Shriman Tiwari",
-			date: "12 June 2024",
-			location: 'Flairminds Software Pvt Ltd',
-			topicsCovered: ['Python', 'AI/ML', 'SQL', 'Clustering'],
-			link: "https://stlearningspacesfm001.blob.core.windows.net/uploads/Introduction to AI-20240612_124352-Enregistrement de la réunion.mp4"
-		}
-	];
-
+	const openAddSession = () => {
+		setIsAddSessionModalOpen(true);
+	};
+	const closeAddSession = () => {
+		setIsAddSessionModalOpen(false);
+	};
+	const handleDescriptionClick = (index) => {
+		setSelectedVideoIndex(index);
+	};
+	const getSessionLinks = async() => {
+		const res = await getSessions();
+		setSessionData(res?.data?.result);
+	};
+	useEffect(() => {
+		setSelectedVideoIndex(null);
+		getSessionLinks();
+	}, [activeTab === 'session']);
 	return (
 		<>
 			<div className={styles.buttonGroup}>
@@ -128,11 +124,19 @@ export default function LearningSpace() {
 
 			{activeTab === 'session' && (
 				<div>
+					{isAdmin == 1 && (
+						<>
+							<div className={styles.btnDiv}>
+								<Button type="button" className="btn btn-primary" onClick={openAddSession}>+ Add Session</Button>
+							</div>
+							<AddSession isOpen={isAddSessionModalOpen} onClose={closeAddSession} />
+						</>
+					)}
 					<div>
 						<h4 className={styles.allCourses}>All Sessions</h4>
 					</div>
 					<div className={styles.displayCard}>
-						<DisplayCard links={links}></DisplayCard>
+						<DisplayCard links={sessionData} onDescriptionClick={handleDescriptionClick} />
 					</div>
 				</div>
 			)}

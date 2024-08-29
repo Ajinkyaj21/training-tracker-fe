@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import { Tooltip } from 'react-tooltip';
 import EditModal from '../../Components/Modals/EditModal/EditModal';
-import { updateStatusForTopic, uploadDoc } from '../../Services/Api';
+import { deleteData, updateStatusForTopic, uploadDoc } from '../../Services/Api';
 import styles from './CourseTable.module.css';
 
 const CourseTable = ({ tableHead, tableData, openVideoModal, setYoutubeSrc, setEditData, editData, getTopics, id}) => {
@@ -22,7 +22,24 @@ const CourseTable = ({ tableHead, tableData, openVideoModal, setYoutubeSrc, setE
 		console.info(updatedData, 'Updated Data');
 		getTopics();
 	};
+	const handleDeleteClick = async(rowIndex, row) => {
+		try {
+			console.info(tableData, "tableData");
+			console.info(row, "row");
+			console.info(rowIndex, "rowIndex");
+			console.info(tableData[rowIndex?.topic_id], "tableData[rowIndex]");
+			const id = rowIndex?.topic_id;
+			console.info(id, "lo");
+			// console.info(id, "lololo");
+			const res = await deleteData(id);
+			console.info(res, "for delete");
+			await getTopics();
 
+		} catch (err) {
+			console.info(err);
+		}
+
+	};
 	const handleStatusChange = async(rowIndex, event) => {
 		const newStatus = event.target.value;
 		try {
@@ -199,6 +216,20 @@ const CourseTable = ({ tableHead, tableData, openVideoModal, setYoutubeSrc, setE
 											/>
 											<Tooltip id="edit-tooltip" place="top" effect="solid">
 												Edit
+											</Tooltip>
+										</>
+									) : header.key === 'Delete' && isAdmin == 1 ? (
+										<>
+											<img
+												src={header.imgsrc}
+												alt="Delete"
+												className={styles.image}
+												onClick={() => handleDeleteClick(row, rowIndex)}
+												style={{ cursor: 'pointer' }}
+												title="Delete"
+											/>
+											<Tooltip id="delete-tooltip" place="top" effect="solid">
+												Delete
 											</Tooltip>
 										</>
 									) : (

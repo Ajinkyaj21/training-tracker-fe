@@ -273,3 +273,34 @@ export const uploadDoc = async (formData) => {
 		throw error;
 	}
 };
+
+export const addSession = (addData) => {
+	const headers = {
+		'authorization': `Bearer ${localStorage.getItem('token')}`,
+		withCredntials: true,
+		credentials: 'include'
+	};
+	const param = {
+		sessionUrl: addData.sessionUrl,
+		name: addData.name,
+		date: addData.date,
+		speaker: addData.speaker,
+		tagsJson: addData.tagsJson
+	};
+	console.info(param);
+	const response = axios.post(`${NodeURL}/tech/addSessions`, param, {headers});
+	return response;
+};
+export const getSessions = () => {
+	const response = axios.get(`${NodeURL}/tech/getSessions`);
+	return response;
+};
+export const deleteData = (id) => {
+	const headers = {
+		'authorization': `Bearer ${localStorage.getItem('token')}`,
+		withCredntials: true,
+		credentials: 'include'
+	};
+
+	return axios.delete(`${NodeURL}/tech/deleteTopic/${id}`, {headers});
+};
